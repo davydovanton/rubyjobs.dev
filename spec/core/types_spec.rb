@@ -37,4 +37,29 @@ RSpec.describe Core::Types do
     it { expect(type[uuid]).to eq(uuid) }
     it { expect { type['anything'] }.to raise_error(Dry::Types::ConstraintError) }
   end
+
+  describe 'JobPositionTypes' do
+    let(:type) { Core::Types::JobPositionTypes }
+
+    [
+      [nil, 'full_time'],
+
+      %w[full_time full_time],
+      %w[part_time part_time],
+      %w[contractor contractor],
+      %w[temp temp],
+      %w[other other],
+
+      [:full_time, 'full_time'],
+      [:part_time, 'part_time'],
+      [:contractor, 'contractor'],
+      [:temp, 'temp'],
+      [:other, 'other'],
+    ].each do |value, result|
+      it { expect(type[value]).to eq(result) }
+    end
+
+    it { expect { type['invalid'] }.to raise_error(Dry::Types::ConstraintError) }
+    it { expect { type[:invalid] }.to raise_error(Dry::Types::ConstraintError) }
+  end
 end
