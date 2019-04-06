@@ -38,8 +38,8 @@ RSpec.describe Core::Types do
     it { expect { type['anything'] }.to raise_error(Dry::Types::ConstraintError) }
   end
 
-  describe 'JobPositionTypes' do
-    let(:type) { Core::Types::JobPositionTypes }
+  describe 'VacancyPositionTypes' do
+    let(:type) { Core::Types::VacancyPositionTypes }
 
     [
       [nil, 'full_time'],

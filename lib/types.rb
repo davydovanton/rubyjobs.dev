@@ -18,9 +18,9 @@ module Core
       format: /\A(\h{32}|\h{8}-\h{4}-\h{4}-\h{4}-\h{12})\z/
     )
 
-    # Jobs
-    JobPositionTypes = String.constructor(proc { |value| value.to_s.downcase })
-                               .default('full_time')
-                               .enum('full_time', 'part_time', 'contractor', 'intern', 'temp', 'other')
+    # Vacancies
+    VacancyPositionTypes = String.constructor(proc { |value| value.to_s.downcase })
+                                 .default('full_time')
+                                 .enum('full_time', 'part_time', 'contractor', 'intern', 'temp', 'other')
   end
 end

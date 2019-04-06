@@ -1,4 +1,4 @@
-class JobRepository < Hanami::Repository
+class VacancyRepository < Hanami::Repository
   associations do
     has_one :contact
   end

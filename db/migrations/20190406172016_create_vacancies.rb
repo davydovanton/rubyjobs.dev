@@ -2,14 +2,14 @@ Hanami::Model.migration do
   change do
     extension :pg_enum
 
-    create_enum(:job_position_types, %w[full_time part_time contractor intern temp other])
+    create_enum(:vacancy_position_types, %w[full_time part_time contractor intern temp other])
 
-    create_table :jobs do
+    create_table :vacancies do
       primary_key :id
       foreign_key :contact_id, :contacts, on_delete: :cascade, null: false
 
       column :position, String, null: false
-      column :position_type, 'job_position_types', null: false, default: 'full_time'
+      column :position_type, 'vacancy_position_types', null: false, default: 'full_time'
 
       column :details_raw, String, null: false, text: true
       column :details,     String, null: false, text: true

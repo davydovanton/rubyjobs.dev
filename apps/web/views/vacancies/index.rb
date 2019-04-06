@@ -1,6 +1,6 @@
 module Web
   module Views
-    module Jobs
+    module Vacancies
       class Index
         include Web::View
       end

@@ -1,6 +1,6 @@
 module Web
   module Controllers
-    module Jobs
+    module Vacancies
       class Index
         include Web::Action
 

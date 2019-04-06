@@ -1,4 +1,4 @@
-RSpec.describe Web::Controllers::Jobs::Index, type: :action do
+RSpec.describe Web::Controllers::Vacancies::Index, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
 
