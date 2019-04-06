@@ -17,6 +17,7 @@ Hanami::Model.migration do
       column :location, String
       column :remote_available, TrueClass, default: false
 
+      column :published, TrueClass, default: false
       column :archived, TrueClass, default: false
 
       column :created_at, DateTime, null: false

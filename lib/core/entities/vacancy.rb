@@ -15,6 +15,7 @@ class Vacancy < Hanami::Entity
     attribute :location, Types::String
     attribute :remote_available, Types::Bool
 
+    attribute :published, Types::Bool
     attribute :archived, Types::Bool
 
     attribute :contact, Types::Entity(Contact)
