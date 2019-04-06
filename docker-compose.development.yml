@@ -1,0 +1,18 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: safelylaunch
+      POSTGRES_DB: core
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "2300:2300"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://safelylaunch@postgres/core
+      HANAMI_ENV: development

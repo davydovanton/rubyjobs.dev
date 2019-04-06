@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title
+      | Dashboard
+    = favicon
+    = stylesheet 'main'
+  body
+    .container
+      = yield
+
+    .footer
+    = javascript 'main'
+
