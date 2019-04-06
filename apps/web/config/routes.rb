@@ -1,2 +1,2 @@
 root to: 'jobs#index'
-get '/jobs', to: 'jobs#index'
+get '/terms', to: 'static#terms'
