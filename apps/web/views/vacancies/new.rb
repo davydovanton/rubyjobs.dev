@@ -13,11 +13,13 @@ module Web
             div do
               label 'Позиция'
               text_field :posititon, placeholder: 'Ruby разработчик'
+
+              select :position_type, select_position_type_values, options: { prompt: 'Тип занятости' }
             end
 
             div do
               label 'Описание вакансии и детали'
-              text_field :details_raw, placeholder: 'Для редактирования поддерживается marckdown'
+              text_area :details_raw, placeholder: 'Для редактирования поддерживается marckdown'
             end
 
             div do
@@ -33,8 +35,12 @@ module Web
             fields_for :salary do
               div do
                 label 'Вилка'
-                text_field :from, placeholder: 'От'
-                text_field :to, placeholder: 'До'
+                text_field :min, placeholder: 'От'
+                text_field :max, placeholder: 'До'
+
+                select :currency, select_currency_values, options: { prompt: 'Денежная единица' }
+
+                select :currency, select_unit_values, options: { prompt: 'Период' }
               end
             end
 
@@ -75,6 +81,27 @@ module Web
 
             submit 'Отправить'
           end
+        end
+
+      private
+
+        def select_position_type_values
+          {
+            'Полная занятость' => 'full_time',
+            'Частичная занятость' => 'part_time',
+            'Работа по контракту' => 'contractor',
+            'Интернатура' => 'intern',
+            'Временная работа' => 'temp',
+            'Другое' => 'other'
+          }
+        end
+
+        def select_currency_values
+          { 'рублей' => 'rub', 'долларов' => 'usd', 'евро' => 'eur' }
+        end
+
+        def select_unit_values
+          { 'в год' => 'rub', 'в месяц' => 'usd', 'в час' => 'eur', 'за проект' => 'other' }
         end
       end
     end
