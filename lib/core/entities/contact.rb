@@ -11,7 +11,6 @@ class Contact < Hanami::Entity
     attribute :full_name, Types::String
     attribute :company, Types::String
     attribute :site, Types::String
-    attribute :phone, Types::String
 
     attribute :vacancy, Types::Entity(Vacancy)
 
