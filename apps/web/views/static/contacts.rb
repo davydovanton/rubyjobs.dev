@@ -3,6 +3,10 @@ module Web
     module Static
       class Contacts
         include Web::View
+
+        def title
+          'Контакты'
+        end
       end
     end
   end

@@ -3,6 +3,10 @@ module Web
     module Vacancies
       class Show
         include Web::View
+
+        def title
+          'Вакансия "#{position}"'
+        end
       end
     end
   end
