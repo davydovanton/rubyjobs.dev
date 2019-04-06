@@ -3,6 +3,7 @@ Hanami::Model.migration do
     extension :pg_enum
 
     create_enum(:vacancy_position_types, %w[full_time part_time contractor intern temp other])
+    create_enum(:vacancy_salary_currency_types, %w[rub usd eur])
 
     create_table :vacancies do
       primary_key :id
@@ -19,6 +20,11 @@ Hanami::Model.migration do
 
       column :published, TrueClass, default: false
       column :archived, TrueClass, default: false
+
+      column :salary_min, Integer, null: false
+      column :salary_max, Integer, null: false
+      column :salary_currency, 'vacancy_salary_currency_types', null: false, default: 'rub'
+      column :salary_unit, String, null: false
 
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false

@@ -62,4 +62,25 @@ RSpec.describe Core::Types do
     it { expect { type['invalid'] }.to raise_error(Dry::Types::ConstraintError) }
     it { expect { type[:invalid] }.to raise_error(Dry::Types::ConstraintError) }
   end
+
+  describe 'VacancySalaryCurrencyTypes' do
+    let(:type) { Core::Types::VacancySalaryCurrencyTypes }
+
+    [
+      [nil, 'rub'],
+
+      %w[rub rub],
+      %w[usd usd],
+      %w[eur eur],
+
+      [:rub, 'rub'],
+      [:usd, 'usd'],
+      [:eur, 'eur'],
+    ].each do |value, result|
+      it { expect(type[value]).to eq(result) }
+    end
+
+    it { expect { type['invalid'] }.to raise_error(Dry::Types::ConstraintError) }
+    it { expect { type[:invalid] }.to raise_error(Dry::Types::ConstraintError) }
+  end
 end

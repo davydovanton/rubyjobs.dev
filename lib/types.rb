@@ -22,5 +22,9 @@ module Core
     VacancyPositionTypes = String.constructor(proc { |value| value.to_s.downcase })
                                  .default('full_time')
                                  .enum('full_time', 'part_time', 'contractor', 'intern', 'temp', 'other')
+
+    VacancySalaryCurrencyTypes = String.constructor(proc { |value| value.to_s.downcase })
+                                       .default('rub')
+                                       .enum('rub', 'usd', 'eur')
   end
 end

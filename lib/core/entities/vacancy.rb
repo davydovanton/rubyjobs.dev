@@ -18,6 +18,11 @@ class Vacancy < Hanami::Entity
     attribute :published, Types::Bool
     attribute :archived, Types::Bool
 
+    attribute :salary_min, Types::Int
+    attribute :salary_max, Types::Int
+    attribute :salary_currency, Core::Types::VacancySalaryCurrencyTypes
+    attribute :salary_unit, Types::String
+
     attribute :contact, Types::Entity(Contact)
 
     attribute :created_at, Types::Time
