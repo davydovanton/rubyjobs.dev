@@ -18,6 +18,8 @@ class Container < Dry::System::Container
   #  Core
   register_folder! 'core/repositories'
 
+  #  Vacancies
+  register_folder! 'vacancies/operations'
 
   configure do |config|
     config.env = Hanami.env
