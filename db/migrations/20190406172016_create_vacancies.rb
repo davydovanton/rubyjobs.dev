@@ -28,6 +28,7 @@ Hanami::Model.migration do
 
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false
+      column :deleted_at, DateTime
       column :archived_at, DateTime
     end
   end

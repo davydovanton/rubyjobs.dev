@@ -27,6 +27,7 @@ class Vacancy < Hanami::Entity
 
     attribute :created_at, Types::Time
     attribute :updated_at, Types::Time
+    attribute :deleted_at, (Types::Time | Types::Nil)
     attribute :archived_at, Types::Time
   end
 end
