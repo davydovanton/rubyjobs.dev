@@ -70,8 +70,7 @@ RSpec.describe Vacancies::Operations::Create, type: :operation do
         position_type: "full_time",
 
         details_raw: "test something here",
-        details: "test something here",
-        # details: "<p>test something here</p>",
+        details: "<p>test something here</p>\n",
 
         location: "moscow",
         remote_available: true,
@@ -83,6 +82,7 @@ RSpec.describe Vacancies::Operations::Create, type: :operation do
 
         published: false,
         archived: false,
+        deleted_at: nil
       )
     end
   end
