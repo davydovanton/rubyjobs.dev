@@ -18,8 +18,10 @@ gem 'pg'
 gem 'dry-system', '~> 0.9.0'
 gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami'
 
-# presenters
-gem 'surrealist'
+# markdown
+gem 'kramdown', '1.13.1'
+gem 'rinku'
+gem 'rouge', '1.11.1'
 
 # templates
 gem 'hanami-bootstrap'
@@ -33,10 +35,6 @@ gem 'semantic_logger'
 
 # business logic section
 gem 'dry-monads', '~> 1.1.0'
-
-# auth
-gem 'omniauth-google-oauth2'
-gem 'web_bouncer', github: 'davydovanton/web_bouncer'
 
 group :development do
   # Code reloading
