@@ -12,7 +12,7 @@ module Web
           form_for :vacancy, routes.vacancies_path, method: :post do
             div do
               label 'Позиция'
-              text_field :posititon, placeholder: 'Ruby разработчик'
+              text_field :position, placeholder: 'Ruby разработчик'
 
               select :position_type, select_position_type_values, options: { prompt: 'Тип занятости' }
             end
@@ -39,8 +39,7 @@ module Web
                 text_field :max, placeholder: 'До'
 
                 select :currency, select_currency_values, options: { prompt: 'Денежная единица' }
-
-                select :currency, select_unit_values, options: { prompt: 'Период' }
+                select :unit, select_unit_values, options: { prompt: 'Период' }
               end
             end
 
@@ -101,7 +100,7 @@ module Web
         end
 
         def select_unit_values
-          { 'в год' => 'rub', 'в месяц' => 'usd', 'в час' => 'eur', 'за проект' => 'other' }
+          { 'в год' => 'yearly', 'в месяц' => 'monthly', 'в час' => 'by hour', 'за проект' => 'per project' }
         end
       end
     end
