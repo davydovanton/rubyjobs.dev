@@ -1,10 +1,21 @@
-h1 Список вакансий
+.row.mt-3.mb-3.align-items-center
+  .col-8
+    h1 Вакансии для ruby разработчиков
 
-ul
+  .col-4.mb-1
+    = link_to 'Добавить вакансию', routes.new_vacancy_path, class: 'btn btn-primary new-vacancy-btn'
+
+hr
+
+.row.mt-3.mb-3
+  .col
+    | RubyJobs.dev бесплатная площадка для размещения ваканский и поиска ruby разработчиков.
+
+ul.list-group
   - vacancies.each do |vacancy|
-    li
-      = link_to vacancy.position, routes.vacancy_path(vacancy.id)
+    li.list-group-item
+      .row
+        .col
+          = link_to vacancy.position, routes.vacancy_path(vacancy.id)
 
-div
-  = link_to 'Добавить вакансию', routes.new_vacancy_path
 
