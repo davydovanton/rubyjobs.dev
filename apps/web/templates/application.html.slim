@@ -3,12 +3,29 @@ html
   head
     title
       | #{title} - RubyJobs
+
     = favicon
-    = stylesheet 'main'
-  body
-    .container
-      = yield
+    = stylesheet 'bootstrap', 'main'
 
-    .footer
+  body.d-flex.flex-column.h-100
+    main.flex-shrink-0
+      .container
+        = yield
+
+    footer.footer.mt-auto.py-3.fixed-bottom
+      .container
+        .row.justify-content-md-center
+          .col.licence
+            | © 2019, Anton Davydov
+          .col
+            /span.text-muted Place sticky footer content here.
+          .col
+            ul.list-inline
+              li.list-inline-item
+                = link_to 'О проекте', routes.about_path
+              li.list-inline-item
+                = link_to 'Контакты', routes.contacts_path
+              li.list-inline-item
+                = link_to 'Условия', routes.terms_path
+
     = javascript 'main'
-

@@ -1,0 +1,46 @@
+.container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}
+
+.footer {
+  background-color: #f5f5f5;
+  
+  .licence {
+    display: flex;
+    justify-content: center;
+  }
+
+  .list-inline-item {
+    margin: 0 5%;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .container{
+    max-width: 990px;
+  }
+
+  .footer {
+    .list-inline-item {
+      margin: 0 3%;
+    }
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .container{
+    max-width: 1100px;
+  }
+}
