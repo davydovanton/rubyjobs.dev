@@ -7,12 +7,12 @@ html
     = favicon
     = stylesheet 'bootstrap', 'main'
 
-  body.d-flex.flex-column.h-100
-    main.flex-shrink-0
+  body.h-100
+    main
       .container
         = yield
 
-    footer.footer.mt-auto.py-3.fixed-bottom
+    footer.footer
       .container
         .row.justify-content-md-center
           .col.licence
@@ -28,4 +28,4 @@ html
               li.list-inline-item
                 = link_to 'Условия', routes.terms_path
 
-    = javascript 'main'
+    = javascript 'jquery', 'bootstrap', 'main'
