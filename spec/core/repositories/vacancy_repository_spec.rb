@@ -13,6 +13,7 @@ RSpec.describe VacancyRepository, type: :repository do
 
       it { expect(subject.count).to eq(1) }
       it { expect(subject).to all(be_a(Vacancy)) }
+      it { expect(subject.first.contact).to be_a(Contact) }
     end
 
     context 'when vacancy published and archived' do
