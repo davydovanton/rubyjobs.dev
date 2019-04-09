@@ -11,7 +11,7 @@ module Web
         def form
           form_for :vacancy, routes.vacancies_path, method: :post do
             div(class: 'form-group') do
-              label 'Позиция'
+              label 'Позиция *'
               div(class: 'row') do
                 div(class: 'col-8') do
                   text_field :position, placeholder: 'Ruby разработчик', class: 'form-control'
@@ -24,14 +24,14 @@ module Web
             end
 
             div(class: 'form-group') do
-              label 'Описание вакансии и детали'
+              label 'Описание вакансии и детали *'
               text_area :details_raw, placeholder: 'Для редактирования поддерживается marckdown', class: 'form-control'
             end
 
             div(class: 'form-group') do
               div(class: 'row') do
                 div(class: 'col') do
-                  label 'Локация'
+                  label 'Локация *'
                 end
               end
 
@@ -51,7 +51,7 @@ module Web
               div(class: 'form-group') do
                 div(class: 'row') do
                   div(class: 'col') do
-                    label 'Вилка'
+                    label 'Вилка *'
                   end
                 end
 
@@ -110,7 +110,7 @@ module Web
               end
 
               div(class: 'form-group') do
-                label 'Компания'
+                label 'Компания *'
                 text_field :company, class: 'form-control'
               end
 

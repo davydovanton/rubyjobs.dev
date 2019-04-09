@@ -29,6 +29,10 @@ hr.mb-4.mt-4
 
 hr.mb-4.mt-4
 
-.row
-  .col.mb-4
-    = link_to 'Откликнуться', '#', class: 'btn btn-success btn-lg'
+.row.mt-4
+  .col
+    = link_to 'На главную', routes.root_path, class: 'btn btn-outline-secondary btn-lg'
+
+  .col
+    = link_to 'Откликнуться', respond_to_email_href, class: 'btn btn-success btn-lg new-vacancy-btn'
+
