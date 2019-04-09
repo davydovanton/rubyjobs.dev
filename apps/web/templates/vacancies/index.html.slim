@@ -1,1 +1,10 @@
 h1 Список вакансий
+
+ul
+  - vacancies.each do |vacancy|
+    li
+      = link_to vacancy.position, '#'
+
+div
+  = link_to 'Добавить вакансию', routes.new_vacancy_path
+
