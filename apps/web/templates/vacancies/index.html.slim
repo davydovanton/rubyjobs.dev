@@ -3,7 +3,7 @@ h1 Список вакансий
 ul
   - vacancies.each do |vacancy|
     li
-      = link_to vacancy.position, '#'
+      = link_to vacancy.position, routes.vacancy_path(vacancy.id)
 
 div
   = link_to 'Добавить вакансию', routes.new_vacancy_path

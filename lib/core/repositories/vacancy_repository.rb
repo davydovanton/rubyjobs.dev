@@ -5,9 +5,17 @@ class VacancyRepository < Hanami::Repository
 
   def all_with_contact
     aggregate(:contact).where(
-      deleted_at: nil,
       published: true,
-      archived: false
+      archived: false,
+      deleted_at: nil
     ).map_to(Vacancy).to_a
+  end
+
+  def find_with_contact(id)
+    aggregate(:contact).where(
+      published: true,
+      archived: false,
+      deleted_at: nil
+    ).by_pk(id).map_to(Vacancy).one
   end
 end
