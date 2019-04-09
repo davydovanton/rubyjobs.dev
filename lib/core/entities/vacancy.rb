@@ -21,7 +21,7 @@ class Vacancy < Hanami::Entity
     attribute :salary_min, Types::Int
     attribute :salary_max, Types::Int
     attribute :salary_currency, Core::Types::VacancySalaryCurrencyTypes
-    attribute :salary_unit, Types::String
+    attribute :salary_unit, Core::Types::VacancySalaryUnitTypes
 
     attribute :contact, Types::Entity(Contact)
 

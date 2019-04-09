@@ -100,7 +100,7 @@ module Web
         end
 
         def select_unit_values
-          { 'в год' => 'yearly', 'в месяц' => 'monthly', 'в час' => 'by hour', 'за проект' => 'per project' }
+          { 'в месяц' => 'monthly', 'в год' => 'yearly', 'в час' => 'by hour', 'за проект' => 'per project' }
         end
       end
     end
