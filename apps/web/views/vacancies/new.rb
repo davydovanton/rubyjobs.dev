@@ -131,11 +131,11 @@ module Web
 
             div(class: 'row mt-4') do
               div(class: 'col') do
-                link_to 'На главную', routes.root_path, class: 'btn btn-outline-secondary'
+                link_to 'На главную', routes.root_path, class: 'btn btn-outline-secondary btn-lg'
               end
 
               div(class: 'col') do
-                submit 'Отправить', class: 'btn btn-success'
+                submit 'Отправить', class: 'btn btn-success btn-lg'
               end
             end
           end

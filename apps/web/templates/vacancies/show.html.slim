@@ -1,6 +1,34 @@
-h1 = vacancy.position
+.row.mt-4
+  .col
+    h1
+      = link_to 'Главная', routes.root_path
+      |  > #{vacancy.position}
+.row
+  .col
+    | Компания #{company_text(vacancy)} (#{vacancy.location}), опубликована #{RelativeTime.in_words(vacancy.created_at, locale: :ru)}
 
-= vacancy_details
+hr.mb-4.mt-4
 
-div
-  = link_to 'Откликнуться', '#'
+.row
+  .col-6
+    h4
+      = remote_badge(vacancy)
+      = position_type_badge(vacancy)
+  .col-6.salary_information
+    = vacancy_salary_informatioin(vacancy)
+
+.row
+  .col
+
+
+hr.mb-4.mt-4
+
+.row
+  .col.mb-4
+    = vacancy_details
+
+hr.mb-4.mt-4
+
+.row
+  .col.mb-4
+    = link_to 'Откликнуться', '#', class: 'btn btn-success btn-lg'

@@ -11,8 +11,7 @@ module Web
         def vacancy_details
           raw_body(vacancy.details)
         end
-
-      private
+        
 
         def raw_body(body)
           raw(body || '')

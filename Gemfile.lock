@@ -4,6 +4,14 @@ GIT
   specs:
     dry-system-hanami (0.1.0)
 
+GIT
+  remote: git://github.com/davydovanton/relative_time.git
+  revision: 305dc962af48b6acb4237548b4990c7cebd715c2
+  branch: master
+  specs:
+    relative_time (1.0.0)
+      i18n
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -36,7 +44,7 @@ GEM
     concord (0.1.5)
       adamantium (~> 0.2.0)
       equalizer (~> 0.0.9)
-    concurrent-ruby (1.1.4)
+    concurrent-ruby (1.1.5)
     database_cleaner (1.7.0)
     debug_inspector (0.0.3)
     diff-lcs (1.3)
@@ -158,6 +166,8 @@ GEM
     http_router (0.11.2)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
+    i18n (1.6.0)
+      concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     inflecto (0.0.2)
     jaro_winkler (1.5.2)
@@ -217,7 +227,6 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     regexp_parser (1.3.0)
-    relative_time (1.0.0)
     rinku (2.0.5)
     rom (3.3.3)
       concurrent-ruby (~> 1.0)
@@ -328,7 +337,7 @@ DEPENDENCIES
   pg
   puma (~> 3.11.0)
   rake
-  relative_time
+  relative_time!
   rinku
   rouge (= 1.11.1)
   rspec

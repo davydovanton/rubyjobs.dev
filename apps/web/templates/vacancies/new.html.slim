@@ -1,7 +1,9 @@
 .row.mb-4.mt-4
   .col
-    h1 Новая вакансия
+    h1
+      = link_to 'Главная', routes.root_path
+      |  > Новая вакансия
 
 .row
-  .col
+  .col.mb-4
     = form
