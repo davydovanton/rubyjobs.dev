@@ -18,7 +18,7 @@ module Web
                 end
 
                 div(class: 'col-4') do
-                  select :position_type, select_position_type_values, options: { prompt: 'Тип занятости' }, class: 'form-control', required: true
+                  select :position_type, select_position_type_values, class: 'custom-select form-control', required: true
                 end
               end
             end
@@ -69,10 +69,10 @@ module Web
                   end
 
                   div(class: 'col-3') do
-                    select :currency, select_currency_values, options: { prompt: 'Денежная единица' }, class: 'form-control', required: true
+                    select :currency, select_currency_values, class: 'custom-select form-control', required: true
                   end
                   div(class: 'col-3') do
-                    select :unit, select_unit_values, options: { prompt: 'Период' }, class: 'form-control', required: true
+                    select :unit, select_unit_values, class: 'form-control custom-select', required: true
                   end
                 end
               end
@@ -150,6 +150,7 @@ module Web
 
         def select_position_type_values
           {
+            'Тип занятости...' => '',
             'Полная занятость' => 'full_time',
             'Частичная занятость' => 'part_time',
             'Работа по контракту' => 'contractor',
@@ -160,11 +161,11 @@ module Web
         end
 
         def select_currency_values
-          { 'рублей' => 'rub', 'долларов' => 'usd', 'евро' => 'eur' }
+          { 'Денежная единица...' => '', 'рублей' => 'rub', 'долларов' => 'usd', 'евро' => 'eur' }
         end
 
         def select_unit_values
-          { 'в месяц' => 'monthly', 'в год' => 'yearly', 'в час' => 'by hour', 'за проект' => 'per project' }
+          { 'Период...' => '', 'в месяц' => 'monthly', 'в год' => 'yearly', 'в час' => 'by hour', 'за проект' => 'per project' }
         end
       end
     end
