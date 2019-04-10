@@ -44,6 +44,7 @@ module Vacancies
         vacancy_payload[:published] = false
         vacancy_payload[:archived] = false
         vacancy_payload[:archived_at] = calculate_archive_date(vacancy_payload[:archived_in_weeks])
+        vacancy_payload.delete(:archived_in_weeks)
 
         persist_vacancy(company_payload, vacancy_payload)
       end
