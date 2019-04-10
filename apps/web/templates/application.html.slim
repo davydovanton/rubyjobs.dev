@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title
+      | #{title} - RubyJobs
+
+    = favicon
+    = stylesheet 'bootstrap', 'main'
+
+  body.h-100
+    main
+      .container
+        = yield
+
+    footer.footer
+      .container
+        .row.justify-content-md-center
+          .col.licence
+            | © 2019, Anton Davydov
+          .col
+            | Вдохновлено rubyjobs.ru
+            /span.text-muted Place sticky footer content here.
+          .col
+            ul.list-inline
+              li.list-inline-item
+                = link_to 'О проекте', routes.about_path
+              li.list-inline-item
+                = link_to 'Контакты', routes.contacts_path
+              li.list-inline-item
+                = link_to 'Условия', routes.terms_path
+
+    = javascript 'jquery', 'bootstrap', 'main'
