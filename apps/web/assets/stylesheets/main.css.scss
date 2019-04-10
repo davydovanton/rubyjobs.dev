@@ -18,6 +18,15 @@ form {
   }
 }
 
+.form-group {
+  margin: 1rem 0;
+
+  .info {
+    text-align: right;
+    color: #777;
+  }
+}
+
 html {
   min-height: 100%;
   position: relative;

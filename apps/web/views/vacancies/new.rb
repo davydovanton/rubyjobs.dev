@@ -9,23 +9,28 @@ module Web
         end
 
         def form
-          form_for :vacancy, routes.vacancies_path, method: :post do
+          form_for :vacancy, routes.vacancies_path, method: :post, class: 'needs-validation', novalidate: true do
             div(class: 'form-group') do
               label 'Позиция *'
               div(class: 'row') do
                 div(class: 'col-8') do
-                  text_field :position, placeholder: 'Ruby разработчик', class: 'form-control'
+                  text_field :position, placeholder: 'Ruby разработчик', class: 'form-control', required: true
                 end
 
                 div(class: 'col-4') do
-                  select :position_type, select_position_type_values, options: { prompt: 'Тип занятости' }, class: 'form-control'
+                  select :position_type, select_position_type_values, options: { prompt: 'Тип занятости' }, class: 'form-control', required: true
                 end
               end
             end
 
             div(class: 'form-group') do
               label 'Описание вакансии и детали *'
-              text_area :details_raw, placeholder: 'Для редактирования поддерживается marckdown', class: 'form-control'
+              text_area :details_raw, placeholder: '', class: 'form-control', rows: 15, required: true
+
+              div(class: 'info') do
+                text 'Для редактирования можно использовть '
+                a 'markdown', href: 'https://www.markdownguide.org/cheat-sheet'
+              end
             end
 
             div(class: 'form-group') do
@@ -37,7 +42,7 @@ module Web
 
               div(class: 'row') do
                 div(class: 'col-4') do
-                  text_field :location, placeholder: 'Город, страна', class: 'form-control'
+                  text_field :location, placeholder: 'Город, страна', class: 'form-control', required: true
                 end
 
                 div(class: 'col-6 align-items-center') do
@@ -57,17 +62,17 @@ module Web
 
                 div(class: 'row') do
                   div(class: 'col-3') do
-                    text_field :min, placeholder: 'От', class: 'form-control'
+                    text_field :min, placeholder: 'От', class: 'form-control', required: true
                   end
                   div(class: 'col-3') do
-                    text_field :max, placeholder: 'До', class: 'form-control'
+                    text_field :max, placeholder: 'До', class: 'form-control', required: true
                   end
 
                   div(class: 'col-3') do
-                    select :currency, select_currency_values, options: { prompt: 'Денежная единица' }, class: 'form-control'
+                    select :currency, select_currency_values, options: { prompt: 'Денежная единица' }, class: 'form-control', required: true
                   end
                   div(class: 'col-3') do
-                    select :unit, select_unit_values, options: { prompt: 'Период' }, class: 'form-control'
+                    select :unit, select_unit_values, options: { prompt: 'Период' }, class: 'form-control', required: true
                   end
                 end
               end
@@ -101,17 +106,17 @@ module Web
             fields_for :contact do
               div(class: 'form-group') do
                 label 'Электронная почта *'
-                text_field :email, placeholder: 'hr@company.ru', class: 'form-control'
+                text_field :email, placeholder: 'hr@company.ru', class: 'form-control', required: true
               end
 
               div(class: 'form-group') do
                 label 'Контактное лицо *'
-                text_field :full_name, class: 'form-control'
+                text_field :full_name, class: 'form-control', required: true
               end
 
               div(class: 'form-group') do
                 label 'Компания *'
-                text_field :company, class: 'form-control'
+                text_field :company, class: 'form-control', required: true
               end
 
               div(class: 'form-group') do
