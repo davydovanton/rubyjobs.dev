@@ -8,6 +8,15 @@ module Web
           'Новая вакансия'
         end
 
+        def seo_meta_information
+          {
+            title: 'Новая вакансия - rubyjobs.dev',
+            description: 'Ruby вакансии от компаний со всего мира, включая возможность удаленной работы. Бесплатные условия для работодателей и соискателей.',
+            url: 'https://rubyjobs.dev/vacancies/new',
+            image: ''
+          }
+        end
+
         def form
           form_for :vacancy, routes.vacancies_path, method: :post, class: 'needs-validation', novalidate: true do
             div(class: 'form-group') do

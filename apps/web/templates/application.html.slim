@@ -9,6 +9,22 @@ html
 
     meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"
 
+    meta name="description" content=seo_meta_information[:description]
+    meta name="keywords" content="Ruby, Rails, hanami, программирование, вакансии, размещение вакансий, работа"
+
+    meta name="twitter:card" content="summary"
+    meta name="twitter:title" content=seo_meta_information[:title]
+    meta name="twitter:description" content=content=seo_meta_information[:description]
+    /meta name="twitter:image" content=""
+
+    meta property="og:type" content="article"
+    meta property="og:url" content=content=seo_meta_information[:url]
+    meta property="og:title" content=seo_meta_information[:title]
+    meta property="og:description" content=seo_meta_information[:description]
+    /meta property="og:image" content=""
+
+    meta name="robots" content="index, follow"
+
   body.h-100
     main
       .container
