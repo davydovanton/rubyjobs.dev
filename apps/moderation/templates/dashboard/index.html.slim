@@ -1,0 +1,40 @@
+ul.list-group
+  - vacancies.each do |vacancy|
+    li.list-group-item
+      .row
+        .col-sm-8
+          h4 = vacancy.position
+        .col-sm-4
+          = vacancy_salary_informatioin(vacancy)
+      .row
+        .col-sm-8
+          | Компания #{company_text(vacancy)} (#{vacancy.location}), опубликована #{RelativeTime.in_words(vacancy.created_at, locale: :ru)}
+        .col-sm-4
+          = remote_badge(vacancy)
+          = position_type_badge(vacancy)
+
+      hr.mb-4.mt-4
+
+      .row
+        .col
+          = vacancy_details(vacancy)
+
+      hr.mb-4.mt-4
+
+      .row
+        .col
+          = vacancy.contact.email
+
+        .col
+          = vacancy.contact.full_name
+
+      hr.mb-4.mt-4
+
+      .row
+        .col.mb-4
+          = link_to 'Принять', '#', class: 'btn btn-success'
+
+        .col.mb-4.btn-float-right
+          = link_to 'Отклонить', '#', class: 'btn btn-warning'
+
+    hr
