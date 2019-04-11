@@ -1,0 +1,16 @@
+User-agent: *
+
+#standart disallows
+Disallow: /moderation
+Disallow: /moderation/*
+
+# Allow js and css
+Allow: /
+Allow: /vacancies/*
+Allow: /*/*.js
+Allow: /*/*.css
+Allow: /wp-*.png
+Allow: /wp-*.jpg
+Allow: /wp-*.jpeg
+Allow: /wp-*.gif
+Allow: /wp-*.svg
