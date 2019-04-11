@@ -7,7 +7,7 @@ module Web
         include Web::View
 
         def title
-          "Вакансия \"#{position}\""
+          "Вакансия \"#{vacancy.position}\""
         end
 
         # rubocop:disable Metrics/AbcSize, Metrics/LineLength
