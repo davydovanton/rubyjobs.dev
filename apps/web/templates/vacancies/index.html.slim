@@ -1,8 +1,8 @@
 .row.mt-4.mb-4.align-items-center
-  .col-8
+  .col-sm-8
     h1 Вакансии для ruby разработчиков
 
-  .col-4.mb-1
+  .col-sm-4.mb-1
     = link_to 'Добавить вакансию', routes.new_vacancy_path, class: 'btn btn-primary new-vacancy-btn'
 
 hr
@@ -15,14 +15,14 @@ ul.list-group
   - vacancies.each do |vacancy|
     li.list-group-item
       .row
-        .col-8
+        .col-sm-8
           h4 = link_to vacancy.position, routes.vacancy_path(vacancy.id)
-        .col-4
+        .col-sm-4
           = vacancy_salary_informatioin(vacancy)
       .row
-        .col-8
+        .col-sm-8
           | Компания #{company_text(vacancy)} (#{vacancy.location}), опубликована #{RelativeTime.in_words(vacancy.created_at, locale: :ru)}
-        .col-4
+        .col-sm-4
           = remote_badge(vacancy)
           = position_type_badge(vacancy)
 

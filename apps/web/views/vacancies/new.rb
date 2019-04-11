@@ -85,7 +85,7 @@ module Web
                 end
 
                 div(class: 'col-4') do
-                  radio_button :archived_in_weeks, '2'
+                  radio_button :archived_in_weeks, '2', checked: true
                   span 'Две недели'
                 end
               end
