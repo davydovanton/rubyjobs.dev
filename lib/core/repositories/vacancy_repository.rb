@@ -8,7 +8,7 @@ class VacancyRepository < Hanami::Repository
       published: true,
       archived: false,
       deleted_at: nil
-    ).map_to(Vacancy).to_a
+    ).map_to(Vacancy).order { created_at.desc }.to_a
   end
 
   def all_for_moderation
