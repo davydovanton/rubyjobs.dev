@@ -10,12 +10,6 @@ Container.boot(:logger) do |container|
 
     SemanticLogger.default_level = Core::Types::LoggerLevel[ENV['LOGGER_LEVEL']]
     container.register(:logger, SemanticLogger['RubyJob'])
-
-    if Hanami.env == :production
-      container[:logger].info do
-        "started with #{ENV.to_hash.sort.map { |(name, value)| "#{name}=#{value}" }.join(', ')}"
-      end
-    end
   end
 
   # detect default logger IO output

@@ -5,6 +5,7 @@ module Moderation
         include Moderation::Action
         include Dry::Monads::Result::Mixin
         include Import[
+          :logger,
           operation: 'vacancies.operations.list_for_moderation'
         ]
 
@@ -12,6 +13,8 @@ module Moderation
 
         def call(params)
           result = operation.call(params)
+
+          logger.info "Result of moderation action: #{result}"
 
           case result
           when Success
