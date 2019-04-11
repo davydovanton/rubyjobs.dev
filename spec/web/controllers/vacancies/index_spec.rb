@@ -20,5 +20,7 @@ RSpec.describe Web::Controllers::Vacancies::Index, type: :action do
     let(:params) { Hash[] }
 
     subject { action.call(params) }
+
+    it { expect(subject).to be_success }
   end
 end

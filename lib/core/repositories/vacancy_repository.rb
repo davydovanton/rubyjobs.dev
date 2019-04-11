@@ -11,6 +11,14 @@ class VacancyRepository < Hanami::Repository
     ).map_to(Vacancy).to_a
   end
 
+  def all_for_moderation
+    aggregate(:contact).where(
+      published: false,
+      archived: false,
+      deleted_at: nil
+    ).map_to(Vacancy).to_a
+  end
+
   def find_with_contact(id)
     aggregate(:contact).where(
       published: true,
