@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Web
   module Views
     module Vacancies
@@ -5,9 +7,10 @@ module Web
         include Web::View
 
         def title
-          'Вакансия "#{position}"'
+          "Вакансия \"#{position}\""
         end
 
+        # rubocop:disable Metrics/AbcSize, Metrics/LineLength
         def seo_meta_information
           remote_text = vacancy.remote_available ? 'Возможна удаленная работа. ' : ''
 
@@ -22,6 +25,7 @@ module Web
             image: ''
           }
         end
+        # rubocop:enable Metrics/AbcSize, Metrics/LineLength
 
         def vacancy_details
           raw_body(vacancy.details)
@@ -36,15 +40,20 @@ module Web
           "mailto:#{vacancy.contact.email}?subject=Резюме на позицию \"#{vacancy.position}\"&body=#{body}"
         end
 
+        private
+
         def raw_body(body)
           raw(body || '')
         end
 
-      private
-
         NEW_LINE_IN_EMAIL_BODY = '%0D%0A'
-        CURRENCY_VALUES = { 'rub' => 'рублей', 'usd' => 'долларов', 'eur' => 'евро' }
-        UNIT_VALUES = { 'monthly' => 'в месяц', 'yearly' => 'в год', 'by hour' => 'в час', 'per project' => 'за проект' }
+        CURRENCY_VALUES = { 'rub' => 'рублей', 'usd' => 'долларов', 'eur' => 'евро' }.freeze
+        UNIT_VALUES = {
+          'monthly' => 'в месяц',
+          'yearly' => 'в год',
+          'by hour' => 'в час',
+          'per project' => 'за проект'
+        }.freeze
       end
     end
   end

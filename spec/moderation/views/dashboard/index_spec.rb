@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Moderation::Views::Dashboard::Index, type: :view do
   let(:exposures) { Hash[format: :html] }
   let(:template)  { Hanami::View::Template.new('apps/moderation/templates/dashboard/index.html.slim') }

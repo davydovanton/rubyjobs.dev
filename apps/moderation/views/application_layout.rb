@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Moderation
   module Views
     class ApplicationLayout
@@ -12,9 +14,9 @@ module Moderation
       end
 
       def remote_badge(vacancy)
-        if vacancy.remote_available
-          html.span(class: 'mr-2 badge badge-success') { 'Удаленно' }
-        end
+        return unless vacancy.remote_available
+
+        html.span(class: 'mr-2 badge badge-success') { 'Удаленно' }
       end
 
       def position_type_badge(vacancy)
@@ -34,25 +36,23 @@ module Moderation
         end
       end
 
-    private
-
       POSITION_TYPE_VALUES = {
-        'full_time'  => 'Полная занятость',
-        'part_time'  => 'Частичная занятость',
+        'full_time' => 'Полная занятость',
+        'part_time' => 'Частичная занятость',
         'contractor' => 'Работа по контракту',
-        'intern'     => 'Интернатура',
-        'temp'       => 'Временная работа',
-        'other'      => 'Другое'
-      }
+        'intern' => 'Интернатура',
+        'temp' => 'Временная работа',
+        'other' => 'Другое'
+      }.freeze
 
-      CURRENCY_VALUES = { 'rub' => 'рублей', 'usd' => 'долларов', 'eur' => 'евро' }
+      CURRENCY_VALUES = { 'rub' => 'рублей', 'usd' => 'долларов', 'eur' => 'евро' }.freeze
 
       UNIT_VALUES = {
         'monthly' => 'в месяц',
         'yearly' => 'в год',
         'by hour' => 'в час',
         'per project' => 'за проект'
-      }
+      }.freeze
     end
   end
 end

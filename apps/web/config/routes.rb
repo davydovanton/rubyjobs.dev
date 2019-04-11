@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 root to: 'vacancies#index'
 
 resources :vacancies, only: %i[new create show]

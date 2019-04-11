@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Web
   module Controllers
     module Vacancies
@@ -16,8 +18,8 @@ module Web
           case result
           when Success
             @vacancies = result.value!
-          when Failure
-            # redirect_to routes.project_path(params[:environment][:project_id])
+            # when Failure
+            #   redirect_to routes.project_path(params[:environment][:project_id])
           end
         end
       end

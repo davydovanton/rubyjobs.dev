@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe Vacancies::Operations::ListForModeration, type: :operation do
+  subject { operation.call }
+
   let(:operation) { described_class.new(vacancy_repo: vacancy_repo) }
   let(:vacancy_repo) { instance_double('VacancyRepository', all_for_moderation: vacancies) }
-
-  subject { operation.call }
 
   context 'when vacancies exists' do
     let(:vacancies) { [Vacancy.new] }
@@ -21,9 +21,9 @@ RSpec.describe Vacancies::Operations::ListForModeration, type: :operation do
   end
 
   context 'with real dependencies' do
-    let(:operation) { described_class.new }
-
     subject { operation.call }
+
+    let(:operation) { described_class.new }
 
     it { expect(subject).to be_success }
   end

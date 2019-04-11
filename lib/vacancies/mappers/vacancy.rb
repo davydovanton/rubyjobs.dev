@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# TODO & QUESTION: move this mapping to form object in web app?
+# TODO: & QUESTION: move this mapping to form object in web app?
 module Vacancies
   module Mappers
     class Vacancy
-      def call(payload)
+      def call(payload) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
         payload = Hash(payload)
 
         {
@@ -22,7 +22,7 @@ module Vacancies
             salary_currency: payload[:salary][:currency],
             salary_unit: payload[:salary][:unit],
 
-            archived_in_weeks: payload[:archived_in_weeks].to_i,
+            archived_in_weeks: payload[:archived_in_weeks].to_i
           },
 
           contact: payload[:contact]
@@ -32,7 +32,7 @@ module Vacancies
       private
 
       def checkbox_to_bool(value)
-        value == "1" || value == 1
+        value.to_i == 1
       end
     end
   end

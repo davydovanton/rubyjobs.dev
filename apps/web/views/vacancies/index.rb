@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Web
   module Views
     module Vacancies
@@ -8,6 +10,7 @@ module Web
           'Вакансии для ruby, hanami и rails разработчиков'
         end
 
+        # rubocop:disable Metrics/LineLength
         def seo_meta_information
           {
             title: 'Вакансии для ruby, hanami и rails разработчиков',
@@ -16,6 +19,7 @@ module Web
             image: ''
           }
         end
+        # rubocop:enable Metrics/LineLength
       end
     end
   end

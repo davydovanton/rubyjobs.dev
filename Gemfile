@@ -52,6 +52,7 @@ group :test, :development do
 
   # style check
   gem 'rubocop', require: false
+  gem 'rubocop-rspec', '~> 1.25.0'
 
   # mutation testing
   gem 'mutant-rspec'

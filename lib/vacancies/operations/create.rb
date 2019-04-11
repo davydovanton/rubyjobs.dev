@@ -49,7 +49,7 @@ module Vacancies
         persist_vacancy(company_payload, vacancy_payload)
       end
 
-    private
+      private
 
       # seconds * minutes * hours * days
       WEEK = 60 * 60 * 24 * 7

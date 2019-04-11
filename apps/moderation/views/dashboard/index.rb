@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Moderation
   module Views
     module Dashboard

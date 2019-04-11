@@ -7,7 +7,7 @@ module Vacancies
         vacancy_repo: 'repositories.vacancy'
       ]
 
-      def call(payload = {})
+      def call(_payload = {})
         Success(vacancy_repo.all_with_contact)
       end
     end

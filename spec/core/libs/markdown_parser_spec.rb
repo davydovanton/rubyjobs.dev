@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe Libs::MarkdownParser do
-  let(:markdown) { described_class.new }
   subject { markdown.call(text) }
+
+  let(:markdown) { described_class.new }
 
   context 'when text contain heading' do
     let(:text) { '# title' }
@@ -63,8 +64,10 @@ RSpec.describe Libs::MarkdownParser do
   context 'when text contain checkbox tag' do
     let(:text) { '- [x] checkkbox' }
 
+    # rubocop:disable Metrics/LineLength
     it 'replaces checkbox by html tag' do
       expect(subject).to eq %(<ul>\n  <li><input type="checkbox" checked disabled><label>checkkbox</label></li>\n</ul>\n)
     end
+    # rubocop:enable Metrics/LineLength
   end
 end

@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
 module Web
   module Views
     module Vacancies
-      class New
+      class New # rubocop:disable Metrics/ClassLength
         include Web::View
 
         def title
           'Новая вакансия'
         end
 
+        # rubocop:disable Metrics/LineLength
         def seo_meta_information
           {
             title: 'Новая вакансия - rubyjobs.dev',
@@ -16,7 +19,9 @@ module Web
             image: ''
           }
         end
+        # rubocop:enable Metrics/LineLength
 
+        # rubocop:disable Metrics/AbcSize, Metrics/LineLength, Metrics/MethodLength, Metrics/BlockLength
         def form
           form_for :vacancy, routes.vacancies_path, method: :post, class: 'needs-validation', novalidate: true do
             div(class: 'form-group') do
@@ -103,7 +108,6 @@ module Web
                 div(class: 'col-3') do
                 end
                 div(class: 'col-4') do
-
                   radio_button :archived_in_weeks, '4'
                   span 'Месяц'
                 end
@@ -137,7 +141,7 @@ module Web
             div(class: 'row mt-4') do
               div(class: 'col') do
                 div(class: 'alert alert-primary') do
-                  text("Отправляя эту форму, вы автоматически соглашаетесь с ")
+                  text('Отправляя эту форму, вы автоматически соглашаетесь с ')
                   a 'условиями работы сервиса.', href: routes.terms_path
                 end
               end
@@ -154,8 +158,9 @@ module Web
             end
           end
         end
+        # rubocop:enable Metrics/AbcSize, Metrics/LineLength, Metrics/MethodLength, Metrics/BlockLength
 
-      private
+        private
 
         def select_position_type_values
           {
@@ -174,7 +179,13 @@ module Web
         end
 
         def select_unit_values
-          { 'Период...' => '', 'в месяц' => 'monthly', 'в год' => 'yearly', 'в час' => 'by hour', 'за проект' => 'per project' }
+          {
+            'Период...' => '',
+            'в месяц' => 'monthly',
+            'в год' => 'yearly',
+            'в час' => 'by hour',
+            'за проект' => 'per project'
+          }
         end
       end
     end

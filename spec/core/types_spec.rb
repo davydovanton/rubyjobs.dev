@@ -54,7 +54,7 @@ RSpec.describe Core::Types do
       [:part_time, 'part_time'],
       [:contractor, 'contractor'],
       [:temp, 'temp'],
-      [:other, 'other'],
+      [:other, 'other']
     ].each do |value, result|
       it { expect(type[value]).to eq(result) }
     end
@@ -75,7 +75,7 @@ RSpec.describe Core::Types do
 
       [:rub, 'rub'],
       [:usd, 'usd'],
-      [:eur, 'eur'],
+      [:eur, 'eur']
     ].each do |value, result|
       it { expect(type[value]).to eq(result) }
     end

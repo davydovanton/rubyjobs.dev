@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 RSpec.describe Moderation::Controllers::Dashboard::Index, type: :action do
+  subject { action.call(params) }
+
   let(:action) { described_class.new(operation: operation) }
   let(:operation) { ->(*) { Success([Vacancy.new(id: 123)]) } }
 
   let(:params) { Hash[] }
-
-  subject { action.call(params) }
 
   context 'when operation returns success value' do
     it { expect(subject).to be_success }
@@ -16,10 +18,10 @@ RSpec.describe Moderation::Controllers::Dashboard::Index, type: :action do
   end
 
   context 'with real dependencies' do
+    subject { action.call(params) }
+
     let(:action) { described_class.new }
     let(:params) { Hash[] }
-
-    subject { action.call(params) }
 
     it { expect(subject).to be_success }
   end

@@ -1,0 +1,205 @@
+require: rubocop-rspec
+
+# We are using default RuboCop settings.
+# We are writing beautiful code.
+# There is nothing to change here. At least now.
+AllCops:
+  TargetRubyVersion: 2.4
+  DefaultFormatter: fuubar
+  DisplayCopNames: true
+  ExtraDetails: true
+  Exclude:
+  # Ignore vendored gems
+  - vendor/**/*
+  - rakelib/**/*.rake
+  RSpec:
+    Patterns:
+    - '_spec.rb$'
+
+# Ignore block length in DSLs using blocks extensively
+Metrics/BlockLength:
+  Exclude:
+  # RSpec DSL
+  - '**/*_spec.rb'
+  - '**/spec/**/*.rb'
+  # Rake DSL
+  - '**/rakelib/**/*.rake'
+  # Rubygems DSL
+  - '**/*.gemspec'
+  # Roda DSL
+  - apps/**/http/*.rb
+  # ROM::SQL & Sequel DSL
+  - db/**/*.rb
+
+Metrics/ClassLength:
+  Exclude:
+  # Roda DSL
+  - apps/**/http/*.rb
+
+Metrics/MethodLength:
+  Exclude:
+  # Rake DSL
+  - rakelib/**/*.rake
+  - lib/rake/**.rb
+  # RSpec DSL
+  - '**/spec/**/*.rb'
+  # Rodauth configuration
+  - lib/roda/plugins/authentication.rb
+
+Metrics/ModuleLength:
+  Exclude:
+  # RSpec DSL
+  - spec/**/*.rb
+
+Metrics/AbcSize:
+  Exclude:
+  # Rake DSL
+  - rakelib/**/*.rake
+  # RSpec DSL
+  - '**/spec/**/*.rb'
+  # Rodauth configuration
+  - lib/roda/plugins/authentication.rb
+
+Metrics/LineLength:
+  Max: 120
+
+# Use UTF-8 as the source file encoding, specify when needed.
+Style/Encoding:
+  StyleGuide: '#utf-8'
+  Enabled: when_needed
+
+Naming/FileName:
+  Exclude:
+  - apps/*-*/lib/*-*.rb
+
+Naming/UncommunicativeMethodParamName:
+  Enabled: false
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+Style/FormatStringToken:
+  EnforcedStyle: template
+
+Style/MixinGrouping:
+  Exclude:
+  # RSpec DSL
+  - '**/spec/**/*.rb'
+
+Style/MixinUsage:
+  Exclude:
+  # Rake DSL
+  - '**/rake/**/*.rb'
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Lint/Loop:
+  Enabled: false
+
+# Rubocop Rspec rules
+RSpec/AnyInstance:
+  Enabled: false # Should be turned ON eventually
+
+RSpec/ContextWording:
+  Enabled: false # Should be turned ON eventually
+
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Enabled: false # Should be turned ON eventually
+
+RSpec/EmptyLineAfterFinalLet:
+  Enabled: true
+
+RSpec/EmptyLineAfterSubject:
+  Enabled: true
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/ExampleWording:
+  Enabled: true
+
+RSpec/ExpectActual:
+  Enabled: true
+
+RSpec/ExpectChange:
+  Enabled: true
+  EnforcedStyle: block
+
+RSpec/ExpectOutput:
+  Enabled: true
+
+RSpec/FilePath:
+  Enabled: true
+
+RSpec/Focus:
+  Enabled: true
+
+RSpec/HookArgument:
+  Enabled: true
+
+RSpec/ImplicitExpect:
+  Enabled: true
+
+RSpec/InstanceVariable:
+  Enabled: true
+
+RSpec/LeadingSubject:
+  Enabled: true
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/MessageChain:
+  Enabled: false
+
+RSpec/MessageExpectation:
+  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/MultipleDescribes:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/NotToNot:
+  Enabled: false
+
+RSpec/RepeatedDescription:
+  Enabled: true
+
+RSpec/RepeatedExample:
+  Enabled: true
+
+RSpec/ScatteredLet:
+  Enabled: false
+
+RSpec/SingleArgumentMessageChain:
+  Enabled: true
+
+RSpec/ScatteredSetup:
+  Enabled: false # Should be turned ON eventually
+
+RSpec/SubjectStub:
+  Enabled: false
+
+RSpec/VerifiedDoubles:
+  Enabled: false # Should be turned ON eventually

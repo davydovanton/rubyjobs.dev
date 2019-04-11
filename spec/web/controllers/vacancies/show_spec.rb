@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 RSpec.describe Web::Controllers::Vacancies::Show, type: :action do
+  subject { action.call(params) }
+
   let(:action) { described_class.new(operation: operation) }
 
   let(:params) { { id: 1 } }
-
-  subject { action.call(params) }
 
   context 'when operation returns success value' do
     let(:operation) { ->(*) { Success(Vacancy.new(id: 1)) } }
@@ -33,12 +35,12 @@ RSpec.describe Web::Controllers::Vacancies::Show, type: :action do
   end
 
   context 'with real dependencies' do
+    subject { action.call(params) }
+
     let(:action) { described_class.new }
     let(:params) { { id: vacancy.id } }
 
     let(:vacancy) { Fabricate.create(:vacancy, published: true, archived: false) }
-
-    subject { action.call(params) }
 
     it { expect(subject).to be_success }
   end

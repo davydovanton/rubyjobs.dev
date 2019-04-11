@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'hanami/helpers'
 require 'hanami/assets'
 
 module Moderation
   class Application < Hanami::Application
-    configure do
+    configure do # rubocop:disable Metrics/BlockLength
       ##
       # BASIC
       #
@@ -18,9 +20,9 @@ module Moderation
       #
       # When you add new directories, remember to add them here.
       #
-      load_paths << [
-        'controllers',
-        'views'
+      load_paths << %w[
+        controllers
+        views
       ]
 
       # Handle exceptions with HTTP statuses (true) or don't catch them (false).
@@ -87,7 +89,7 @@ module Moderation
       #
       # middleware.use Rack::Protection
       #
-      middleware.use Rack::Auth::Basic, "RubyJobs" do |login, password|
+      middleware.use Rack::Auth::Basic, 'RubyJobs' do |login, password|
         login == ENV['MODERATION_LOGIN'] && password == ENV['MODERATION_PASSWORD']
       end
 
@@ -237,7 +239,7 @@ module Moderation
       #
       #  * https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives
       #
-      security.content_security_policy %{
+      security.content_security_policy %(
         form-action 'self';
         frame-ancestors 'self';
         base-uri 'self';
@@ -252,7 +254,7 @@ module Moderation
         child-src 'self';
         frame-src 'self';
         media-src 'self'
-      }
+      )
 
       ##
       # FRAMEWORKS

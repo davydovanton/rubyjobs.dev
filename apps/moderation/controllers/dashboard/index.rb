@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Moderation
   module Controllers
     module Dashboard
@@ -19,7 +21,7 @@ module Moderation
           case result
           when Success
             @vacancies = result.value!
-          when Failure
+            # when Failure
             # redirect_to routes.project_path(params[:environment][:project_id])
           end
         end
