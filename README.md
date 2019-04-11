@@ -1,4 +1,5 @@
 # Core
+[![CircleCI](https://circleci.com/gh/davydovanton/rubyjobs.dev/tree/master.svg?style=svg)](https://circleci.com/gh/davydovanton/rubyjobs.dev/tree/master)
 
 Welcome to your new Hanami project!
 
