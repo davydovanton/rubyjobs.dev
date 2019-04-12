@@ -7,7 +7,7 @@ module Web
 
       def company_text(vacancy)
         if vacancy.contact.site
-          link_to vacancy.contact.company, vacancy.contact.site
+          html.a(vacancy.contact.company, href: vacancy.contact.site)
         else
           vacancy.contact.company
         end
