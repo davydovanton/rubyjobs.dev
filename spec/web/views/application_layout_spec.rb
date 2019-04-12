@@ -12,10 +12,22 @@ RSpec.describe Web::Views::ApplicationLayout, type: :view do
 
     let(:vacancy) { Vacancy.new(contact: contact) }
 
-    context 'when contact contains site' do
+    context 'when contact contains site without http' do
       let(:contact) { Contact.new(company: 'rubyjobs.dev', site: 'rubyjobs.dev') }
 
-      it { expect(subject).to eq('<a href="rubyjobs.dev">rubyjobs.dev</a>') }
+      it { expect(subject).to eq('<a href="http://rubyjobs.dev">rubyjobs.dev</a>') }
+    end
+
+    context 'when contact contains site without http' do
+      let(:contact) { Contact.new(company: 'rubyjobs.dev', site: 'http://rubyjobs.dev') }
+
+      it { expect(subject).to eq('<a href="http://rubyjobs.dev">rubyjobs.dev</a>') }
+    end
+
+    context 'when contact contains site without https' do
+      let(:contact) { Contact.new(company: 'rubyjobs.dev', site: 'https://rubyjobs.dev') }
+
+      it { expect(subject).to eq('<a href="https://rubyjobs.dev">rubyjobs.dev</a>') }
     end
 
     context 'when contact does not contain site' do
