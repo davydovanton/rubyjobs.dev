@@ -10,6 +10,7 @@ require_relative '../apps/moderation/application'
 
 Hanami.configure do
   middleware.use RequestId
+  middleware.use Rack::Session::Cookie, secret: ENV['WEB_SESSIONS_SECRET']
 
   mount Moderation::Application, at: '/moderation'
   mount Web::Application, at: '/'

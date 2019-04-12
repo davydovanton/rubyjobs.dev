@@ -31,6 +31,7 @@ gem 'sass'
 gem 'slim'
 
 # Monitoring and logging
+gem 'rollbar'
 gem 'semantic_logger'
 
 # business logic section
