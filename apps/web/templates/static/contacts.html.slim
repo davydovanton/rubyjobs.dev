@@ -1,8 +1,14 @@
-h1 Контакты
+.row.mb-4.mt-4
+  .col
+    h1
+      = link_to 'Главная', routes.root_path
+      |  > Контакты
 
-p Если у вас возникли вопросы, появились идеи или есть интересные предложения, пишите.
+.row
+  .col.mb-4
+    p Если у вас возникли вопросы, появились идеи или есть интересные предложения, пишите.
 
-p Электронная почта: #{link_to 'mail@davydovanton.com', 'mailto:mail@davydovanton.com'}
-p Github: #{link_to 'github.com/davydovanton/rubyjobs.dev', 'https://github.com/davydovanton/rubyjobs.dev'}
+    p Электронная почта: #{link_to 'mail@davydovanton.com', 'mailto:mail@davydovanton.com'}
+    p Github: #{link_to 'github.com/davydovanton/rubyjobs.dev', 'https://github.com/davydovanton/rubyjobs.dev'}
 
-p Антон Давыдов
+    p Антон Давыдов
