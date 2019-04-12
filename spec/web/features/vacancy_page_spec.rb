@@ -8,7 +8,7 @@ RSpec.describe 'GET /vacancies/:id', type: :feature do
 
   before { vacancy && Fabricate(:vacancy) }
 
-  it 'responses 200' do
+  it 'returns vacancy page with all information about vacancy' do
     visit(url)
 
     expect(page.status_code).to eq 200
