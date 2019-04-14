@@ -6,45 +6,13 @@ html
 
     = favicon
     = stylesheet 'bootstrap', 'main'
-
-    meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"
-
-    meta name="description" content=seo_meta_information[:description]
-    meta name="keywords" content="Ruby, Rails, hanami, руби, рейлс, ханами, программирование, вакансии, размещение вакансий, работа"
-
-    meta name="twitter:card" content="summary"
-    meta name="twitter:title" content=seo_meta_information[:title]
-    meta name="twitter:description" content=content=seo_meta_information[:description]
-    /meta name="twitter:image" content=""
-
-    meta property="og:type" content="article"
-    meta property="og:url" content=content=seo_meta_information[:url]
-    meta property="og:title" content=seo_meta_information[:title]
-    meta property="og:description" content=seo_meta_information[:description]
-    /meta property="og:image" content=""
-
-    meta name="robots" content="index, follow"
+    = render partial: 'shared/meta_tags'
 
   body.h-100
     main
       .container
         = yield
 
-    footer.footer
-      .container
-        .row.justify-content-md-center
-          .col-sm.licence.footer-item
-            | © 2019, Anton Davydov
-          .col-sm.footer-item
-            | Вдохновлено rubyjobs.ru
-            /span.text-muted Place sticky footer content here.
-          .col-sm.footer-item
-            ul.list-inline
-              li.list-inline-item
-                = link_to 'О проекте', routes.about_path
-              li.list-inline-item
-                = link_to 'Контакты', routes.contacts_path
-              li.list-inline-item
-                = link_to 'Условия', routes.terms_path
+    = render partial: 'shared/footer'
 
     = javascript 'jquery', 'bootstrap', 'main'

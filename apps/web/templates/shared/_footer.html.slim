@@ -1,0 +1,16 @@
+footer.footer
+  .container
+    .row.justify-content-md-center
+      .col-sm.licence.footer-item
+        | © 2019, Anton Davydov
+      .col-sm.footer-item
+        | Вдохновлено rubyjobs.ru
+        /span.text-muted Place sticky footer content here.
+      .col-sm.footer-item
+        ul.list-inline
+          li.list-inline-item
+            = link_to 'О проекте', routes.about_path
+          li.list-inline-item
+            = link_to 'Контакты', routes.contacts_path
+          li.list-inline-item
+            = link_to 'Условия', routes.terms_path
