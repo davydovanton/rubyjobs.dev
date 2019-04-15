@@ -1,2 +1,3 @@
-web: bundle exec hanami server -p $PORT --no-code-reloading
 release: bundle exec hanami db migrate
+web: bundle exec hanami server -p $PORT --no-code-reloading
+worker: bundle exec sidekiq -r ./config/boot.rb -c 7

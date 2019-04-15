@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Container.boot(:sentry) do |container|
+Container.boot(:rollbar) do |container|
   init do
     require 'rollbar'
 

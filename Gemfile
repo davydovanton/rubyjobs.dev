@@ -37,6 +37,10 @@ gem 'semantic_logger'
 # business logic section
 gem 'dry-monads', '~> 1.1.0'
 
+# background
+gem 'sidekiq'
+gem 'hiredis'
+
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading
