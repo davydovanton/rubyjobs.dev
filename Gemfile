@@ -40,9 +40,7 @@ gem 'dry-monads', '~> 1.1.0'
 # background
 gem 'hiredis'
 gem 'sidekiq'
-
-# sheduled tasks
-gem 'clockwork'
+gem 'sidekiq-scheduler'
 
 group :development do
   # Code reloading
