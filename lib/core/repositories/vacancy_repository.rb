@@ -5,6 +5,10 @@ class VacancyRepository < Hanami::Repository
     belongs_to :contact
   end
 
+  def archive_for_today
+    root.where(archived_at: Date.today).update(archived: true)
+  end
+
   def all_with_contact
     aggregate(:contact).where(
       published: true,

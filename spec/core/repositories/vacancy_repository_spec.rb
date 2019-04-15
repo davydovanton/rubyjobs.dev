@@ -3,6 +3,41 @@
 RSpec.describe VacancyRepository, type: :repository do
   let(:repo) { described_class.new }
 
+  describe '#archive_for_today' do
+    subject { repo.archive_for_today }
+
+    context 'when some vacancies expiries today' do
+      before do
+        Fabricate.create(:vacancy, archived_at: Date.today)
+        Fabricate.create(:vacancy, archived_at: Date.today + 1)
+        Fabricate.create(:vacancy, archived_at: Date.today + 2)
+      end
+
+      it { expect(subject).to eq(1) }
+
+      it 'archive vacancy only for today' do
+        expect(repo.all_with_contact.count).to eq(3)
+        subject
+        expect(repo.all_with_contact.count).to eq(2)
+      end
+    end
+
+    context 'when nothing expiries today' do
+      before do
+        Fabricate.create(:vacancy, archived_at: Date.today + 1)
+        Fabricate.create(:vacancy, archived_at: Date.today + 2)
+      end
+
+      it { expect(subject).to eq(0) }
+
+      it 'archive vacancy only for today' do
+        expect(repo.all_with_contact.count).to eq(2)
+        subject
+        expect(repo.all_with_contact.count).to eq(2)
+      end
+    end
+  end
+
   describe '#all_with_contact' do
     subject { repo.all_with_contact }
 

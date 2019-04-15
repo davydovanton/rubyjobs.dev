@@ -6,10 +6,19 @@ module Vacancies
       include Dry::Monads::Result::Mixin
       include Sidekiq::Worker
 
-      include Import[]
+      include Import[
+        :logger,
+        :rollbar,
+        operation: 'vacancies.operations.acrive_for_today'
+      ]
 
       def perform
-        puts 'HELLO'
+        case result = operation.call
+        when Success
+          logger.info("archived #{result.value![:archived_count]} vacancies")
+        when Failure
+          rollbar.error('archived flow is broken')
+        end
       end
     end
   end
