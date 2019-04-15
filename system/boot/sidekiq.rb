@@ -1,5 +1,5 @@
-# # frozen_string_literal: true
-#
+# frozen_string_literal: true
+
 Container.boot(:sidekiq) do |container|
   init do
     use :redis

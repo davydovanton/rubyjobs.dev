@@ -40,6 +40,8 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.2)
       xpath (~> 3.2)
+    clockwork (2.0.3)
+      tzinfo
     coderay (1.1.2)
     concord (0.1.5)
       adamantium (~> 0.2.0)
@@ -317,6 +319,8 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.9)
     transproc (1.0.3)
+    tzinfo (2.0.0)
+      concurrent-ruby (~> 1.0)
     unicode-display_width (1.4.1)
     unparser (0.4.2)
       abstract_type (~> 0.0.7)
@@ -336,6 +340,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  clockwork
   database_cleaner
   dotenv (~> 2.4)
   dry-monads (~> 1.1.0)

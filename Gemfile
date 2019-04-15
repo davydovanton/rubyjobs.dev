@@ -38,8 +38,11 @@ gem 'semantic_logger'
 gem 'dry-monads', '~> 1.1.0'
 
 # background
-gem 'sidekiq'
 gem 'hiredis'
+gem 'sidekiq'
+
+# sheduled tasks
+gem 'clockwork'
 
 group :development do
   # Code reloading
