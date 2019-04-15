@@ -18,9 +18,13 @@ workflows:
 version: 2
 jobs:
   build:
+    environment:
+      REDISTOGO_URL: "redis://localhost:6379"
+
     docker:
       - image: circleci/ruby:2.5.0-node-browsers
       - image: circleci/postgres:9.6.2
+      - image: redis
 
     working_directory: ~/repo
 
@@ -32,6 +36,10 @@ jobs:
           command: |
             sudo apt update
             sudo apt install postgresql-client
+
+      - run:
+          name: Wait for Redis to receive connections
+          command: dockerize -wait tcp://localhost:6379 -timeout 1m
 
       # Download and cache dependencies
       - restore_cache:
