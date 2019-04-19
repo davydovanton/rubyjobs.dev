@@ -10,7 +10,7 @@ RSpec.describe Vacancies::Operations::Approve, type: :operation do
   let(:vacancy_repo) { instance_double('VacancyRepository', transaction: Vacancy.new, create: Vacancy.new) }
 
   it { expect(subject).to be_success }
-  it { expect(subject.value!).to eq(:ok) }
+  it { expect(subject.value!).to eq(1) }
 
   context 'with real dependencies' do
     subject { operation.call(id: 1) }
@@ -18,6 +18,6 @@ RSpec.describe Vacancies::Operations::Approve, type: :operation do
     let(:operation) { described_class.new }
 
     it { expect(subject).to be_success }
-    it { expect(subject.value!).to eq(:ok) }
+    it { expect(subject.value!).to eq(1) }
   end
 end

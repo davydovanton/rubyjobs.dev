@@ -8,7 +8,7 @@ module Vacancies
       ]
 
       def call(id:)
-        Success(:ok)
+        Success(id)
       end
     end
   end
