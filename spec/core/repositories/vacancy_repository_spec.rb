@@ -3,6 +3,70 @@
 RSpec.describe VacancyRepository, type: :repository do
   let(:repo) { described_class.new }
 
+  describe '#approve_by_pk' do
+    subject { repo.approve_by_pk(vacancy_id) }
+
+    let(:vacancy_id) { vacancy.id }
+
+    context 'when vacancy exist and was not published' do
+      let(:vacancy) { Fabricate.create(:vacancy, published: false) }
+
+      it 'approves vacancy' do
+        expect(subject).to eq(1)
+        expect(repo.find(vacancy.id).published).to eq(true)
+      end
+    end
+
+    context 'when vacancy exist and was published' do
+      let(:vacancy) { Fabricate.create(:vacancy, published: true) }
+
+      it 'approves vacancy' do
+        expect(subject).to eq(1)
+        expect(repo.find(vacancy.id).published).to eq(true)
+      end
+    end
+
+    context 'when vacancy does not exist' do
+      let(:vacancy_id) { nil }
+
+      it 'approves vacancy' do
+        expect(subject).to eq(0)
+      end
+    end
+  end
+
+  describe '#disapprove_by_pk' do
+    subject { repo.disapprove_by_pk(vacancy_id) }
+
+    let(:vacancy_id) { vacancy.id }
+
+    context 'when vacancy exist and was not deleted' do
+      let(:vacancy) { Fabricate.create(:vacancy, deleted_at: nil) }
+
+      it 'approves vacancy' do
+        expect(subject).to eq(1)
+        expect(repo.find(vacancy.id).deleted_at).to_not eq(nil)
+      end
+    end
+
+    context 'when vacancy exist and was deleted' do
+      let(:vacancy) { Fabricate.create(:vacancy, deleted_at: Time.now) }
+
+      it 'approves vacancy' do
+        expect(subject).to eq(1)
+        expect(repo.find(vacancy.id).deleted_at).to_not eq(nil)
+      end
+    end
+
+    context 'when vacancy does not exist' do
+      let(:vacancy_id) { nil }
+
+      it 'approves vacancy' do
+        expect(subject).to eq(0)
+      end
+    end
+  end
+
   describe '#archive_for_today' do
     subject { repo.archive_for_today }
 

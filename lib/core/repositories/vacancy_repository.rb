@@ -9,6 +9,14 @@ class VacancyRepository < Hanami::Repository
     root.where(archived_at: Date.today).update(archived: true)
   end
 
+  def approve_by_pk(id)
+    root.by_pk(id).update(published: true)
+  end
+
+  def disapprove_by_pk(id)
+    root.by_pk(id).update(deleted_at: Time.now)
+  end
+
   def all_with_contact
     aggregate(:contact).where(
       published: true,
