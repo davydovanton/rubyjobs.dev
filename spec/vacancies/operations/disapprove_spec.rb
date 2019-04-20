@@ -7,15 +7,16 @@ RSpec.describe Vacancies::Operations::Disapprove, type: :operation do
     described_class.new(vacancy_repo: vacancy_repo)
   end
 
-  let(:vacancy_repo) { instance_double('VacancyRepository', transaction: Vacancy.new, create: Vacancy.new) }
+  let(:vacancy_repo) { instance_double('VacancyRepository', disapprove_by_pk: 1) }
 
   it { expect(subject).to be_success }
   it { expect(subject.value!).to eq(1) }
 
   context 'with real dependencies' do
-    subject { operation.call(id: 1) }
+    subject { operation.call(id: vacancy.id) }
 
     let(:operation) { described_class.new }
+    let(:vacancy) { Fabricate.create(:vacancy, archived_at: Date.today) }
 
     it { expect(subject).to be_success }
     it { expect(subject.value!).to eq(1) }

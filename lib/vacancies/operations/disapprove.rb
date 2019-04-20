@@ -8,7 +8,9 @@ module Vacancies
       ]
 
       def call(id:)
-        Success(id)
+        Try(Hanami::Model::UniqueConstraintViolationError) do
+          vacancy_repo.disapprove_by_pk(id)
+        end.to_result
       end
     end
   end
