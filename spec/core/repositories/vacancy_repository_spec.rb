@@ -80,9 +80,9 @@ RSpec.describe VacancyRepository, type: :repository do
       it { expect(subject).to eq(1) }
 
       it 'archive vacancy only for today' do
-        expect(repo.all_with_contact.count).to eq(3)
+        expect(repo.all_with_contact(limit: 10, page: 1).count).to eq(3)
         subject
-        expect(repo.all_with_contact.count).to eq(2)
+        expect(repo.all_with_contact(limit: 10, page: 1).count).to eq(2)
       end
     end
 
@@ -95,15 +95,15 @@ RSpec.describe VacancyRepository, type: :repository do
       it { expect(subject).to eq(0) }
 
       it 'archive vacancy only for today' do
-        expect(repo.all_with_contact.count).to eq(2)
+        expect(repo.all_with_contact(limit: 10, page: 1).count).to eq(2)
         subject
-        expect(repo.all_with_contact.count).to eq(2)
+        expect(repo.all_with_contact(limit: 10, page: 1).count).to eq(2)
       end
     end
   end
 
   describe '#all_with_contact' do
-    subject { repo.all_with_contact }
+    subject { repo.all_with_contact(limit: 10, page: 1) }
 
     before { Fabricate.create(:vacancy, published: published, archived: archived, deleted_at: deleted_at) }
 

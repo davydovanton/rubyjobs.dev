@@ -5,6 +5,14 @@ GIT
     dry-system-hanami (0.1.0)
 
 GIT
+  remote: git://github.com/davydovanton/hanami-pagination.git
+  revision: 02acc43584dc0e7ece750a4a03c61ea91741cbac
+  specs:
+    hanami-pagination (0.2.0)
+      hanami-helpers (~> 1.1)
+      hanami-model (~> 1.0)
+
+GIT
   remote: git://github.com/davydovanton/relative_time.git
   revision: 305dc962af48b6acb4237548b4990c7cebd715c2
   branch: master
@@ -360,6 +368,7 @@ DEPENDENCIES
   hanami-bootstrap
   hanami-fabrication
   hanami-model (~> 1.3)
+  hanami-pagination!
   hanami-webconsole
   hiredis
   jquery-hanami

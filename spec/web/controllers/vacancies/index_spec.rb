@@ -4,7 +4,8 @@ RSpec.describe Web::Controllers::Vacancies::Index, type: :action do
   subject { action.call(params) }
 
   let(:action) { described_class.new(operation: operation) }
-  let(:operation) { ->(*) { Success([Vacancy.new(id: 123)]) } }
+  let(:operation) { ->(*) { Success(result: [Vacancy.new(id: 123)], pager: pager) } }
+  let(:pager) { instance_double('Hanami::Pagination::Pager') }
 
   let(:params) { Hash[] }
 
@@ -14,6 +15,7 @@ RSpec.describe Web::Controllers::Vacancies::Index, type: :action do
     it 'exposes list of vacancies' do
       subject
       expect(action.vacancies).to eq([Vacancy.new(id: 123)])
+      expect(action.pager).to eq(pager)
     end
   end
 
@@ -21,8 +23,31 @@ RSpec.describe Web::Controllers::Vacancies::Index, type: :action do
     subject { action.call(params) }
 
     let(:action) { described_class.new }
-    let(:params) { Hash[] }
 
-    it { expect(subject).to be_success }
+    before do
+      12.times { Fabricate.create(:vacancy, published: true, archived: false) }
+    end
+
+    context 'opens the first pagination page' do
+      let(:params) { { page: 1 } }
+
+      it { expect(subject).to be_success }
+
+      it 'exposes right list of vacancies' do
+        subject
+        expect(action.vacancies.count).to eq(10)
+      end
+    end
+
+    context 'opens the second pagination page' do
+      let(:params) { { page: 2 } }
+
+      it { expect(subject).to be_success }
+
+      it 'exposes right list of vacancies' do
+        subject
+        expect(action.vacancies.count).to eq(2)
+      end
+    end
   end
 end

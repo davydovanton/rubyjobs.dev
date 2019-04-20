@@ -6,20 +6,21 @@ module Web
       class Index
         include Web::Action
         include Dry::Monads::Result::Mixin
+
         include Import[
           operation: 'vacancies.operations.list'
         ]
 
         expose :vacancies
+        expose :pager
 
         def call(params)
           result = operation.call(params)
 
           case result
           when Success
-            @vacancies = result.value!
-            # when Failure
-            #   redirect_to routes.project_path(params[:environment][:project_id])
+            @pager     = result.value![:pager]
+            @vacancies = result.value![:result]
           end
         end
       end

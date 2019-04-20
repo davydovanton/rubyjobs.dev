@@ -30,6 +30,9 @@ gem 'relative_time', github: 'davydovanton/relative_time', branch: 'master'
 gem 'sass'
 gem 'slim'
 
+# pagination
+gem 'hanami-pagination', github: 'davydovanton/hanami-pagination'
+
 # Monitoring and logging
 gem 'rollbar'
 gem 'semantic_logger'

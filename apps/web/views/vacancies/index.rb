@@ -5,6 +5,7 @@ module Web
     module Vacancies
       class Index
         include Web::View
+        include Web::Helpers::Pagination
 
         def title
           'Вакансии для ruby, hanami и rails разработчиков'
