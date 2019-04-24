@@ -19,7 +19,7 @@ module Web
           salary = "от #{vacancy.salary_min} до #{vacancy.salary_max} #{currency} #{unit}"
 
           {
-            title: 'Вакансии для ruby, hanami и rails разработчиков',
+            title: 'Вакансии для разработчиков Ruby, Hanami и Rails',
             description: "В компании #{vacancy.contact.company} открыта вакансия '#{vacancy.position}'. #{remote_text}Оплата #{salary}.",
             url: "https://rubyjobs.dev/vacancies/#{vacancy.id}",
             image: ''
