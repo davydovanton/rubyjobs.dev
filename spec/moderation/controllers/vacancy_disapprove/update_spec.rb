@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Moderation::Controllers::VacancyDisapprove::Update, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
