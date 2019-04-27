@@ -18,6 +18,8 @@ module Web
           case result
           when Success
             redirect_to routes.root_path
+            # TODO: log and trigger rollbar in this case. Also, show new page again
+            #
             # when Failure
             #   redirect_to routes.project_path(params[:environment][:project_id])
           end
