@@ -4,7 +4,7 @@ RSpec.describe Vacancies::Workers::VacanciesArchivator, type: :workers do
   subject { worker.perform }
 
   let(:worker) { described_class.new(operation: operation, logger: logger, rollbar: rollbar) }
-  let(:operation) { instance_double('Vacancies::Operations::AcriveForToday', call: result) }
+  let(:operation) { instance_double('Vacancies::Operations::ArchiveForToday', call: result) }
   let(:logger) { double(:logger, info: true, error: true) }
   let(:rollbar) { double(:rollbar, info: true, error: true) }
 

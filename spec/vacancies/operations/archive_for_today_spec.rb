@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Vacancies::Operations::AcriveForToday, type: :operation do
+RSpec.describe Vacancies::Operations::ArchiveForToday, type: :operation do
   subject { operation.call }
 
   let(:operation) { described_class.new(vacancy_repo: vacancy_repo) }
