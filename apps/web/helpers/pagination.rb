@@ -6,7 +6,11 @@ module Web
     module Pagination
       private
 
+      ONE_PAGGINATION_PAGE = 1
+
       def pagination(page) # rubocop:disable Metrics/AbcSize
+        return if pager.total_pages == ONE_PAGGINATION_PAGE
+
         html.nav do
           ul(class: 'pagination justify-content-center') do
             content = []
