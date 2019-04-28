@@ -14,6 +14,10 @@ module Web
         expose :vacancies
         expose :pager
 
+        params do
+          required(:page).filled
+        end
+
         def call(params)
           result = operation.call(params)
 
