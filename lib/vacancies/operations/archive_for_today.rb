@@ -2,7 +2,7 @@
 
 module Vacancies
   module Operations
-    class AcriveForToday < ::Libs::Operation
+    class ArchiveForToday < ::Libs::Operation
       include Import[
         vacancy_repo: 'repositories.vacancy'
       ]

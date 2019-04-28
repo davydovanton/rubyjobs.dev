@@ -9,7 +9,7 @@ module Vacancies
       include Import[
         :logger,
         :rollbar,
-        operation: 'vacancies.operations.acrive_for_today'
+        operation: 'vacancies.operations.archive_for_today'
       ]
 
       def perform
