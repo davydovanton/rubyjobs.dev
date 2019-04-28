@@ -42,8 +42,8 @@ module Web
               text_area :details_raw, placeholder: '', class: 'form-control', rows: 15, required: true
 
               div(class: 'info') do
-                text 'Для редактирования можно использовть '
-                a 'markdown', href: 'https://www.markdownguide.org/cheat-sheet'
+                text 'Для редактирования можно использовать '
+                a 'markdown', href: 'https://www.markdownguide.org/cheat-sheet', target: '_blank', rel: 'nofollow noopener'
               end
             end
 
