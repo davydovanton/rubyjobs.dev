@@ -49,5 +49,11 @@ RSpec.describe Web::Controllers::Vacancies::Index, type: :action do
         expect(action.vacancies.count).to eq(2)
       end
     end
+
+    context 'when params inlcludes unexpected keys' do
+      let(:params) { { page: 2, unexpected_key: 'hello' } }
+
+      it { expect(subject).to be_success }
+    end
   end
 end
