@@ -1,6 +1,15 @@
 doctype html
 html
   head
+    - if Hanami.env?(:production)
+      script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-89570219-2"
+      javascript:
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-89570219-2');
+
     title
       | #{title} - RubyJobs
 

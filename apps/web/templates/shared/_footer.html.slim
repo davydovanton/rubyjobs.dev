@@ -15,13 +15,3 @@ footer.footer
             = link_to 'Контакты', routes.contacts_path
           li.list-inline-item
             = link_to 'Условия', routes.terms_path
-
-
-- if Hanami.env?(:production)
-  script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-89570219-2"
-  javascript:
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-89570219-2');
