@@ -3,32 +3,27 @@
 
 Welcome to your new Hanami project!
 
-## Setup
+## How to run app inside Docker
 
-How to run tests:
+Copy development env-file from sample file:
 
-```
-% bundle exec rake
-```
-
-How to run the development console:
-
-```
-% bundle exec hanami console
+```bash
+cp .env.development.sample .env.development
 ```
 
-How to run the development server:
+Then simply run in your terminal:
 
-```
-% bundle exec hanami server
-```
-
-How to prepare (create and migrate) DB for `development` and `test` environments:
-
-```
-% bundle exec hanami db prepare
-
-% HANAMI_ENV=test bundle exec hanami db prepare
+```bash
+make dockerize
 ```
 
-Explore Hanami [guides](http://hanamirb.org/guides/), [API docs](http://docs.hanamirb.org/1.3.0.beta1/), or jump in [chat](http://chat.hanamirb.org) for help. Enjoy! 🌸
+Open [http://localhost:2300](http://localhost:2300) in your browser.
+
+## How to get container's shell
+
+Run in your terminal:
+
+```bash
+make shell
+```
+

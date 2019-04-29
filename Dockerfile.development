@@ -1,0 +1,9 @@
+FROM ruby:2.5.0-alpine
+
+RUN apk add --no-cache build-base postgresql postgresql-dev libpq git
+
+WORKDIR /app
+COPY . /app
+RUN bundle install -j $(nproc) --quiet
+
+ENTRYPOINT ["bundle", "exec"]

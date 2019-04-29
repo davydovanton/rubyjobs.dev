@@ -1,18 +1,28 @@
 version: '3'
+
 services:
+  redis:
+    image: redis:latest
+
   postgres:
     image: postgres:9.6.2-alpine
     environment:
       POSTGRES_USER: safelylaunch
       POSTGRES_DB: core
+    ports:
+      - 5432:5432
+
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    command: sh -c "hanami db migrate && hanami server --host=0.0.0.0"
     volumes:
       - .:/app
     ports:
-      - "2300:2300"
+      - 2300:2300
     depends_on:
       - postgres
-    environment:
-      DATABASE_URL: postgres://safelylaunch@postgres/core
-      HANAMI_ENV: development
+      - redis
+    env_file:
+      - .env.development
