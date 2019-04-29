@@ -7,7 +7,12 @@ module Web
 
       def company_text(vacancy)
         if vacancy.contact.site
-          html.a(vacancy.contact.company, href: add_url_schema(vacancy.contact.site), target: '_blank', rel: 'nofollow noopener')
+          html.a(
+            vacancy.contact.company,
+            href: add_url_schema(vacancy.contact.site),
+            target: '_blank',
+            rel: 'nofollow noopener'
+          )
         else
           vacancy.contact.company
         end
