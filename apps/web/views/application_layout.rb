@@ -21,7 +21,7 @@ module Web
       def remote_badge(vacancy)
         return unless vacancy.remote_available
 
-        html.span(class: 'mr-2 badge badge-success') { 'Удаленно' }
+        html.span(class: 'mr-2 badge badge-success') { 'Удалённая работа' }
       end
 
       def position_type_badge(vacancy)
