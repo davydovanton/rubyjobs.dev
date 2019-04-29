@@ -14,8 +14,12 @@ module Web
         expose :vacancies
         expose :pager
 
+        params do
+          optional(:page).filled
+        end
+
         def call(params)
-          result = operation.call(params)
+          result = operation.call(params.to_h)
 
           case result
           when Success

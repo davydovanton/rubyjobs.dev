@@ -50,4 +50,18 @@ RSpec.describe Web::Controllers::Vacancies::Index, type: :action do
       end
     end
   end
+
+  context 'when action receive unexpected parameters' do
+    let(:params) do
+      {
+        page: 1,
+        foo: 'bar'
+      }
+    end
+
+    it 'sanitizes params' do
+      expect(operation).to receive(:call).with(page: 1)
+      subject
+    end
+  end
 end
