@@ -1,9 +1,19 @@
 FROM ruby:2.5.0-alpine
 
-RUN apk add --no-cache build-base postgresql postgresql-dev libpq git
+RUN apk add --update --no-cache build-base postgresql-dev tzdata git \
+    && gem install -N bundler \
+    && bundle config --global silence_root_warning 1 \
+    && echo -e 'gem: --no-document' >> /etc/gemrc \
+    && rm -rf /var/cache/apk/* \
+    && rm -rf /usr/local/bundle/cache/*.gem \
+    && find /usr/local/bundle/gems/ -name "*.c" -delete \
+    && find /usr/local/bundle/gems/ -name "*.o" -delete
 
 WORKDIR /app
-COPY . /app
+
+COPY Gemfile Gemfile.lock ./
 RUN bundle install -j $(nproc) --quiet
+
+COPY . ./
 
 ENTRYPOINT ["bundle", "exec"]
