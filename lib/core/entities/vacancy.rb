@@ -25,6 +25,8 @@ class Vacancy < Hanami::Entity
     attribute :salary_currency, Core::Types::VacancySalaryCurrencyTypes
     attribute :salary_unit, Core::Types::VacancySalaryUnitTypes
 
+    attribute :tags, Core::Types::VacancyTags
+
     attribute :contact, Types::Entity(Contact)
 
     attribute :created_at, Types::Time

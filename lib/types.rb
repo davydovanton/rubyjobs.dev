@@ -30,5 +30,7 @@ module Core
     VacancySalaryUnitTypes = String.constructor(proc { |value| value.to_s.downcase })
                                    .default('monthly')
                                    .enum('monthly', 'yearly', 'by hour', 'per project')
+
+    VacancyTags = Types::Array.of(Types::Coercible::String)
   end
 end
