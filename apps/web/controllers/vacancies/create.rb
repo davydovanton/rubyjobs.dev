@@ -17,6 +17,7 @@ module Web
 
           case result
           when Success
+            flash[:success] = 'Вакансия успешно отправлена на модерацию. В ближайшее время она появится на главной.'
             redirect_to routes.root_path
             # TODO: log and trigger rollbar in this case. Also, show new page again
             #

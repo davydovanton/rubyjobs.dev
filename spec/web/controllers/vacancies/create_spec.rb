@@ -57,8 +57,13 @@ RSpec.describe Web::Controllers::Vacancies::Create, type: :action do
 
   context 'when operation returns success result' do
     let(:operation) { ->(*) { Success(Vacancy.new(id: 123)) } }
+    let(:success_flash) { 'Вакансия успешно отправлена на модерацию. В ближайшее время она появится на главной.' }
 
     it { expect(subject).to redirect_to '/' }
+    it 'show flash message' do
+      subject
+      expect(action.exposures[:flash][:success]).to eq(success_flash)
+    end
   end
 
   context 'when operation returns success result' do
