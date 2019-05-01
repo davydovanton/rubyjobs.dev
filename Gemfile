@@ -41,6 +41,7 @@ gem 'semantic_logger'
 gem 'dry-monads', '~> 1.1.0'
 
 # background
+gem 'hanami-webconsole'
 gem 'hiredis'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
@@ -48,7 +49,6 @@ gem 'sidekiq-scheduler'
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading
-  gem 'hanami-webconsole'
   gem 'shotgun', platforms: :ruby
 end
 
