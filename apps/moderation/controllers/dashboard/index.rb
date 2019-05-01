@@ -21,8 +21,8 @@ module Moderation
           case result
           when Success
             @vacancies = result.value!
-            # when Failure
-            # redirect_to routes.project_path(params[:environment][:project_id])
+          when Failure
+            redirect_to routes.root_path
           end
         end
       end
