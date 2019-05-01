@@ -27,6 +27,7 @@ class RequestId
     end
 
   rescue => e
-    @rollbar.error(e)
+    @rollbar.error(requires_id: env['request_id'], error: e)
+    @logger.error(requires_id: env['request_id'], error: e)
   end
 end
