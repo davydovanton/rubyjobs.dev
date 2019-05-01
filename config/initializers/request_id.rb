@@ -25,5 +25,8 @@ class RequestId
     @logger.tagged(requires_id: env['request_id']) do
       @app.call(env)
     end
+
+  rescue => e
+    @rollbar.error(e)
   end
 end
