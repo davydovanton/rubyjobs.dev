@@ -267,6 +267,15 @@ module Moderation
       controller.prepare do
         # include MyAuthentication # included in all the actions
         # before :authenticate!    # run an authentication before callback
+
+        handle_exception Exception => :error_handler
+
+        private
+
+        def error_handler(exception)
+          Container[:rollbar].error(exception)
+          status 500
+        end
       end
 
       # Configure the code that will yield each time Moderation::View is included

@@ -14,7 +14,6 @@ module Moderation
         expose :vacancies
 
         def call(params)
-          logger.error "moderation action params: #{params}"
           result = operation.call(params)
 
           logger.info "Result of moderation action: #{result}"
