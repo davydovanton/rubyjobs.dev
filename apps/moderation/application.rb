@@ -246,8 +246,8 @@ module Moderation
         frame-ancestors 'self';
         base-uri 'self';
         default-src 'none';
-        script-src 'self';
-        connect-src 'self';
+        script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com 'unsafe-inline';
+        connect-src 'self' https://www.googletagmanager.com;
         img-src 'self' https: data:;
         style-src 'self' 'unsafe-inline' https:;
         font-src 'self';
