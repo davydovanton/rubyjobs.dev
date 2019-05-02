@@ -20,6 +20,9 @@ html
   body.h-100
     main
       .container
+        - if flash[:success]
+          .alert.alert-success
+            = flash[:success]
         = yield
 
     = render partial: 'shared/footer'
