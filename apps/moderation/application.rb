@@ -83,14 +83,16 @@ module Moderation
       #
       # See: http://www.rubydoc.info/gems/rack/Rack/Session/Cookie
       #
-      # sessions :cookie, secret: ENV['MODERATION_SESSIONS_SECRET']
+      sessions :cookie, secret: ENV['MODERATION_SESSIONS_SECRET']
 
       # Configure Rack middleware for this application
       #
       # middleware.use Rack::Protection
       #
-      middleware.use Rack::Auth::Basic, 'RubyJobs' do |login, password|
-        login == ENV['MODERATION_LOGIN'] && password == ENV['MODERATION_PASSWORD']
+      if Hanami.env?(:production)
+        middleware.use Rack::Auth::Basic, 'RubyJobs' do |login, password|
+          login == ENV['MODERATION_LOGIN'] && password == ENV['MODERATION_PASSWORD']
+        end
       end
 
       # Default format for the requests that don't specify an HTTP_ACCEPT header

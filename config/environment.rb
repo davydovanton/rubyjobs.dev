@@ -4,8 +4,8 @@ require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
 require_relative '../system/import'
-require_relative '../apps/web/application'
 require_relative './initializers/request_id'
+require_relative '../apps/web/application'
 require_relative '../apps/moderation/application'
 
 Hanami.configure do
