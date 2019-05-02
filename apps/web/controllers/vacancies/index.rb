@@ -15,7 +15,7 @@ module Web
         expose :pager
 
         params do
-          required(:page).filled
+          optional(:page).filled
         end
 
         def call(params)
