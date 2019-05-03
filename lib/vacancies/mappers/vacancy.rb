@@ -22,7 +22,9 @@ module Vacancies
             salary_currency: payload[:salary][:currency],
             salary_unit: payload[:salary][:unit],
 
-            archived_in_weeks: payload[:archived_in_weeks].to_i
+            archived_in_weeks: payload[:archived_in_weeks].to_i,
+
+            tags: payload[:tags].downcase.split(',').map(&:strip)
           },
 
           contact: payload[:contact]

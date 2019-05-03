@@ -21,6 +21,7 @@ RSpec.describe Web::Controllers::Vacancies::Create, type: :action do
           unit: 'monthly'
         },
         archived_in_weeks: '2',
+        tags: 'rails, golang, PostgreSQL',
         contact: {
           email: 'test@something.com',
           full_name: 'First Name',
@@ -47,7 +48,8 @@ RSpec.describe Web::Controllers::Vacancies::Create, type: :action do
         salary_currency: 'rub',
         salary_unit: 'monthly',
 
-        archived_in_weeks: 2
+        archived_in_weeks: 2,
+        tags: %w[rails golang postgresql]
       },
       contact: { email: 'test@something.com', full_name: 'First Name', company: 'test', site: '' }
     )

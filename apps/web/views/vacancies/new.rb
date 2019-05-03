@@ -114,6 +114,19 @@ module Web
               end
             end
 
+            div(class: 'form-group') do
+              div(class: 'row') do
+                div(class: 'col') do
+                  label 'Теги'
+                end
+              end
+              div(class: 'row') do
+                div(class: 'col-8') do
+                  text_field :tags, placeholder: 'ruby, hanami, dry-rb', class: 'form-control'
+                end
+              end
+            end
+
             hr(class: 'mb-4 mt-4')
 
             fields_for :contact do
