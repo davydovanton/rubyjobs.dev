@@ -9,7 +9,7 @@ ul.list-group
         .col-sm-8
           h4 = vacancy.position
         .col-sm-4
-          = vacancy_salary_informatioin(vacancy)
+          = vacancy_salary_information(vacancy)
       .row
         .col-sm-8
           | Компания #{company_text(vacancy)} (#{vacancy.location}), опубликована #{RelativeTime.in_words(vacancy.created_at, locale: :ru)}
