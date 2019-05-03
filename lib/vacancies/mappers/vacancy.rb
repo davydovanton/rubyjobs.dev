@@ -24,7 +24,7 @@ module Vacancies
 
             archived_in_weeks: payload[:archived_in_weeks].to_i,
 
-            tags: payload[:tags].downcase.split(',').map(&:strip)
+            tags: payload[:tags].to_s.downcase.split(',').map!(&:strip)
           },
 
           contact: payload[:contact]

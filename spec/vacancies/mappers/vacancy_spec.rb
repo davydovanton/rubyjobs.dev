@@ -22,7 +22,8 @@ RSpec.describe Vacancies::Mappers::Vacancy, type: :mapper do
         unit: 'monthly'
       },
 
-      archived_in_weeks: '2'
+      archived_in_weeks: '2',
+      tags: 'psql, go'
     }
   end
 
@@ -46,10 +47,36 @@ RSpec.describe Vacancies::Mappers::Vacancy, type: :mapper do
         salary_currency: 'rub',
         salary_unit: 'monthly',
 
-        archived_in_weeks: 2
+        archived_in_weeks: 2,
+        tags: %w[psql go]
       },
 
       contact: contact_payload
     )
+  end
+
+  context 'when tags is empty' do
+    let(:vacancy_payload) do
+      {
+        position: 'ruby developer',
+        position_type: 'full_time',
+
+        details_raw: 'test something here',
+
+        location: 'moscow',
+        remote_available: '1',
+
+        salary: {
+          min: '1_000_000',
+          max: '222_222_222',
+          currency: 'rub',
+          unit: 'monthly'
+        },
+
+        archived_in_weeks: '2'
+      }
+    end
+
+    it { expect(subject[:vacancy][:tags]).to eq([]) }
   end
 end
