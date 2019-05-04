@@ -29,7 +29,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.development
-    command: bundle exec sidekiq -r ./config/boot.rb
+    command: bundle exec sidekiq -r ./config/boot.rb -c 7
     volumes:
       - .:/app
     depends_on:
