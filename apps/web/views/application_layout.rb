@@ -28,7 +28,7 @@ module Web
         html.span(class: 'mr-2 badge badge-info') { POSITION_TYPE_VALUES[vacancy.position_type] }
       end
 
-      def vacancy_salary_informatioin(vacancy)
+      def vacancy_salary_information(vacancy)
         currency = CURRENCY_VALUES[vacancy.salary_currency]
         unit = UNIT_VALUES[vacancy.salary_unit]
 
