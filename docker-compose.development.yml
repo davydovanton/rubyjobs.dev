@@ -24,3 +24,14 @@ services:
     depends_on:
       - postgres
       - redis
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    command: bundle exec sidekiq -r ./config/boot.rb
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+      - redis
