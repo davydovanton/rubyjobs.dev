@@ -1,18 +1,37 @@
 version: '3'
+
 services:
+  redis:
+    image: redis:latest
+
   postgres:
     image: postgres:9.6.2-alpine
     environment:
-      POSTGRES_USER: safelylaunch
-      POSTGRES_DB: core
+      POSTGRES_USER: rubyjobs
+      POSTGRES_DB: rubyjobs_development
+    ports:
+      - 5432:5432
+
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    command: sh -c "hanami db migrate && hanami server --host=0.0.0.0"
     volumes:
       - .:/app
     ports:
-      - "2300:2300"
+      - 2300:2300
     depends_on:
       - postgres
-    environment:
-      DATABASE_URL: postgres://safelylaunch@postgres/core
-      HANAMI_ENV: development
+      - redis
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    command: bundle exec sidekiq -r ./config/boot.rb -c 7
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+      - redis
