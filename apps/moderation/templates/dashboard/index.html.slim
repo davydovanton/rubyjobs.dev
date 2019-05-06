@@ -36,9 +36,9 @@ ul.list-group
 
       .row
         .col.mb-4
-          = link_to 'Принять', '#', class: 'btn btn-success'
+          = approve_button(vacancy.id)
 
         .col.mb-4.btn-float-right
-          = link_to 'Отклонить', '#', class: 'btn btn-warning'
+          = disapprove_button(vacancy.id)
 
     hr

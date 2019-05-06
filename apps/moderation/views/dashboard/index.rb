@@ -6,6 +6,20 @@ module Moderation
       class Index
         include Moderation::View
 
+        def approve_button(id)
+          html.form(action: routes.vacancy_approve_path(id), method: 'POST') do
+            input(type: 'hidden', name: '_method', value: 'PATCH')
+            input(type: 'submit', value: 'Принять', class: 'btn btn-success')
+          end
+        end
+
+        def disapprove_button(id)
+          html.form(action: routes.vacancy_disapprove_path(id), method: 'POST') do
+            input(type: 'hidden', name: '_method', value: 'PATCH')
+            input(type: 'submit', value: 'Отклонить', class: 'btn btn-warning')
+          end
+        end
+
         def company_text(vacancy)
           if vacancy.contact.site
             link_to vacancy.contact.company, vacancy.contact.site
