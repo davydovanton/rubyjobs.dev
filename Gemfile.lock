@@ -40,6 +40,7 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
+    builder (3.2.3)
     capybara (3.13.2)
       addressable
       mini_mime (>= 0.1.3)
@@ -351,6 +352,8 @@ GEM
       procto (~> 0.0.2)
     url_mount (0.2.1)
       rack
+    xml-sitemap (1.3.3)
+      builder (>= 2.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
@@ -393,6 +396,7 @@ DEPENDENCIES
   simplecov
   simplecov-json
   slim
+  xml-sitemap
 
 RUBY VERSION
    ruby 2.5.0p0

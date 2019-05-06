@@ -1,4 +1,5 @@
 User-agent: *
+Sitemap: https://www.rubyjobs.dev/sitemap.xml
 
 #standart disallows
 Disallow: /moderation
