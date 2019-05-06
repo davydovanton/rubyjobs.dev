@@ -1,34 +1,16 @@
-# Core
+# RubyJobs.dev
 [![CircleCI](https://circleci.com/gh/davydovanton/rubyjobs.dev/tree/master.svg?style=svg)](https://circleci.com/gh/davydovanton/rubyjobs.dev/tree/master)
 
-Welcome to your new Hanami project!
+Job boards for Russian-speaking Ruby developers 
 
-## Setup
+For more information read [this](https://rubyjobs.dev/about)
 
-How to run tests:
+## Contributing
 
-```
-% bundle exec rake
-```
+Please, read [CONTRIBUTING.md](https://github.com/davydovanton/rubyjobs.dev/blob/master/CONTRIBUTING.md) file.
 
-How to run the development console:
+## Copyright
 
-```
-% bundle exec hanami console
-```
+Released under MIT License.
 
-How to run the development server:
-
-```
-% bundle exec hanami server
-```
-
-How to prepare (create and migrate) DB for `development` and `test` environments:
-
-```
-% bundle exec hanami db prepare
-
-% HANAMI_ENV=test bundle exec hanami db prepare
-```
-
-Explore Hanami [guides](http://hanamirb.org/guides/), [API docs](http://docs.hanamirb.org/1.3.0.beta1/), or jump in [chat](http://chat.hanamirb.org) for help. Enjoy! 🌸
+Copyright © 2016-2019 Anton Davydov.
