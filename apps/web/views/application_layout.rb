@@ -28,6 +28,18 @@ module Web
         html.span(class: 'mr-2 badge badge-info') { POSITION_TYPE_VALUES[vacancy.position_type] }
       end
 
+      def tag_badges(tags)
+        return if tags.empty?
+
+        html.div(class: 'row') do
+          div(class: 'col-sm-8') do
+            tags.each do |tag|
+              a(href: '#', class: 'badge badge-primary') { tag }
+            end
+          end
+        end
+      end
+
       def vacancy_salary_information(vacancy)
         currency = CURRENCY_VALUES[vacancy.salary_currency]
         unit = UNIT_VALUES[vacancy.salary_unit]
