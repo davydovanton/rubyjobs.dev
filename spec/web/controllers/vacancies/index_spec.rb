@@ -17,6 +17,12 @@ RSpec.describe Web::Controllers::Vacancies::Index, type: :action do
       expect(action.vacancies).to eq([Vacancy.new(id: 123)])
       expect(action.pager).to eq(pager)
     end
+
+    context 'when params inlcludes unexpected keys' do
+      let(:params) { { page: 2, unexpected_key: 'hello' } }
+
+      it { expect(subject).to be_success }
+    end
   end
 
   context 'with real dependencies' do
