@@ -10,8 +10,7 @@ module Web
           html.a(
             vacancy.contact.company,
             href: add_url_schema(vacancy.contact.site),
-            target: '_blank',
-            rel: 'nofollow noopener'
+            target: '_blank'
           )
         else
           vacancy.contact.company
