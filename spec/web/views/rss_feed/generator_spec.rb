@@ -1,36 +1,26 @@
 # frozen_string_literal: true
 
+require 'rss'
+
 RSpec.describe Web::Views::RssFeed::Generator, type: :view do
-  subject { view.call(payload) }
+  subject { RSS::Parser.parse(view.call(payload)) }
 
   let(:view) { described_class.new(current_time: -> { time }) }
   let(:payload) { { vacancies: [vacancy] } }
   let(:vacancy) { Fabricate.build(:vacancy, published: true, updated_at: time) }
   let(:time) { Time.at(1_556_128_838).utc }
 
-  it 'returns correct rss string' do
-    xml_rss = <<~RSS
-      <?xml version="1.0" encoding="UTF-8"?>
-      <feed xmlns="http://www.w3.org/2005/Atom"
-        xmlns:dc="http://purl.org/dc/elements/1.1/">
-        <author>
-          <name>RubyJobs</name>
-        </author>
-        <id>https://rubyjobs.dev/feed.rss</id>
-        <title>Ruby Jobs RSS feed</title>
-        <updated>2019-04-24T18:00:38Z</updated>
-        <entry>
-          <id>https://rubyjobs.dev/vacancies/</id>
-          <link href="https://rubyjobs.dev/vacancies/"/>
-          <summary>&lt;p&gt;something here&lt;/p&gt;</summary>
-          <title>Senior mecha pilot</title>
-          <updated>2019-04-24T18:00:38Z</updated>
-          <dc:date>2019-04-24T18:00:38Z</dc:date>
-        </entry>
-        <dc:date>2019-04-24T18:00:38Z</dc:date>
-      </feed>
-    RSS
+  it { expect(subject.author.name.content).to eq 'RubyJobs' }
+  it { expect(subject.title.content).to eq 'Ruby Jobs RSS feed' }
+  it { expect(subject.id.content).to eq 'https://rubyjobs.dev/feed.rss' }
+  it { expect(subject.updated.content).to eq time }
+  it { expect(subject.date).to eq time }
 
-    expect("#{subject}\n").to eq(xml_rss)
-  end
+  it { expect(subject.entries.size).to eq 1 }
+  it { expect(subject.entries[0].id.content).to eq 'https://rubyjobs.dev/vacancies/' }
+  it { expect(subject.entries[0].link.href).to eq 'https://rubyjobs.dev/vacancies/' }
+  it { expect(subject.entries[0].summary.content).to eq '<p>something here</p>' }
+  it { expect(subject.entries[0].title.content).to eq 'Senior mecha pilot' }
+  it { expect(subject.entries[0].updated.content).to eq time }
+  it { expect(subject.entries[0].date).to eq time }
 end
