@@ -3,11 +3,8 @@
 RSpec.describe Subscribers::Operations::Create, type: :operation do
   subject { operation.call(email: email) }
 
-  let(:operation) do
-    described_class.new
-  end
-
-  # let(:contact_repo) { instance_double('ContactRepository', create: Vacancy.new) }
+  let(:operation) { described_class.new(subscriber_repo: subscriber_repo) }
+  let(:subscriber_repo) { instance_double('SubscriberRepository', create: Subscriber.new(email: email)) }
 
   context 'when email is valid' do
     let(:email) { 'test@something.com' }
@@ -18,9 +15,19 @@ RSpec.describe Subscribers::Operations::Create, type: :operation do
   end
 
   context 'when email is invalid' do
-    let(:email) { 'something.com' }
+    [
+      'something.com',
+      '@something.com',
+      'something@.com',
+      'something@com',
+      'something@',
+      '@something'
+    ].each do |invalid_email|
 
-    xit { expect(subject).to be_failure }
+      let(:email) { invalid_email }
+
+      it { expect(subject).to be_failure }
+    end
   end
 
   context 'with real dependencies' do
@@ -30,5 +37,8 @@ RSpec.describe Subscribers::Operations::Create, type: :operation do
     let(:email) { 'test@something.com' }
 
     it { expect(subject).to be_success }
+    it do
+      expect { subject }.to change { SubscriberRepository.new.all.count }.by(1)
+    end
   end
 end
