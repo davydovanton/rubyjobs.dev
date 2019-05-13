@@ -10,6 +10,7 @@ module Web
           html.a(
             vacancy.contact.company,
             href: add_url_schema(vacancy.contact.site),
+            title: "Ссайт компании #{vacancy.contact.company}",
             target: '_blank'
           )
         else

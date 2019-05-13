@@ -16,7 +16,7 @@ ul.list-group
     li.list-group-item
       .row
         .col-sm-8
-          h4 = link_to vacancy.position, routes.vacancy_path(vacancy.id)
+          h4 = link_to vacancy.position, routes.vacancy_path(vacancy.id), title: vacancy.position
         .col-sm-4
           = vacancy_salary_information(vacancy)
       .row
