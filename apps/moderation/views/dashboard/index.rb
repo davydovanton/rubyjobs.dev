@@ -21,6 +21,11 @@ module Moderation
         end
 
         def company_text(vacancy)
+          published_at = RelativeTime.in_words(vacancy.created_at, locale: :ru)
+          raw "Компания #{company_link(vacancy)} (#{vacancy.location}), опубликована #{published_at}"
+        end
+
+        def company_link(vacancy)
           if vacancy.contact.site
             link_to vacancy.contact.company, vacancy.contact.site
           else

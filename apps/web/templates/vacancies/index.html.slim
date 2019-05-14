@@ -21,7 +21,7 @@ ul.list-group
           = vacancy_salary_information(vacancy)
       .row
         .col-sm-8
-          | Компания #{company_text(vacancy)} (#{vacancy.location}), опубликована #{RelativeTime.in_words(vacancy.created_at, locale: :ru)}
+          = company_text(vacancy)
         .col-sm-4
           = remote_badge(vacancy)
           = position_type_badge(vacancy)

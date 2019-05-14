@@ -7,8 +7,8 @@ RSpec.describe Web::Views::ApplicationLayout, type: :view do
   let(:template) { Hanami::View::Template.new('apps/web/templates/application.html.slim') }
   let(:rendered) { layout.render }
 
-  describe '#company_text' do
-    subject { layout.company_text(vacancy).to_s }
+  describe '#company_link' do
+    subject { layout.company_link(vacancy).to_s }
 
     let(:vacancy) { Vacancy.new(contact: contact) }
 
