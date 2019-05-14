@@ -5,7 +5,7 @@ html
       script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-89570219-2"
       javascript:
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag(){ dataLayer.push(arguments); }
         gtag('js', new Date());
 
         gtag('config', 'UA-89570219-2');
@@ -14,7 +14,7 @@ html
       | #{title} - RubyJobs
 
     = favicon
-    = stylesheet 'bootstrap', 'main'
+    = stylesheet 'bootstrap', 'main', 'likely'
     = render partial: 'shared/meta_tags'
 
   body.h-100
@@ -27,4 +27,4 @@ html
 
     = render partial: 'shared/footer'
 
-    = javascript 'jquery', 'bootstrap', 'main'
+    = javascript 'jquery', 'bootstrap', 'main', 'likely'
