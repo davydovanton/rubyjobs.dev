@@ -4,3 +4,4 @@
 .idea
 .ruby-version
 .env.dev
+.env.development
