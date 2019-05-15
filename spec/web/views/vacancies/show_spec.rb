@@ -20,14 +20,14 @@ RSpec.describe Web::Views::Vacancies::Show, type: :view do
     expect(view.format).to eq exposures.fetch(:format)
   end
 
-  it "social buttons showing" do
-    expect(rendered).to match("<div class=\"likely\">")
+  it 'social buttons showing' do
+    expect(rendered).to match('<div class="likely likely-small">')
   end
 
-  it "when head does contain style likely link" do
+  it 'when head does contain style likely link' do
     expect(rendered).to match('<link href="/assets/likely.css" type="text/css" rel="stylesheet">')
   end
-  it "when app does contain js likely link" do
+  it 'when app does contain js likely link' do
     expect(rendered).to match('<script src="/assets/likely.js" type="text/javascript"></script>')
   end
 end
