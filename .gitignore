@@ -1,3 +1,7 @@
 /public/assets*
 /tmp
 /coverage
+.idea
+.ruby-version
+.env.dev
+.env.development
