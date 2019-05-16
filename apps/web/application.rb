@@ -49,7 +49,7 @@ module Web
       # URI host used by the routing system to generate absolute URLs
       # Defaults to "localhost"
       #
-      # host 'example.org'
+      # host 'rubyjobs.dev'
 
       # URI port used by the routing system to generate absolute URLs
       # Argument: An object coercible to integer, defaults to 80 if the scheme
@@ -236,12 +236,13 @@ module Web
       #
       #  * https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives
       #
+      # rubocop:disable Metrics/LineLength
       security.content_security_policy %(
         form-action 'self';
         frame-ancestors 'self';
         base-uri 'self';
         default-src 'none';
-        script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com 'unsafe-inline';
+        script-src 'self' https://graph.facebook.com https://connect.ok.ru https://vk.com https://www.googletagmanager.com https://www.google-analytics.com 'unsafe-inline';
         connect-src 'self' https://www.googletagmanager.com;
         img-src 'self' https: data:;
         style-src 'self' 'unsafe-inline' https:;
@@ -252,6 +253,7 @@ module Web
         frame-src 'self';
         media-src 'self'
       )
+      # rubocop:enable Metrics/LineLength
 
       ##
       # FRAMEWORKS
@@ -308,9 +310,10 @@ module Web
     # PRODUCTION
     #
     configure :production do
-      # scheme 'https'
+      scheme 'https'
       # host   'example.org'
       # port   443
+      host 'rubyjobs.dev'
 
       assets do
         # Don't compile static assets in production mode (eg. Sass, ES6)
