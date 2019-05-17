@@ -23,6 +23,9 @@ class Container < Dry::System::Container
   register_folder! 'vacancies/mappers'
   register_folder! 'vacancies/operations'
 
+  # Subscribers
+  register_folder! 'subscribers/operations'
+
   configure do |config|
     config.env = Hanami.env
   end
