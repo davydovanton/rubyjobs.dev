@@ -26,6 +26,11 @@ class Container < Dry::System::Container
   # Subscribers
   register_folder! 'subscribers/operations'
 
+  #  Web
+  register 'web.vacancies.generators.rss' do
+    Web::Views::RssFeed::Generator.new
+  end
+
   configure do |config|
     config.env = Hanami.env
   end
