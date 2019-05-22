@@ -71,8 +71,14 @@ RSpec.describe Web::Controllers::Vacancies::Create, type: :action do
 
   context 'when operation returns failure result' do
     let(:operation) { ->(*) { Failure(:error) } }
+    let(:flash_message) { 'Произошла ошибка, пожалуйста повторите позже' }
 
-    it { expect(subject).to have_http_status(200) }
+    it { expect(subject).to redirect_to '/' }
+
+    it 'shows flash message' do
+      subject
+      expect(action.exposures[:flash][:fail]).to eq(flash_message)
+    end
   end
 
   context 'with real dependencies' do
