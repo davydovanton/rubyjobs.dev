@@ -3,6 +3,7 @@
 class VacancyAnalitic < Hanami::Entity
   attributes do
     attribute :id, Types::Int
+    attribute :vacancy_id, Types::Int
 
     attribute :view_count, Core::Types::ViewCount
 
