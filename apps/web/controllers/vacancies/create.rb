@@ -7,6 +7,7 @@ module Web
         include Web::Action
         include Dry::Monads::Result::Mixin
         include Import[
+          :rollbar,
           vacancy_mapping: 'vacancies.mappers.vacancy',
           operation: 'vacancies.operations.create'
         ]
@@ -21,8 +22,11 @@ module Web
             redirect_to routes.root_path
             # TODO: log and trigger rollbar in this case. Also, show new page again
             #
-            # when Failure
-            #   redirect_to routes.project_path(params[:environment][:project_id])
+          when Failure
+            flash[:fail] = 'Произошла ошибка, пожалуйста повторите позже'
+
+            rollbar.error(result.failure!, payload: payload)
+            redirect_to routes.root_path
           end
         end
       end
