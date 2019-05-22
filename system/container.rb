@@ -19,6 +19,9 @@ class Container < Dry::System::Container
   register_folder! 'core/repositories'
   register_folder! 'core/libs'
 
+  #  Analitics
+  register_folder! 'analitics/operations'
+
   #  Vacancies
   register_folder! 'vacancies/mappers'
   register_folder! 'vacancies/operations'
