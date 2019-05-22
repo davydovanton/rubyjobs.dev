@@ -4,10 +4,13 @@ module Analitics
   module Operations
     class IncreaseVacancyViewCount < ::Libs::Operation
       include Import[
+        vacancy_analitic_repo: 'repositories.vacancy_analitic'
       ]
 
       def call(vacancy_id:)
-        Success(:ok)
+        Success(
+          vacancy_analitic_repo.increase_view_count(vacancy_id)
+        )
       end
     end
   end

@@ -5,9 +5,11 @@ module Web
     class ApplicationLayout
       include Web::Layout
 
-      def company_text(vacancy)
+      def vacancy_information(vacancy, analitics = nil)
         published_at = RelativeTime.in_words(vacancy.created_at, locale: :ru)
-        raw "Компания #{company_link(vacancy)} (#{vacancy.location}), опубликована #{published_at}"
+        analitics_information = analitics && ", #{analitics.view_count} 👀"
+
+        raw "Компания #{company_link(vacancy)} (#{vacancy.location}), опубликована #{published_at}#{analitics_information}"
       end
 
       def company_link(vacancy)
