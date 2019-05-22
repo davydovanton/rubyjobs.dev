@@ -32,5 +32,8 @@ module Core
                                    .enum('monthly', 'yearly', 'by hour', 'per project')
 
     VacancyTags = Types::Array.of(Types::Coercible::String)
+
+    # analitics
+    ViewCount = Types::Int.constrained(gteq: 0)
   end
 end

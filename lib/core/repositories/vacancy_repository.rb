@@ -3,6 +3,7 @@
 class VacancyRepository < Hanami::Repository
   associations do
     belongs_to :contact
+    has_one :vacancy_analitic
   end
 
   def archive_for_today
