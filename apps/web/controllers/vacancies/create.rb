@@ -7,7 +7,7 @@ module Web
         include Web::Action
         include Dry::Monads::Result::Mixin
         include Import[
-          :rollbar,
+          :rollbar, :logger,
           vacancy_mapping: 'vacancies.mappers.vacancy',
           operation: 'vacancies.operations.create'
         ]
@@ -22,6 +22,7 @@ module Web
             redirect_to routes.root_path
           when Failure
             flash[:fail] = 'Произошла ошибка, пожалуйста повторите позже'
+            logger.error("fail on vacancy create, payload: #{payload}, result: #{result.failure}")
             rollbar.error(result.failure, payload: payload)
             redirect_to routes.root_path
           end
