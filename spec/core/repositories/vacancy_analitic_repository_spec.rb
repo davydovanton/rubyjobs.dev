@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe VacancyAnaliticRepository, type: :repository do
   let(:repo) { described_class.new }
   let(:vacancy) { Fabricate.create(:vacancy) }
@@ -17,7 +19,7 @@ RSpec.describe VacancyAnaliticRepository, type: :repository do
     context 'when vacancy does not have analitics in DB' do
       it { expect(subject).to be_a(VacancyAnalitic) }
       it { expect(subject.view_count).to eq(1) }
-      it { expect{ subject }.to change { repo.all.count }.by(1) }
+      it { expect { subject }.to change { repo.all.count }.by(1) }
     end
   end
 end

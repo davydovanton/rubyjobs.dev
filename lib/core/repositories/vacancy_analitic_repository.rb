@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VacancyAnaliticRepository < Hanami::Repository
   associations do
     belongs_to :vacancy
