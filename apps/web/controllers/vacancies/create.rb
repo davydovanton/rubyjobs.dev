@@ -27,6 +27,12 @@ module Web
             redirect_to routes.root_path
           end
         end
+
+        private
+
+        def verify_csrf_token?
+          false
+        end
       end
     end
   end
