@@ -83,4 +83,23 @@ RSpec.describe Core::Types do
     it { expect { type['invalid'] }.to raise_error(Dry::Types::ConstraintError) }
     it { expect { type[:invalid] }.to raise_error(Dry::Types::ConstraintError) }
   end
+
+  describe 'ViewCount' do
+    let(:type) { Core::Types::ViewCount }
+
+    [
+      [0, 0],
+
+      [1, 1],
+      [10_000, 10_000]
+    ].each do |value, result|
+      it { expect(type[value]).to eq(result) }
+    end
+
+    it { expect { type['1'] }.to raise_error(ArgumentError) }
+    it { expect { type['asd'] }.to raise_error(ArgumentError) }
+
+    it { expect { type[-1] }.to raise_error(Dry::Types::ConstraintError) }
+    it { expect { type[-10_000] }.to raise_error(Dry::Types::ConstraintError) }
+  end
 end

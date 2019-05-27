@@ -3,8 +3,14 @@
 RSpec.describe Web::Controllers::Vacancies::Show, type: :action do
   subject { action.call(params) }
 
-  let(:action) { described_class.new(operation: operation) }
+  let(:action) do
+    described_class.new(
+      operation: operation,
+      analitics_operation: analitics_operation
+    )
+  end
 
+  let(:analitics_operation) { ->(*) { Success(VacancyAnalitic.new(id: 1)) } }
   let(:params) { { id: 1 } }
 
   context 'when operation returns success value' do
@@ -20,6 +26,28 @@ RSpec.describe Web::Controllers::Vacancies::Show, type: :action do
     it 'exposes vacancy' do
       subject
       expect(action.vacancy).to eq(Vacancy.new(id: 1))
+    end
+
+    context 'and analitics operation returnt success result' do
+      let(:analitics_operation) { ->(*) { Success(VacancyAnalitic.new(id: 1)) } }
+
+      it { expect(subject).to be_success }
+
+      it 'exposes analitics object' do
+        subject
+        expect(action.analitics).to eq(VacancyAnalitic.new(id: 1))
+      end
+    end
+
+    context 'and analitics operation returnt failure result' do
+      let(:analitics_operation) { ->(*) { Failure(:something) } }
+
+      it { expect(subject).to be_success }
+
+      it 'exposes analitics object' do
+        subject
+        expect(action.analitics).to eq(VacancyAnalitic.new)
+      end
     end
   end
 

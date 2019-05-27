@@ -5,7 +5,7 @@
       |  > #{vacancy.position}
 .row
   .col
-    | Компания #{company_link(vacancy)} (#{vacancy.location}), опубликована #{RelativeTime.in_words(vacancy.created_at, locale: :ru)}
+    = vacancy_information(vacancy, analitics)
 
 hr.mb-4.mt-4
 

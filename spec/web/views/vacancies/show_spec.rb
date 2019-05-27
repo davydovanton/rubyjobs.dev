@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe Web::Views::Vacancies::Show, type: :view do
-  let(:exposures) { { format: :html, vacancy: vacancy_aggregate, flash: {} } }
+  let(:exposures) do
+    { format: :html, vacancy: vacancy_aggregate, analitics: VacancyAnalitic.new, flash: {} }
+  end
   let(:template)  { Hanami::View::Template.new('apps/web/templates/vacancies/show.html.slim') }
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
