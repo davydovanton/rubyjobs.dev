@@ -49,17 +49,21 @@ module Web
         end
       end
 
-      def vacancy_salary_information(vacancy)
+      def vacancy_salary_information(vacancy) # rubocop:disable Metrics/AbcSize
         currency = CURRENCY_VALUES[vacancy.salary_currency]
         unit = UNIT_VALUES[vacancy.salary_unit]
 
         html.span(class: 'salary') do
           text 'от '
-          span(class: 'money') { vacancy.salary_min }
+          span(class: 'money') { round_price(vacancy.salary_min) }
           text ' до '
-          span(class: 'money') { vacancy.salary_max }
+          span(class: 'money') { round_price(vacancy.salary_max) }
           text " #{currency} #{unit}"
         end
+      end
+
+      def round_price(price)
+        price.to_s.scan(/.{1,3}/).join(' ')
       end
 
       POSITION_TYPE_VALUES = {
