@@ -63,7 +63,9 @@ module Web
       end
 
       def round_price(price)
-        price.to_s.scan(/.{1,3}/).join(' ')
+        return nil unless price
+
+        price.to_s.reverse.gsub!(/(\d{3})(?=\d)/, '\\1 ').reverse
       end
 
       POSITION_TYPE_VALUES = {
