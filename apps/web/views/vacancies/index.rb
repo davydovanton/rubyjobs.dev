@@ -22,7 +22,7 @@ module Web
         end
         # rubocop:enable Metrics/LineLength
 
-        def subscribe_form
+        def subscribe_form # rubocop:disable Metrics/MethodLength
           form_for :subscriber, routes.subscribers_path, method: :post, class: 'needs-validation', novalidate: true do
             div(class: 'form-group') do
               div(class: 'row') do

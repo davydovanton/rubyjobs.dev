@@ -10,7 +10,7 @@ module Web
           operation: 'subscribers.operations.create'
         ]
 
-        def call(params)
+        def call(params) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
           result = operation.call(email: params[:subscriber][:email])
 
           case result
