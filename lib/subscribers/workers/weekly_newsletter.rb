@@ -15,8 +15,9 @@ module Subscribers
       def perform
         case result = operation.call
         when Success
+          payload = result.value!
           logger.info(
-            "weekly with #{vacancies_count} vacancies was delivered to #{result.value![:archived_count]} subscribers"
+            "weekly with #{payload[:vacancies_count]} vacancies delivered to #{payload[:archived_count]} subscribers"
           )
         when Failure
           rollbar.error('error')
