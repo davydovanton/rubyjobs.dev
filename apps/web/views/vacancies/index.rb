@@ -21,6 +21,22 @@ module Web
           }
         end
         # rubocop:enable Metrics/LineLength
+
+        def subscribe_form
+          form_for :subscriber, routes.subscribers_path, method: :post, class: 'needs-validation', novalidate: true do
+            div(class: 'form-group') do
+              div(class: 'row') do
+                div(class: 'col-8') do
+                  text_field :email, placeholder: 'Email адресс', class: 'form-control', required: true
+                end
+
+                div(class: 'col-4') do
+                  submit 'Отправить', class: 'btn btn-success btn-lg'
+                end
+              end
+            end
+          end
+        end
       end
     end
   end
