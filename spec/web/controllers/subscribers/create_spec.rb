@@ -20,9 +20,22 @@ RSpec.describe Web::Controllers::Subscribers::Create, type: :action do
     end
   end
 
-  context 'when operation returns failure result' do
-    let(:flash_message) { 'Произошла ошибка, попробуйте позже.' }
+  context 'when invalid email' do
+    let(:params) { { subscriber: { email: 'email.com' } } }
+    let(:flash_message) { 'Не валидная почта "email.com".' }
     let(:operation) { ->(*) { Failure(:error) } }
+
+    it { expect(subject).to redirect_to '/' }
+
+    it 'shows flash message' do
+      subject
+      expect(action.exposures[:flash][:error]).to eq(flash_message)
+    end
+  end
+
+  context 'when operation returns failure result' do
+    let(:flash_message) { 'Произошла ошибка, попробуйте позже или используйте другой почтовый адресс.' }
+    let(:operation) { ->(*) { Failure(Hanami::Model::UniqueConstraintViolationError.new) } }
 
     it { expect(subject).to redirect_to '/' }
 

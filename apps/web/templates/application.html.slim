@@ -20,6 +20,10 @@ html
   body.h-100
     main
       .container
+        - if flash[:error]
+          .alert.alert-danger
+            = flash[:error]
+
         - if flash[:success]
           .alert.alert-success
             = flash[:success]

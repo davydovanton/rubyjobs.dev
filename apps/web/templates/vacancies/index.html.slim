@@ -11,6 +11,17 @@ hr
   .col
     | RubyJobs.dev — бесплатная площадка для размещения вакансий и поиска разработчиков на Ruby, Hanami и Rails.
 
+br
+
+.row.mt-3.mb-3
+  .col-sm-6
+    h4 Еженедельная рассылка новых вакансий
+    p Подпишитесь на рассылку, что бы быть в курсе новых вакансий, появляющихся на сайте.
+  .col-sm-6
+    = subscribe_form
+
+br
+
 ul.list-group
   - vacancies.each do |vacancy|
     li.list-group-item
@@ -30,3 +41,25 @@ ul.list-group
 .row.mt-3
   .col
     = pagination(:root)
+
+javascript:
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+

@@ -30,6 +30,16 @@ RSpec.describe Subscribers::Operations::Create, type: :operation do
     end
   end
 
+  context 'when someting wrong with db' do
+    let(:email) { 'test@something.com' }
+
+    before do
+      allow(subscriber_repo).to receive(:create).and_raise(Hanami::Model::UniqueConstraintViolationError)
+    end
+
+    it { expect(subject).to be_failure }
+  end
+
   context 'with real dependencies' do
     subject { operation.call(email: email) }
 

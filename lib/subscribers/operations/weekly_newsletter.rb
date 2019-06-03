@@ -8,10 +8,13 @@ module Subscribers
       ]
 
       def call
-        # subscriber_repo.all.each do |subscriber|
+        subscribers = []
+        vacancies = []
+        # subscribers = subscriber_repo.all
+        # subscribers.each do |subscriber|
         #   subscriber.email
         # end
-        Success(:ok)
+        Success(subscribers_count: subscribers.count, vacancies_count: vacancies.count)
       end
     end
   end
