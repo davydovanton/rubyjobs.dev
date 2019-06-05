@@ -64,6 +64,7 @@ module Web
 
       def round_price(price)
         return nil unless price
+        return price if price.to_s.size < 3
 
         price.to_s.reverse.gsub!(/(\d{3})(?=\d)/, '\\1 ').reverse
       end
