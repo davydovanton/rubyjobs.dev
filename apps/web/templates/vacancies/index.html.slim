@@ -20,7 +20,43 @@ br
   .col-sm-6
     = subscribe_form
 
+/hr
+
+/.row.mt-3.mb-3
+  .col-sm
+    form#subscriber-form.needs-validation accept-charset="utf-8" action="/" method="GET"
+      .form-group
+        .row
+          .col-sm-10
+            input#subscriber-email.form-control name="query" placeholder="Фильтр ..." type="text" value=""
+          .col-sm-2
+                button.btn.btn-success type="submit" Фильтровать
+
+/.row.mt-3.mb-3
+  .col-sm-2
+    a.btn.btn-light aria-controls="collapse" aria-expanded="false" data-toggle="collapse" href="#collapse" role="button" Помощь
+
+  .col-sm-10
+    #collapse.collapse
+      code#help__text
+        | Доступные фильтры:
+        br
+        | - **remote** поиск только в remote или в офисных вакансиях;
+        br
+        | - **tag** поиск по специальному тегу (может быть больше 1го);
+        br
+        | - **lang (language)** search by language;
+
+        br
+        | Examples (if you starred devise):
+        br
+        | ```
+        | remote:true tag:hanami tag:elixir senior
+        | ```
+        br
+
 br
+
 
 ul.list-group
   - vacancies.each do |vacancy|
