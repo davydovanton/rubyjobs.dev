@@ -16,6 +16,7 @@ module Web
 
         params do
           optional(:page).filled
+          optional(:query).filled
         end
 
         def call(params)
