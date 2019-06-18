@@ -12,7 +12,7 @@ module Web
           operation: 'vacancies.operations.list'
         ]
 
-        EMPTY_SEARCH_QUERY = {}
+        EMPTY_SEARCH_QUERY = {}.freeze
 
         expose :vacancies
         expose :pager
@@ -32,7 +32,7 @@ module Web
           end
         end
 
-      private
+        private
 
         def search_query
           params[:query] ? search_query_parser.call(params[:query]) : EMPTY_SEARCH_QUERY

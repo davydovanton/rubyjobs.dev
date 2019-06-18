@@ -80,9 +80,9 @@ RSpec.describe VacancyRepository, type: :repository do
       it { expect(subject).to eq(1) }
 
       it 'archive vacancy only for today' do
-        expect(repo.all_with_contact(limit: 10, page: 1).count).to eq(3)
+        expect(repo.root.where(published: true, archived: false, deleted_at: nil).count).to eq(3)
         subject
-        expect(repo.all_with_contact(limit: 10, page: 1).count).to eq(2)
+        expect(repo.root.where(published: true, archived: false, deleted_at: nil).count).to eq(2)
       end
     end
 
@@ -95,50 +95,10 @@ RSpec.describe VacancyRepository, type: :repository do
       it { expect(subject).to eq(0) }
 
       it 'archive vacancy only for today' do
-        expect(repo.all_with_contact(limit: 10, page: 1).count).to eq(2)
+        expect(repo.root.where(published: true, archived: false, deleted_at: nil).count).to eq(2)
         subject
-        expect(repo.all_with_contact(limit: 10, page: 1).count).to eq(2)
+        expect(repo.root.where(published: true, archived: false, deleted_at: nil).count).to eq(2)
       end
-    end
-  end
-
-  describe '#all_with_contact' do
-    subject { repo.all_with_contact(limit: 10, page: 1) }
-
-    before { Fabricate.create(:vacancy, published: published, archived: archived, deleted_at: deleted_at) }
-
-    context 'when vacancy published and not archived or deleted' do
-      let(:published) { true }
-      let(:archived) { false }
-      let(:deleted_at) { nil }
-
-      it { expect(subject.count).to eq(1) }
-      it { expect(subject).to all(be_a(Vacancy)) }
-      it { expect(subject.first.contact).to be_a(Contact) }
-    end
-
-    context 'when vacancy published and archived' do
-      let(:published) { true }
-      let(:archived) { true }
-      let(:deleted_at) { nil }
-
-      it { expect(subject).to eq([]) }
-    end
-
-    context 'when vacancy published and deleted' do
-      let(:published) { true }
-      let(:archived) { false }
-      let(:deleted_at) { Time.now }
-
-      it { expect(subject).to eq([]) }
-    end
-
-    context 'when vacancy not published' do
-      let(:published) { false }
-      let(:archived) { false }
-      let(:deleted_at) { nil }
-
-      it { expect(subject).to eq([]) }
     end
   end
 

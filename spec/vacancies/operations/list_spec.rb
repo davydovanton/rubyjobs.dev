@@ -3,10 +3,10 @@
 RSpec.describe Vacancies::Operations::List, type: :operation do
   subject { operation.call }
 
-  let(:operation) { described_class.new(vacancy_repo: vacancy_repo) }
+  let(:operation) { described_class.new(vacancy_query: vacancy_query) }
 
-  let(:vacancy_repo) do
-    instance_double('VacancyRepository', all_with_contact: vacancies, pager_for_all_with_contact: pager)
+  let(:vacancy_query) do
+    instance_double('Queries::Vacancy', all_with_contact: vacancies, pager_for_all_with_contact: pager)
   end
 
   let(:pager) { instance_double('Hanami::Pagination::Pager') }
