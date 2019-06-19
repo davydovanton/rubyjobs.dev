@@ -34,7 +34,7 @@ RSpec.describe Web::Controllers::Subscribers::Create, type: :action do
   end
 
   context 'when operation returns failure result' do
-    let(:flash_message) { 'Произошла ошибка, попробуйте позже или используйте другой почтовый адресс.' }
+    let(:flash_message) { 'Произошла ошибка, попробуйте позже или используйте другой почтовый адрес.' }
     let(:operation) { ->(*) { Failure(Hanami::Model::UniqueConstraintViolationError.new) } }
 
     it { expect(subject).to redirect_to '/' }

@@ -18,7 +18,7 @@ module Web
             flash[:success] = "#{result.value!.email} успешно добавлен в рассылку."
             redirect_to routes.root_path
           when Failure { |error| error.is_a?(Hanami::Model::UniqueConstraintViolationError) }
-            flash[:error] = 'Произошла ошибка, попробуйте позже или используйте другой почтовый адресс.'
+            flash[:error] = 'Произошла ошибка, попробуйте позже или используйте другой почтовый адрес.'
             redirect_to routes.root_path
           when Failure
             flash[:error] = "Не валидная почта \"#{params[:subscriber][:email]}\"."
