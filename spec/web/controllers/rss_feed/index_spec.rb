@@ -1,3 +1,4 @@
+# typed: ignore
 # frozen_string_literal: true
 
 RSpec.describe Web::Controllers::RssFeed::Index, type: :action do

@@ -1,3 +1,4 @@
+# typed: ignore
 # frozen_string_literal: true
 
 RSpec.describe Analitics::Operations::IncreaseVacancyViewCount, type: :operation do

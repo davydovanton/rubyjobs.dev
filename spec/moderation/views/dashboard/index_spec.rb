@@ -1,3 +1,4 @@
+# typed: ignore
 # frozen_string_literal: true
 
 RSpec.describe Moderation::Views::Dashboard::Index, type: :view do

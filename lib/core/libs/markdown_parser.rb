@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# typed: true
 
 require 'kramdown'
 require 'rouge'
@@ -6,6 +7,8 @@ require 'rinku'
 
 module Libs
   class MarkdownParser
+    extend T::Sig
+
     CHECKBOX_REGEXP_CHECKED = /\K\[(x|X)\]\s?(.*)</.freeze
     CHECKBOX_REGEXP_UNCHECKED = /\K\[ \]\s?(.*)</.freeze
 
@@ -13,6 +16,7 @@ module Libs
       @kramdown = kramdown
     end
 
+    # sig {params(T::Array[Integer]).returns(Integer)}
     def call(text)
       Rinku.auto_link parse_checkbox parse text
     end

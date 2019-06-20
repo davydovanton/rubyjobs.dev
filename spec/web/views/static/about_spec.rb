@@ -1,3 +1,4 @@
+# typed: ignore
 # frozen_string_literal: true
 
 RSpec.describe Web::Views::Static::About, type: :view do

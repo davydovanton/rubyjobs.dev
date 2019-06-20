@@ -1,3 +1,4 @@
+# typed: ignore
 # frozen_string_literal: true
 
 RSpec.describe Vacancies::Operations::ListForModeration, type: :operation do

@@ -333,6 +333,10 @@ GEM
     slim (4.0.1)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
+    sorbet (0.4.4263)
+      sorbet-static (= 0.4.4263)
+    sorbet-runtime (0.4.4263)
+    sorbet-static (0.4.4263-universal-darwin-14)
     temple (0.8.1)
     thread_safe (0.3.6)
     tilt (2.0.9)
@@ -394,6 +398,8 @@ DEPENDENCIES
   simplecov
   simplecov-json
   slim
+  sorbet
+  sorbet-runtime
   xml-sitemap
 
 RUBY VERSION

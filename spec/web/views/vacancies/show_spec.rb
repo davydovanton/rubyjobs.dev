@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# typed: ignore
 
 RSpec.describe Web::Views::Vacancies::Show, type: :view do
   let(:exposures) do

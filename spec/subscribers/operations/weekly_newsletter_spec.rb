@@ -1,3 +1,4 @@
+# typed: ignore
 # frozen_string_literal: true
 
 RSpec.describe Subscribers::Operations::WeeklyNewsletter, type: :operation do

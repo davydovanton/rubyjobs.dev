@@ -1,3 +1,4 @@
+# typed: ignore
 # frozen_string_literal: true
 
 # Simple middleware for generating request id and tagged logger for this value

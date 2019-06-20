@@ -1,3 +1,4 @@
+# typed: false
 # frozen_string_literal: true
 
 # TODO: & QUESTION: move this mapping to form object in web app?

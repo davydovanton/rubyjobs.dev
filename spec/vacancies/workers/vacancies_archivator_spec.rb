@@ -1,3 +1,4 @@
+# typed: ignore
 # frozen_string_literal: true
 
 RSpec.describe Vacancies::Workers::VacanciesArchivator, type: :workers do

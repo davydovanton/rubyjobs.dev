@@ -1,3 +1,4 @@
+# typed: false
 # frozen_string_literal: true
 
 RSpec.describe Vacancies::Mappers::Vacancy, type: :mapper do
