@@ -13,13 +13,22 @@ hr
 
 br
 
-.row.mt-3.mb-3
+.row.mt-3
   .col-sm-6
     h4 Еженедельная рассылка новых вакансий
     p Подпишитесь на рассылку, что бы быть в курсе новых вакансий, появляющихся на сайте.
   .col-sm-6
     = subscribe_form
 
+.row.mb-3
+  .col
+    .btn-group.btn-group-toggle data-toggle="buttons"
+      label.btn.btn-light.active
+        input type="radio" name="remote_filter" id="all" checked="all" Любые
+      label.btn.btn-light
+        input type="radio" name="remote_filter" id="only-remote" checked="only-remote" Удаленные
+      label.btn.btn-light
+        input type="radio" name="remote_filter" id="not-remote" checked="not-remote"  В офисе
 /hr
 
 /.row.mt-3.mb-3
