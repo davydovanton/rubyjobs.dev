@@ -13,20 +13,18 @@ module Web
         ]
 
         EMPTY_SEARCH_QUERY = {}.freeze
-        REMOTE_FILTER_PARAMS = ['none', 'only-remote', 'not-remote'].freeze
 
         expose :vacancies
         expose :pager
-        expose :remote_filter_param
 
         params do
           optional(:page).filled
           optional(:query).filled
-          optional(:remote_filter).filled
+          optional(:remote).filled
         end
 
         def call(params)
-          result = operation.call(search_query: search_query, page: params[:page], remote_filter: remote_filter_param)
+          result = operation.call(search_query: search_query, page: params[:page], remote_query: params[:remote])
 
           case result
           when Success
@@ -39,15 +37,6 @@ module Web
 
         def search_query
           params[:query] ? search_query_parser.call(params[:query]) : EMPTY_SEARCH_QUERY
-        end
-
-        def remote_filter_param
-          @remote_filter_param ||=
-            if REMOTE_FILTER_PARAMS.include?(params[:remote_filter])
-              params[:remote_filter]
-            else
-              'none'
-            end
         end
       end
     end

@@ -23,9 +23,9 @@ br
 .row.mb-3
   .col
     .btn-group.btn-group-toggle
-      = remote_filter_button(text: 'Любые', filter: 'none')
-      = remote_filter_button(text: 'Удаленные', filter: 'only-remote')
-      = remote_filter_button(text: 'В офисе', filter: 'not-remote')
+      = remote_filter_button(text: 'Любые', remote_value: nil)
+      = remote_filter_button(text: 'Удаленные', remote_value: 'true')
+      = remote_filter_button(text: 'В офисе', remote_value: 'false')
 /hr
 
 /.row.mt-3.mb-3

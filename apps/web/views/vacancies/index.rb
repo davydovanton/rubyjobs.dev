@@ -38,15 +38,16 @@ module Web
           end
         end
 
-        def remote_filter_button(text:, filter:)
-          link_params = {}
-
-          if filter == remote_filter_param
-            link_params[:class] = "btn btn-light active"
-          else
-            link_params[:class] = "btn btn-light"
-            link_params[:href] = routes.root_path(remote_filter: filter)
-          end
+        def remote_filter_button(text:, remote_value:)
+          link_params =
+            if remote_value == params[:remote]
+              { class: 'btn btn-light active' }
+            else
+              {
+                class: 'btn btn-light',
+                href: routes.root_path(remote_value.nil? ? {} : { remote: remote_value })
+              }
+            end
 
           html.a(link_params) do
             html.input(type: 'radio')
