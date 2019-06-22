@@ -40,7 +40,7 @@ module Web
 
         def remote_filter_button(text:, remote_value:)
           link_params =
-            if remote_value == params[:remote]
+            if remote_value == current_remote_query
               { class: 'btn btn-light active' }
             else
               {
@@ -53,6 +53,12 @@ module Web
             html.input(type: 'radio')
             html.span { text }
           end
+        end
+
+        private
+
+        def current_remote_query
+          params[:remote] if ['true', 'false'].include?(params[:remote])
         end
       end
     end

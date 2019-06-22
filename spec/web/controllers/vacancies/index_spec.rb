@@ -18,13 +18,17 @@ RSpec.describe Web::Controllers::Vacancies::Index, type: :action do
       expect(action.pager).to eq(pager)
     end
 
-    context 'when params inlcludes query param' do
-      let(:params) { { query: 'remote:true search text' } }
+    context 'when params includes query param' do
+      let(:params) { { query: 'remote:true search text', remote: 'remote_query' } }
 
       it { expect(subject).to be_success }
 
       it do
-        expect(operation).to receive(:call).with(page: nil, search_query: { remote: 'true', text: 'search text' })
+        expect(operation).to receive(:call).with(
+          page: nil,
+          search_query: { remote: 'true', text: 'search text' },
+          remote_query: 'remote_query'
+        )
         subject
       end
     end
