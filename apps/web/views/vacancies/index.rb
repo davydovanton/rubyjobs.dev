@@ -43,10 +43,7 @@ module Web
             if remote_value == current_remote_query
               { class: 'btn btn-light active' }
             else
-              {
-                class: 'btn btn-light',
-                href: routes.root_path(remote_value.nil? ? {} : { remote: remote_value })
-              }
+              { class: 'btn btn-light', href: remote_filter_button_href(remote_value) }
             end
 
           html.a(link_params) do
@@ -58,7 +55,11 @@ module Web
         private
 
         def current_remote_query
-          params[:remote] if ['true', 'false'].include?(params[:remote])
+          params[:remote] if params[:remote] == 'true' || params[:remote] == 'false'
+        end
+
+        def remote_filter_button_href(remote_value)
+          routes.root_path(remote_value.nil? ? {} : { remote: remote_value })
         end
       end
     end

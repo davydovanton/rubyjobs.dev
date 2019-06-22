@@ -8,7 +8,10 @@ RSpec.describe Queries::Vacancy, type: :query do
 
     let(:remote_available) { nil }
 
-    before { Fabricate.create(:vacancy, published: published, archived: archived, deleted_at: deleted_at, remote_available: false) }
+    before do
+      Fabricate.create(:vacancy, published: published, archived: archived,
+                                 deleted_at: deleted_at, remote_available: false)
+    end
 
     context 'when vacancy published and not archived or deleted' do
       let(:published) { true }
@@ -21,6 +24,7 @@ RSpec.describe Queries::Vacancy, type: :query do
 
       context 'when remote_available is true' do
         let(:remote_available) { true }
+
         it { expect(subject).to eq([]) }
       end
     end
