@@ -37,6 +37,22 @@ module Web
             end
           end
         end
+
+        def remote_filter_button(text:, filter:)
+          link_params = {}
+
+          if filter == remote_filter_param
+            link_params[:class] = "btn btn-light active"
+          else
+            link_params[:class] = "btn btn-light"
+            link_params[:href] = routes.root_path(remote_filter: filter)
+          end
+
+          html.a(link_params) do
+            html.input(type: 'radio')
+            html.span { text }
+          end
+        end
       end
     end
   end

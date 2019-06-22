@@ -16,10 +16,12 @@ module Web
 
         expose :vacancies
         expose :pager
+        expose :remote_filter_param
 
         params do
           optional(:page).filled
           optional(:query).filled
+          optional(:remote_filter).filled
         end
 
         def call(params)
@@ -36,6 +38,10 @@ module Web
 
         def search_query
           params[:query] ? search_query_parser.call(params[:query]) : EMPTY_SEARCH_QUERY
+        end
+
+        def remote_filter_param
+          @remote_filter_param ||= (params[:remote_filter] || 'all')
         end
       end
     end
