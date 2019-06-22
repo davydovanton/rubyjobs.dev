@@ -8,8 +8,8 @@ module Queries
       @repo = repo
     end
 
-    def all_with_contact(limit:, page:, remote_filter: '')
-      all_with_contact_relation(limit: limit, page: page, remote_filter: remote_filter).to_a
+    def all_with_contact(limit:, page:, remote_available: nil)
+      all_with_contact_relation(limit: limit, page: page, remote_available: remote_available).to_a
     end
 
     def pager_for_all_with_contact(limit:, page:)
@@ -20,16 +20,14 @@ module Queries
 
     private
 
-    def all_with_contact_relation(limit:, page:, remote_filter:)
+    def all_with_contact_relation(limit:, page:, remote_available:)
       relation = repo.aggregate(:contact)
-        .where(published: true, archived: false, deleted_at: nil)
-        .map_to(::Vacancy).order { created_at.desc }
-        .per_page(limit).page(page || 1)
+                     .where(published: true, archived: false, deleted_at: nil)
+                     .map_to(::Vacancy).order { created_at.desc }
+                     .per_page(limit).page(page || 1)
 
-      if remote_filter == 'only-remote'
-        relation = relation.where(remote_available: true)
-      elsif remote_filter == 'not-remote'
-        relation = relation.where(remote_available: false)
+      unless remote_available.nil?
+        relation = relation.where(remote_available: remote_available)
       end
 
       relation
