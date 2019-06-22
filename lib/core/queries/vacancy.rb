@@ -12,9 +12,9 @@ module Queries
       all_with_contact_relation(limit: limit, page: page, remote_available: remote_available).to_a
     end
 
-    def pager_for_all_with_contact(limit:, page:)
+    def pager_for_all_with_contact(limit:, page:, remote_available: nil)
       Hanami::Pagination::Pager.new(
-        all_with_contact_relation(limit: limit, page: page).pager
+        all_with_contact_relation(limit: limit, page: page, remote_available: remote_available).pager
       )
     end
 

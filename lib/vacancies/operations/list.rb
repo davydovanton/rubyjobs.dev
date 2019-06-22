@@ -17,7 +17,7 @@ module Vacancies
           else nil
           end
 
-        pager = vacancy_query.pager_for_all_with_contact(limit: PAGINATION_LIMIT, page: page || 1)
+        pager = vacancy_query.pager_for_all_with_contact(limit: PAGINATION_LIMIT, page: page || 1, remote_available: remote_available)
         result = vacancy_query.all_with_contact(limit: PAGINATION_LIMIT, page: page || 1, remote_available: remote_available)
 
         Success(result: result, pager: pager)
