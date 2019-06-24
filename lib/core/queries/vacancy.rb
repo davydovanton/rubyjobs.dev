@@ -20,7 +20,9 @@ module Queries
 
     private
 
-    QUERY_MODIFIERS = {}.freeze
+    QUERY_MODIFIERS = {
+      remote: ->(initial_query, filter_value) { initial_query.where(remote_available: filter_value) }
+    }.freeze
 
     def all_with_contact_relation(limit:, page:, search_query:)
       query = repo.aggregate(:contact)

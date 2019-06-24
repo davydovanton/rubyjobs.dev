@@ -17,6 +17,12 @@ RSpec.describe Queries::Vacancy, type: :query do
       it { expect(subject.count).to eq(1) }
       it { expect(subject).to all(be_a(Vacancy)) }
       it { expect(subject.first.contact).to be_a(Contact) }
+
+      context 'and remote in search_query is true' do
+        let(:search_query) { return { remote: true } }
+
+        it { expect(subject).to eq([]) }
+      end
     end
 
     context 'when vacancy published and archived' do
