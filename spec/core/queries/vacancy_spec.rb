@@ -2,9 +2,10 @@
 
 RSpec.describe Queries::Vacancy, type: :query do
   let(:repo) { described_class.new }
+  let(:search_query) { return {} }
 
   describe '#all_with_contact' do
-    subject { repo.all_with_contact(limit: 10, page: 1) }
+    subject { repo.all_with_contact(limit: 10, page: 1, search_query: search_query) }
 
     before { Fabricate.create(:vacancy, published: published, archived: archived, deleted_at: deleted_at) }
 

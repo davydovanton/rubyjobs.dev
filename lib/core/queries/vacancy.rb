@@ -8,23 +8,29 @@ module Queries
       @repo = repo
     end
 
-    def all_with_contact(limit:, page:)
-      all_with_contact_relation(limit: limit, page: page).to_a
+    def all_with_contact(limit:, page:, search_query:)
+      all_with_contact_relation(limit: limit, page: page, search_query: search_query).to_a
     end
 
-    def pager_for_all_with_contact(limit:, page:)
+    def pager_for_all_with_contact(limit:, page:, search_query:)
       Hanami::Pagination::Pager.new(
-        all_with_contact_relation(limit: limit, page: page).pager
+        all_with_contact_relation(limit: limit, page: page, search_query: search_query).pager
       )
     end
 
     private
 
-    def all_with_contact_relation(limit:, page:)
-      repo.aggregate(:contact)
-          .where(published: true, archived: false, deleted_at: nil)
-          .map_to(::Vacancy).order { created_at.desc }
-          .per_page(limit).page(page || 1)
+    QUERY_MODIFIERS = {}.freeze
+
+    def all_with_contact_relation(limit:, page:, search_query:)
+      query = repo.aggregate(:contact)
+                  .where(published: true, archived: false, deleted_at: nil)
+      search_query.each do |key, value|
+        modifier = QUERY_MODIFIERS[key] || ->(initial_query, _filter_value) { initial_query }
+        query = modifier.call(query, value)
+      end
+      query.map_to(::Vacancy).order { created_at.desc }
+           .per_page(limit).page(page || 1)
     end
   end
 end
