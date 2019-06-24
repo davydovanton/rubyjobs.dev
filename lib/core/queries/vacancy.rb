@@ -21,7 +21,9 @@ module Queries
     private
 
     QUERY_MODIFIERS = {
-      remote: ->(initial_query, filter_value) { initial_query.where(remote_available: filter_value) }
+      remote: ->(query, filter_value) { query.where(remote_available: filter_value) },
+      position_type: ->(query, filter_value) { query.where(position_type: filter_value) },
+      location: ->(query, filter_value) { query.where { location.ilike("%#{filter_value}%") } }
     }.freeze
 
     def all_with_contact_relation(limit:, page:, search_query:)
