@@ -9,6 +9,7 @@ Container.boot(:rollbar) do |container|
       config.access_token = ENV['ROLLBAR_KEY']
     end
 
+    # TODO: add new deployment
     # Rollbar.info('new')
 
     container.register(:rollbar, Rollbar)
