@@ -24,7 +24,7 @@ RSpec.describe Web::Controllers::Vacancies::Index, type: :action do
       it { expect(subject).to be_success }
 
       it do
-        expect(operation).to receive(:call).with(page: nil, search_query: { remote: 'true', text: 'search text' })
+        expect(operation).to receive(:call).with(page: nil, search_query: Queries::Vacancy::SearchQuery.new(remote: true, location: nil, position_type: nil)) 
         subject
       end
     end

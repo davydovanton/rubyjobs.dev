@@ -34,8 +34,23 @@ module Web
 
         private
 
+        Container = Module.new do
+          extend Transproc::Registry
+          import Transproc::HashTransformations
+          import Transproc::Coercions
+          import Transproc::ClassTransformations
+        end
+
+        class Transformer < Transproc::Transformer[Container]
+          symbolize_keys
+          map_value :remote, t(:to_boolean)
+          constructor_inject Queries::Vacancy::SearchQuery
+        end
+
         def search_query
-          params[:query] ? search_query_parser.call(params[:query]) : EMPTY_SEARCH_QUERY
+          query_attributes = params[:query] ? search_query_parser.call(params[:query]) : EMPTY_SEARCH_QUERY
+          initial_attributes = { remote: nil, position_type: nil, location: nil }
+          Transformer.new.call(initial_attributes.merge(query_attributes))
         end
       end
     end

@@ -2,6 +2,14 @@
 
 module Queries
   class Vacancy
+    class SearchQuery < Dry::Struct
+      attribute :remote, Core::Types::Strict::Bool.optional.default(nil)
+      attribute :position_type, Core::Types::VacancyPositionTypes.optional.default(nil)
+      attribute :location, Core::Types::Strict::String.optional.default(nil)
+    end
+  end
+
+  class Vacancy
     attr_reader :repo
 
     def initialize(repo = VacancyRepository.new)
@@ -29,9 +37,9 @@ module Queries
     def all_with_contact_relation(limit:, page:, search_query:)
       query = repo.aggregate(:contact)
                   .where(published: true, archived: false, deleted_at: nil)
-      search_query.each do |key, value|
+      search_query.to_h.each do |key, value|
         modifier = QUERY_MODIFIERS[key]
-        query = modifier.call(query, value) if modifier
+        query = modifier.call(query, value) if modifier && value
       end
       query.map_to(::Vacancy).order { created_at.desc }
            .per_page(limit).page(page || 1)
