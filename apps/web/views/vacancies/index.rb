@@ -55,11 +55,11 @@ module Web
         private
 
         def current_remote_query
-          params[:remote] if params[:remote] == 'true' || params[:remote] == 'false'
+          search_query[:remote] if search_query[:remote] == 'true' || search_query[:remote] == 'false'
         end
 
         def remote_filter_button_href(remote_value)
-          routes.root_path(remote_value.nil? ? {} : { remote: remote_value })
+          routes.root_path(remote_value.nil? ? {} : { query: "remote:#{remote_value}" })
         end
       end
     end

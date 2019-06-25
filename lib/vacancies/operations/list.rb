@@ -9,8 +9,8 @@ module Vacancies
 
       PAGINATION_LIMIT = 10
 
-      def call(search_query: {}, page: 1, remote_query: nil) # rubocop:disable Lint/UnusedMethodArgument
-        remote_available = { 'true' => true, 'false' => false }[remote_query]
+      def call(search_query: {}, page: 1) # rubocop:disable Lint/UnusedMethodArgument
+        remote_available = { 'true' => true, 'false' => false }[search_query[:remote]]
         pager = vacancy_query.pager_for_all_with_contact(limit: PAGINATION_LIMIT,
                                                          page: page || 1,
                                                          remote_available: remote_available)

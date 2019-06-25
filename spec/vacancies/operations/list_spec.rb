@@ -26,7 +26,7 @@ RSpec.describe Vacancies::Operations::List, type: :operation do
   end
 
   context 'with remote query' do
-    subject { operation.call(remote_query: remote_query) }
+    subject { operation.call(search_query: { remote: remote_query }) }
 
     let(:vacancies) { [] }
 
