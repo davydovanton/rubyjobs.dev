@@ -30,8 +30,8 @@ module Queries
       query = repo.aggregate(:contact)
                   .where(published: true, archived: false, deleted_at: nil)
       search_query.each do |key, value|
-        modifier = QUERY_MODIFIERS[key] || ->(initial_query, _filter_value) { initial_query }
-        query = modifier.call(query, value)
+        modifier = QUERY_MODIFIERS[key]
+        query = modifier.call(query, value) if modifier
       end
       query.map_to(::Vacancy).order { created_at.desc }
            .per_page(limit).page(page || 1)
