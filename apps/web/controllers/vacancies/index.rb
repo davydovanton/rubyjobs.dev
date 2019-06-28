@@ -44,7 +44,7 @@ module Web
         class Transformer < Transproc::Transformer[Container]
           symbolize_keys
           map_value :remote, t(:to_boolean)
-          constructor_inject Queries::Vacancy::SearchQuery
+          constructor_inject ::Vacancies::Entities::SearchOptions
         end
 
         def search_query
