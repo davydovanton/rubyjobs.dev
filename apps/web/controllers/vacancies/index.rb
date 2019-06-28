@@ -9,7 +9,8 @@ module Web
 
         include Import[
           'libs.search_query_parser',
-          operation: 'vacancies.operations.list'
+          operation: 'vacancies.operations.list',
+          search_options_mapper: 'vacancies.mappers.search_options',
         ]
 
         EMPTY_SEARCH_QUERY = {}.freeze
@@ -34,23 +35,10 @@ module Web
 
         private
 
-        Container = Module.new do
-          extend Transproc::Registry
-          import Transproc::HashTransformations
-          import Transproc::Coercions
-          import Transproc::ClassTransformations
-        end
-
-        class Transformer < Transproc::Transformer[Container]
-          symbolize_keys
-          map_value :remote, t(:to_boolean)
-          constructor_inject ::Vacancies::Entities::SearchOptions
-        end
-
         def search_query
           query_attributes = params[:query] ? search_query_parser.call(params[:query]) : EMPTY_SEARCH_QUERY
           initial_attributes = { remote: nil, position_type: nil, location: nil }
-          Transformer.new.call(initial_attributes.merge(query_attributes))
+          search_options_mapper.call(initial_attributes.merge(query_attributes))
         end
       end
     end

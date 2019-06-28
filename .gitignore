@@ -5,3 +5,6 @@
 .ruby-version
 .env.dev
 .env.development
+
+.direnv/
+.envrc
