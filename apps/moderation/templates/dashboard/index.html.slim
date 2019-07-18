@@ -7,7 +7,7 @@ ul.list-group
     li.list-group-item
       .row
         .col-sm-8
-          h4 = vacancy.position
+          h4 #{vacancy.position} (id: #{vacancy.id})
         .col-sm-4
           = vacancy_salary_information(vacancy)
       .row
