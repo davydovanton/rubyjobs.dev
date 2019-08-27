@@ -10,7 +10,7 @@ RSpec.describe SubscriberRepository, type: :repository do
 
     context 'when subscriber with email exist' do
       before { repo.create(email: email) }
-      
+
       it { expect(subject).to be_a(Subscriber) }
       it { expect(subject.email).to eq(email) }
     end
