@@ -39,3 +39,5 @@ class Container < Dry::System::Container
     config.env = Hanami.env
   end
 end
+
+Container.register(:current_time) { -> { Time.now } }

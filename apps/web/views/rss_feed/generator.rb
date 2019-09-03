@@ -8,12 +8,7 @@ module Web
     module RssFeed
       class Generator
         include Hanami::Helpers::EscapeHelper
-
-        attr_reader :current_time
-
-        def initialize(current_time: -> { Time.now })
-          @current_time = current_time
-        end
+        include Import[:current_time]
 
         def call(vacancies:) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
           rss = RSS::Maker.make('atom') do |maker|
