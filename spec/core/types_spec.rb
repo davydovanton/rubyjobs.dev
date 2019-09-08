@@ -84,6 +84,27 @@ RSpec.describe Core::Types do
     it { expect { type[:invalid] }.to raise_error(Dry::Types::ConstraintError) }
   end
 
+  describe 'VacancySalaryUnitTypes' do
+    let(:type) { Core::Types::VacancySalaryUnitTypes }
+
+    [
+      [nil, 'monthly'],
+
+      ['monthly', 'monthly'],
+      ['yearly', 'yearly'],
+      ['by hour', 'by hour'],
+      ['per project', 'per project'],
+
+      [:monthly, 'monthly'],
+      [:yearly, 'yearly'],
+    ].each do |value, result|
+      it { expect(type[value]).to eq(result) }
+    end
+
+    it { expect { type['invalid'] }.to raise_error(Dry::Types::ConstraintError) }
+    it { expect { type[:invalid] }.to raise_error(Dry::Types::ConstraintError) }
+  end
+
   describe 'ViewCount' do
     let(:type) { Core::Types::ViewCount }
 
