@@ -4,9 +4,9 @@ RSpec.describe SubscriberRepository, type: :repository do
   let(:repo) { described_class.new }
 
   describe '#find_by_email' do
-    let(:email) { 'anton@test.com' }
-
     subject { repo.find_by_email(email) }
+
+    let(:email) { 'anton@test.com' }
 
     context 'when subscriber with email exist' do
       before { repo.create(email: email) }

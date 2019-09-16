@@ -90,13 +90,13 @@ RSpec.describe Core::Types do
     [
       [nil, 'monthly'],
 
-      ['monthly', 'monthly'],
-      ['yearly', 'yearly'],
+      %w[monthly monthly],
+      %w[yearly yearly],
       ['by hour', 'by hour'],
       ['per project', 'per project'],
 
       [:monthly, 'monthly'],
-      [:yearly, 'yearly'],
+      [:yearly, 'yearly']
     ].each do |value, result|
       it { expect(type[value]).to eq(result) }
     end
