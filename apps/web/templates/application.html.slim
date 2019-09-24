@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    - if Hanami.env?(:production)
+    - if ::Hanami.env?(:production)
       script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-89570219-2"
       javascript:
         window.dataLayer = window.dataLayer || [];
