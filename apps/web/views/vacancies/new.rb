@@ -188,7 +188,7 @@ module Web
         end
 
         def select_currency_values
-          { 'Денежная единица...' => '', 'рублей' => 'rub', 'долларов' => 'usd', 'евро' => 'eur' }
+          { 'Денежная единица...' => '', 'рублей' => 'rub', 'долларов' => 'usd', 'евро' => 'eur', 'тенге' => 'kzt' }
         end
 
         def select_unit_values
