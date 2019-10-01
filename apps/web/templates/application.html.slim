@@ -14,7 +14,7 @@ html
       | #{title} - RubyJobs
 
     = favicon
-    = stylesheet 'bootstrap', 'main', 'likely'
+    = stylesheet 'bootstrap', 'main', 'likely', 'easymde.min'
     = render partial: 'shared/meta_tags'
 
   body.h-100
@@ -31,4 +31,4 @@ html
 
     = render partial: 'shared/footer'
 
-    = javascript 'jquery', 'bootstrap', 'main', 'likely'
+    = javascript 'jquery', 'bootstrap', 'likely', 'easymde.min', 'main'

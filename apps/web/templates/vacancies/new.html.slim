@@ -26,6 +26,19 @@ javascript:
           form.classList.add('was-validated');
         }, false);
       });
+
+      new EasyMDE({
+        element: document.getElementById('vacancy-details-raw'),
+        autoDownloadFontAwesome: true,
+        spellChecker: false,
+        toolbar: [
+          'undo', 'redo', '|',
+          'bold', 'italic', '|',
+          'heading-1', 'heading-2', 'heading-3', '|',
+          'unordered-list', 'ordered-list', 'link', '|',
+          'preview'
+        ]
+      });
     }, false);
   })();
 
