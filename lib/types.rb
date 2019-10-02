@@ -25,7 +25,7 @@ module Core
 
     VacancySalaryCurrencyTypes = String.constructor(proc { |value| value.to_s.downcase })
                                        .default('rub')
-                                       .enum('rub', 'usd', 'eur')
+                                       .enum('rub', 'usd', 'eur', 'kzt')
 
     VacancySalaryUnitTypes = String.constructor(proc { |value| value.to_s.downcase })
                                    .default('monthly')
