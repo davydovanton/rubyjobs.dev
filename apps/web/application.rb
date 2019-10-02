@@ -246,7 +246,7 @@ module Web
         connect-src 'self' https://www.googletagmanager.com https://www.googletagmanager.com/;
         img-src 'self' 'unsafe-inline' https://ssl.gstatic.com https: data:;
         style-src 'self' 'unsafe-inline' https://tagmanager.google.com https://fonts.googleapis.com/ https:;
-        font-src 'self';
+        font-src 'self' https://maxcdn.bootstrapcdn.com/;
         object-src 'none';
         plugin-types application/pdf;
         worker-src 'self';
