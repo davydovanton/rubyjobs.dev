@@ -30,7 +30,7 @@ RSpec.describe Web::Controllers::RssFeed::Index, type: :action do
     let(:action) { described_class.new }
 
     before do
-      12.times { Fabricate.create(:vacancy, published: true, archived: false) }
+      12.times { Fabricate.create(:vacancy, published: true) }
     end
 
     it { expect(subject).to be_success }

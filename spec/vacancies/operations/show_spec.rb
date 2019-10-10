@@ -24,7 +24,7 @@ RSpec.describe Vacancies::Operations::Show, type: :operation do
     subject { operation.call(id: vacancy.id) }
 
     let(:operation) { described_class.new }
-    let(:vacancy) { Fabricate.create(:vacancy, published: true, archived: false) }
+    let(:vacancy) { Fabricate.create(:vacancy, published: true) }
 
     it { expect(subject).to be_success }
   end

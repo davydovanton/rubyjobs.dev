@@ -80,7 +80,6 @@ RSpec.describe Vacancies::Operations::Create, type: :operation do
         salary_unit: 'monthly',
 
         published: false,
-        archived: false,
         deleted_at: nil
       )
     end

@@ -31,7 +31,7 @@ RSpec.describe Moderation::Controllers::VacancyApprove::Update, type: :action do
 
     let(:action) { described_class.new }
     let(:params) { { id: vacancy.id } }
-    let(:vacancy) { Fabricate.create(:vacancy, published: false, archived: false) }
+    let(:vacancy) { Fabricate.create(:vacancy, published: false) }
 
     it { expect(subject).to redirect_to '/moderation' }
   end

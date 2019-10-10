@@ -68,7 +68,7 @@ RSpec.describe Web::Controllers::Vacancies::Show, type: :action do
     let(:action) { described_class.new }
     let(:params) { { id: vacancy.id } }
 
-    let(:vacancy) { Fabricate.create(:vacancy, published: true, archived: false) }
+    let(:vacancy) { Fabricate.create(:vacancy, published: true) }
 
     it { expect(subject).to be_success }
   end

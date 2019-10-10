@@ -13,7 +13,6 @@ Fabricator(:vacancy) do
   remote_available false
 
   published true
-  archived false
 
   salary_min 100_000
   salary_max 150_000

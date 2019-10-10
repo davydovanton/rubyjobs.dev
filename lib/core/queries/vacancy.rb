@@ -22,7 +22,8 @@ module Queries
 
     def all_with_contact_relation(limit:, page:)
       repo.aggregate(:contact)
-          .where(published: true, archived: false, deleted_at: nil)
+          .where(published: true, deleted_at: nil)
+          .where('archived_at > ?', Date.today)
           .map_to(::Vacancy).order { created_at.desc }
           .per_page(limit).page(page || 1)
     end
