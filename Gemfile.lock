@@ -1,11 +1,11 @@
 GIT
-  remote: git://github.com/davydovanton/dry-system-hanami.git
+  remote: https://github.com/davydovanton/dry-system-hanami.git
   revision: b83bef971c4d535cbaae4c7ebc48d6a454d6a3bd
   specs:
     dry-system-hanami (0.1.0)
 
 GIT
-  remote: git://github.com/davydovanton/hanami-pagination.git
+  remote: https://github.com/davydovanton/hanami-pagination.git
   revision: 02acc43584dc0e7ece750a4a03c61ea91741cbac
   specs:
     hanami-pagination (0.2.0)
@@ -13,7 +13,7 @@ GIT
       hanami-model (~> 1.0)
 
 GIT
-  remote: git://github.com/davydovanton/relative_time.git
+  remote: https://github.com/davydovanton/relative_time.git
   revision: d2cf353f4ae0afa922fd065ccfc97001077fe773
   branch: master
   specs:
@@ -398,4 +398,4 @@ RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
-   1.17.3
+   2.0.2
