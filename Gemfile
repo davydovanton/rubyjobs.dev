@@ -25,10 +25,11 @@ gem 'rinku'
 gem 'rouge', '1.11.1'
 
 # templates
+gem 'sass'
+
 gem 'hanami-bootstrap'
 gem 'jquery-hanami'
 gem 'relative_time', github: 'davydovanton/relative_time', branch: 'master'
-gem 'sass'
 gem 'slim'
 
 # pagination
