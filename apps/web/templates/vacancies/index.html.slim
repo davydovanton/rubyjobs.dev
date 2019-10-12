@@ -20,6 +20,12 @@ br
   .col-sm-6
     = subscribe_form
 
+.row.mb-3
+  .col
+    .btn-group.btn-group-toggle
+      = remote_filter_button(text: 'Любые', remote_value: nil)
+      = remote_filter_button(text: 'Удаленные', remote_value: 'true')
+      = remote_filter_button(text: 'В офисе', remote_value: 'false')
 /hr
 
 /.row.mt-3.mb-3

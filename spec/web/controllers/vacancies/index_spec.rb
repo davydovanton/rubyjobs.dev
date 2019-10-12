@@ -18,7 +18,7 @@ RSpec.describe Web::Controllers::Vacancies::Index, type: :action do
       expect(action.pager).to eq(pager)
     end
 
-    context 'when params inlcludes query param' do
+    context 'when params includes query param' do
       let(:params) { { query: 'remote:true search text' } }
 
       it { expect(subject).to be_success }
