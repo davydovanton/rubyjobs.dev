@@ -26,6 +26,7 @@ gem 'rouge', '1.11.1'
 
 # templates
 gem 'sass'
+gem 'sassc'
 
 gem 'hanami-bootstrap'
 gem 'jquery-hanami'

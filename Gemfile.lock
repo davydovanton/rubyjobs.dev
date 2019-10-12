@@ -305,6 +305,8 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+    sassc (2.2.1)
+      ffi (~> 1.9)
     semantic_logger (4.5.0)
       concurrent-ruby (~> 1.0)
     sequel (4.49.0)
@@ -385,6 +387,7 @@ DEPENDENCIES
   rubocop
   rubocop-rspec (~> 1.25.0)
   sass
+  sassc
   semantic_logger
   shotgun
   sidekiq (~> 5.2)
