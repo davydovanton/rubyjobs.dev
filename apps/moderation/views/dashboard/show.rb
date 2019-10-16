@@ -3,7 +3,7 @@
 module Moderation
   module Views
     module Dashboard
-      class Index
+      class Show
         include Moderation::View
         include Moderation::Helpers::Vacancy
       end
