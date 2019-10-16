@@ -180,4 +180,43 @@ RSpec.describe VacancyRepository, type: :repository do
       it { expect(subject).to be(nil) }
     end
   end
+
+  describe '#find_for_moderation' do
+    subject { repo.find_for_moderation(vacancy.id) }
+
+    let(:vacancy) { Fabricate.create(:vacancy, published: published, archived: archived, deleted_at: deleted_at) }
+
+    context 'when vacancy not published' do
+      let(:published) { false }
+      let(:archived) { false }
+      let(:deleted_at) { nil }
+
+      it { expect(subject).to eq(vacancy) }
+      it { expect(subject.contact).to be_a(Contact) }
+    end
+
+    context 'when vacancy published and not archived or deleted' do
+      let(:published) { true }
+      let(:archived) { false }
+      let(:deleted_at) { nil }
+
+      it { expect(subject).to be(nil) }
+    end
+
+    context 'when vacancy published and archived' do
+      let(:published) { true }
+      let(:archived) { true }
+      let(:deleted_at) { nil }
+
+      it { expect(subject).to be(nil) }
+    end
+
+    context 'when vacancy published and deleted' do
+      let(:published) { true }
+      let(:archived) { false }
+      let(:deleted_at) { Time.now }
+
+      it { expect(subject).to be(nil) }
+    end
+  end
 end

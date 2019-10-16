@@ -3,5 +3,6 @@
 /coverage
 .idea
 .ruby-version
+.ruby-gemset
 .env.dev
 .env.development
