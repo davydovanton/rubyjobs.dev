@@ -19,11 +19,11 @@ class VacancyRepository < Hanami::Repository
   end
 
   def all_for_moderation
-    aggregate(:contact).where(
-      published: false,
-      archived: false,
-      deleted_at: nil
-    ).map_to(Vacancy).to_a
+    for_modertion.map_to(Vacancy).to_a
+  end
+
+  def find_for_moderation(id)
+    for_modertion.by_pk(id).map_to(Vacancy).one
   end
 
   def find_with_contact(id)
@@ -32,5 +32,15 @@ class VacancyRepository < Hanami::Repository
       archived: false,
       deleted_at: nil
     ).by_pk(id).map_to(Vacancy).one
+  end
+
+  private
+
+  def for_modertion
+    aggregate(:contact).where(
+      published: false,
+      archived: false,
+      deleted_at: nil
+    )
   end
 end
