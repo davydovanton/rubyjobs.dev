@@ -51,7 +51,8 @@ request; Questions, clarifications, and so on.
 
 1. setup PostgreSQL referring to your OS manual or from [here](https://www.postgresql.org/download/)
 2. setup redis
-3. run these commands:
+3. install ruby 2.5.0
+4. run these commands:
 
 ```
 $ bundle install
