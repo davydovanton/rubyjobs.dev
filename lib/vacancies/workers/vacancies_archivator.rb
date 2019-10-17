@@ -7,10 +7,10 @@ module Vacancies
       include Sidekiq::Worker
 
       include Import[
-        :logger,
-        :rollbar,
-        operation: 'vacancies.operations.archive_for_today'
-      ]
+       :logger,
+       :rollbar,
+       operation: 'vacancies.operations.archive_for_today'
+     ]
 
       def perform
         case result = operation.call

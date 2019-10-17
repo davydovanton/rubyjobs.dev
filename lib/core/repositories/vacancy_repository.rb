@@ -6,10 +6,6 @@ class VacancyRepository < Hanami::Repository
     has_one :vacancy_analitic
   end
 
-  def archive_for_today
-    root.where(archived_at: Date.today).update(archived: true)
-  end
-
   def approve_by_pk(id)
     root.by_pk(id).update(published: true)
   end
@@ -19,18 +15,20 @@ class VacancyRepository < Hanami::Repository
   end
 
   def all_for_moderation
-    aggregate(:contact).where(
-      published: false,
-      archived: false,
-      deleted_at: nil
-    ).map_to(Vacancy).to_a
+    aggregate(:contact)
+      .where(published: false, deleted_at: nil)
+      .where('archived_at > ?', Date.today)
+      .map_to(Vacancy).to_a
   end
 
   def find_with_contact(id)
-    aggregate(:contact).where(
-      published: true,
-      archived: false,
-      deleted_at: nil
-    ).by_pk(id).map_to(Vacancy).one
+    aggregate(:contact)
+      .where(published: true, deleted_at: nil)
+      .where('archived_at > ?', Date.today)
+      .by_pk(id).map_to(Vacancy).one
+  end
+
+  def archive_for_today
+    root.where(archived_at: Date.today).update(archived: true)
   end
 end

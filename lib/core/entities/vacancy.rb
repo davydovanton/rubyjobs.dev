@@ -18,7 +18,6 @@ class Vacancy < Hanami::Entity
     attribute :remote_available, Types::Bool
 
     attribute :published, Types::Bool
-    attribute :archived, Types::Bool
 
     attribute :salary_min, Types::Int
     attribute :salary_max, Types::Int
