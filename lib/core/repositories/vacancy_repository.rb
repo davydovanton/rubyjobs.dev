@@ -16,15 +16,15 @@ class VacancyRepository < Hanami::Repository
 
   def all_for_moderation
     aggregate(:contact)
+      .where { archived_at > Date.today }
       .where(published: false, deleted_at: nil)
-      .where('archived_at > ?', Date.today)
       .map_to(Vacancy).to_a
   end
 
   def find_with_contact(id)
     aggregate(:contact)
+      .where { archived_at > Date.today }
       .where(published: true, deleted_at: nil)
-      .where('archived_at > ?', Date.today)
       .by_pk(id).map_to(Vacancy).one
   end
 
