@@ -14,6 +14,7 @@ gem 'xml-sitemap'
 # persistance layer
 gem 'hanami-model', '~> 1.3'
 gem 'pg'
+gem 'sequel', '~> 4.48.0'
 
 # dependency managment
 gem 'dry-system', '~> 0.9.0'

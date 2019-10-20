@@ -17,3 +17,11 @@ module Hanami
     end
   end
 end
+
+module Sequel
+  module Deprecation
+    def self.deprecate(method, instead = nil) # rubocop:disable Lint/UnusedMethodArgument
+      nil
+    end
+  end
+end
