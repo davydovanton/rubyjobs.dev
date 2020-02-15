@@ -8,7 +8,7 @@ gem 'rake'
 
 # http layer
 gem 'hanami', '1.3.0'
-gem 'puma', '~> 3.11.0'
+gem 'puma', '~> 3.12.2'
 gem 'xml-sitemap'
 
 # persistance layer
