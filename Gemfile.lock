@@ -34,6 +34,10 @@ GEM
       adamantium (~> 0.2)
       equalizer (~> 0.0.11)
     ast (2.4.0)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     better_errors (2.5.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -50,6 +54,8 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     coderay (1.1.2)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     concord (0.1.5)
       adamantium (~> 0.2.0)
       equalizer (~> 0.0.9)
@@ -57,6 +63,8 @@ GEM
     connection_pool (2.2.2)
     database_cleaner (1.7.0)
     debug_inspector (0.0.3)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.3)
     docile (1.3.2)
     dotenv (2.7.5)
@@ -116,6 +124,8 @@ GEM
     et-orbi (1.2.2)
       tzinfo
     fabrication (2.20.2)
+    faraday (1.0.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.11.1)
     fugit (1.3.3)
       et-orbi (~> 1.1, >= 1.1.8)
@@ -206,6 +216,7 @@ GEM
       equalizer (~> 0.0.9)
       ice_nine (~> 0.11.0)
       procto (~> 0.0.2)
+    multipart-post (2.1.1)
     mutant (0.8.24)
       abstract_type (~> 0.0.7)
       adamantium (~> 0.2.0)
@@ -333,6 +344,10 @@ GEM
     slim (4.0.1)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
+    telegram-bot-ruby (0.12.0)
+      faraday
+      inflecto
+      virtus
     temple (0.8.2)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -350,6 +365,11 @@ GEM
       procto (~> 0.0.2)
     url_mount (0.2.1)
       rack
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     xml-sitemap (1.3.3)
       builder (>= 2.0)
     xpath (3.2.0)
@@ -396,6 +416,7 @@ DEPENDENCIES
   simplecov
   simplecov-json
   slim
+  telegram-bot-ruby
   xml-sitemap
 
 RUBY VERSION
