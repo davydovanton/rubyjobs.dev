@@ -49,6 +49,9 @@ gem 'hiredis'
 gem 'sidekiq', ' ~> 5.2'
 gem 'sidekiq-scheduler'
 
+# notifications
+gem 'telegram-bot-ruby'
+
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading
