@@ -6,16 +6,14 @@ require 'telegram/bot'
 class TelegramSender
   include Dry::Monads::Task::Mixin
 
-  attr_reader :bot
+  attr_reader :bot, :logger
 
   def initialize(token:, logger:)
     @bot = Telegram::Bot::Client.new(token, logger: logger)
   end
 
   def call(chat_id, message)
-    Task do
-      bot.api.send_message(chat_id: chat_id, text: message)
-    end
+    bot.api.send_message(chat_id: chat_id, text: message)
   end
 end
 
