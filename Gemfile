@@ -2,9 +2,10 @@
 
 source 'https://rubygems.org'
 
-ruby '2.5.0'
+ruby '2.7.0'
 
 gem 'rake'
+gem 'bigdecimal', '1.4.2'
 
 # http layer
 gem 'hanami', '1.3.0'
