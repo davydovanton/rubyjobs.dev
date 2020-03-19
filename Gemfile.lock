@@ -20,6 +20,12 @@ GIT
     relative_time (1.1.0)
       i18n
 
+PATH
+  remote: /Users/anton/work/repositories/lotus/hanami-operation-generator
+  specs:
+    hanami-operation-generator (0.1.0)
+      dry-cli
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -71,6 +77,8 @@ GEM
     dotenv (2.7.5)
     dry-auto_inject (0.7.0)
       dry-container (>= 0.3.4)
+    dry-cli (0.6.0)
+      concurrent-ruby (~> 1.0)
     dry-configurable (0.11.4)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.4, >= 0.4.7)
@@ -394,6 +402,7 @@ DEPENDENCIES
   hanami-bootstrap
   hanami-fabrication
   hanami-model (~> 1.3)
+  hanami-operation-generator!
   hanami-pagination!
   hanami-webconsole
   hiredis

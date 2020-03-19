@@ -87,3 +87,7 @@ end
 group :production do
   # gem 'puma'
 end
+
+group :plugins do
+  gem "hanami-operation-generator", path: '/Users/anton/work/repositories/lotus/hanami-operation-generator'
+end
