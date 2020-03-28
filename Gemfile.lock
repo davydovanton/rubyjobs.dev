@@ -79,7 +79,7 @@ GEM
       dry-container (>= 0.3.4)
     dry-cli (0.6.0)
       concurrent-ruby (~> 1.0)
-    dry-configurable (0.11.4)
+    dry-configurable (0.11.5)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.4, >= 0.4.7)
       dry-equalizer (~> 0.2)
@@ -246,7 +246,7 @@ GEM
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     parallel (1.19.1)
-    parser (2.7.0.4)
+    parser (2.7.0.5)
       ast (~> 2.4.0)
     pg (1.2.3)
     procto (0.0.3)
@@ -349,7 +349,7 @@ GEM
       docile (~> 1.1)
       simplecov-html (~> 0.11)
     simplecov-html (0.12.2)
-    simplecov-json (0.2)
+    simplecov-json (0.2.1)
       json
       simplecov
     slim (4.0.1)
