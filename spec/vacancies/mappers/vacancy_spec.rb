@@ -28,7 +28,7 @@ RSpec.describe Vacancies::Mappers::Vacancy, type: :mapper do
   end
 
   let(:contact_payload) do
-    { email: 'test@something.com', full_name: 'First Name', company: 'test', site: '' }
+    { email: 'test@something.com', full_name: 'First Name', company: '   test', site: '' }
   end
 
   it 'maps data to right hash' do
@@ -51,7 +51,13 @@ RSpec.describe Vacancies::Mappers::Vacancy, type: :mapper do
         tags: %w[psql go]
       },
 
-      contact: contact_payload
+      contact: {
+        email: 'test@something.com',
+        full_name: 'First Name',
+        company: 'test',
+        site: ''
+      }
+
     )
   end
 

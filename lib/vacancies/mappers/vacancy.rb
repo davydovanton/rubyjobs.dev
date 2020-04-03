@@ -7,6 +7,9 @@ module Vacancies
       def call(payload) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
         payload = Hash(payload)
 
+        contact_payload = payload[:contact]
+        contact_payload[:company] = contact_payload[:company].sub(/\A\s+/, '')
+
         {
           vacancy: {
             position: payload[:position],
