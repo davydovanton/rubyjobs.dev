@@ -53,6 +53,9 @@ gem 'sidekiq-scheduler'
 # notifications
 gem 'telegram-bot-ruby'
 
+# warnings
+gem 'warning'
+
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading

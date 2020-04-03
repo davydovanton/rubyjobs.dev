@@ -3,7 +3,7 @@
 require 'rss'
 
 RSpec.describe Web::Views::RssFeed::Generator, type: :view do
-  subject { RSS::Parser.parse(view.call(payload)) }
+  subject { RSS::Parser.parse(view.call(**payload)) }
 
   let(:view) { described_class.new(current_time: -> { time }) }
   let(:payload) { { vacancies: [vacancy] } }
