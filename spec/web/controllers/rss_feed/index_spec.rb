@@ -11,7 +11,7 @@ RSpec.describe Web::Controllers::RssFeed::Index, type: :action do
     let(:operation) { ->(*) { Success(result: [Fabricate.build(:vacancy, published: true, updated_at: Time.now)]) } }
 
     it { expect(subject).to be_success }
-    it { expect(subject).to have_http_status(200) }
+    it { expect(subject).to have_http_status(:ok) }
     it { expect(subject[2]).to eq(['rss']) }
     it { expect(subject[1]['Content-Type']).to eq('application/xml; charset=utf-8') }
   end
@@ -19,7 +19,7 @@ RSpec.describe Web::Controllers::RssFeed::Index, type: :action do
   context 'when operation returns failure result' do
     let(:operation) { ->(*) { Failure(:something_happened) } }
 
-    it { expect(subject).to have_http_status(422) }
+    it { expect(subject).to have_http_status(:unprocessable_entity) }
     it { expect(subject[2]).to eq(['Failure']) }
     it { expect(subject[1]['Content-Type']).to eq('application/xml; charset=utf-8') }
   end

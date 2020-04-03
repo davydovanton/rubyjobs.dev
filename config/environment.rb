@@ -15,7 +15,8 @@ require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
 
-# Disable warnings from dry-monads library. We have this warnings because use old version of validation with monad extension
+# Disable warnings from dry-monads library.
+# We have this warnings because use old version of validation with monad extension
 Dry::Core::Deprecations.set_logger!(StringIO.new)
 
 require_relative '../system/import'

@@ -57,7 +57,6 @@ RSpec.describe Vacancies::Mappers::Vacancy, type: :mapper do
         company: 'test',
         site: ''
       }
-
     )
   end
 

@@ -4,8 +4,8 @@ source 'https://rubygems.org'
 
 ruby '2.7.0'
 
-gem 'rake'
 gem 'bigdecimal', '1.4.2'
+gem 'rake'
 
 # http layer
 gem 'hanami', '1.3.0'
@@ -73,7 +73,7 @@ group :test, :development do
 
   # style check
   gem 'rubocop', require: false
-  gem 'rubocop-rspec', '~> 1.25.0'
+  gem 'rubocop-rspec'
 
   # mutation testing
   gem 'mutant-rspec'
@@ -92,5 +92,5 @@ group :production do
 end
 
 group :plugins do
-  gem "hanami-operation-generator", path: '/Users/anton/work/repositories/lotus/hanami-operation-generator'
+  gem 'hanami-operation-generator', path: '/Users/anton/work/repositories/lotus/hanami-operation-generator'
 end

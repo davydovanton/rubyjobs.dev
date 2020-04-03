@@ -10,7 +10,7 @@ module Web
           'О проекте'
         end
 
-        # rubocop:disable Metrics/LineLength
+        # rubocop:disable Layout/LineLength
         def seo_meta_information
           {
             title: 'Вакансии для разработчиков Ruby, Hanami и Rails',
@@ -19,7 +19,7 @@ module Web
             image: ''
           }
         end
-        # rubocop:enable Metrics/LineLength
+        # rubocop:enable Layout/LineLength
       end
     end
   end

@@ -11,7 +11,7 @@ module Web
           'Вакансии для разработчиков Ruby, Hanami и Rails'
         end
 
-        # rubocop:disable Metrics/LineLength
+        # rubocop:disable Layout/LineLength
         def seo_meta_information
           {
             title: 'Вакансии для разработчиков Ruby, Hanami и Rails',
@@ -20,7 +20,7 @@ module Web
             image: ''
           }
         end
-        # rubocop:enable Metrics/LineLength
+        # rubocop:enable Layout/LineLength
 
         def subscribe_form # rubocop:disable Metrics/MethodLength
           form_for :subscriber, routes.subscribers_path, method: :post, class: 'needs-validation', novalidate: true do

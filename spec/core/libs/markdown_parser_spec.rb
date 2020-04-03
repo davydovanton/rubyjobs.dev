@@ -64,10 +64,10 @@ RSpec.describe Libs::MarkdownParser do
   context 'when text contain checkbox tag' do
     let(:text) { '- [x] checkkbox' }
 
-    # rubocop:disable Metrics/LineLength
+    # rubocop:disable Layout/LineLength
     it 'replaces checkbox by html tag' do
       expect(subject).to eq %(<ul>\n  <li><input type="checkbox" checked disabled><label>checkkbox</label></li>\n</ul>\n)
     end
-    # rubocop:enable Metrics/LineLength
+    # rubocop:enable Layout/LineLength
   end
 end

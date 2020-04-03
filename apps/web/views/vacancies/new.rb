@@ -10,7 +10,7 @@ module Web
           'Новая вакансия'
         end
 
-        # rubocop:disable Metrics/LineLength
+        # rubocop:disable Layout/LineLength
         def seo_meta_information
           {
             title: 'Новая вакансия - rubyjobs.dev',
@@ -19,9 +19,9 @@ module Web
             image: ''
           }
         end
-        # rubocop:enable Metrics/LineLength
+        # rubocop:enable Layout/LineLength
 
-        # rubocop:disable Metrics/AbcSize, Metrics/LineLength, Metrics/MethodLength, Metrics/BlockLength
+        # rubocop:disable Metrics/AbcSize, Layout/LineLength, Metrics/MethodLength, Metrics/BlockLength
         def form
           form_for :vacancy, routes.vacancies_path, method: :post, class: 'needs-validation', novalidate: true do
             div(class: 'form-group') do
@@ -171,7 +171,7 @@ module Web
             end
           end
         end
-        # rubocop:enable Metrics/AbcSize, Metrics/LineLength, Metrics/MethodLength, Metrics/BlockLength
+        # rubocop:enable Metrics/AbcSize, Layout/LineLength, Metrics/MethodLength, Metrics/BlockLength
 
         private
 

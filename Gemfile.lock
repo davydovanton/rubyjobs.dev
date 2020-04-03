@@ -308,16 +308,16 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.2)
-    rubocop (0.80.1)
+    rubocop (0.81.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
       rexml
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 1.7)
-    rubocop-rspec (1.25.1)
-      rubocop (>= 0.53.0)
+      unicode-display_width (>= 1.4.0, < 2.0)
+    rubocop-rspec (1.38.1)
+      rubocop (>= 0.68.1)
     ruby-progressbar (1.10.1)
     rufus-scheduler (3.6.0)
       fugit (~> 1.1, >= 1.1.6)
@@ -366,7 +366,7 @@ GEM
     transproc (1.1.1)
     tzinfo (2.0.1)
       concurrent-ruby (~> 1.0)
-    unicode-display_width (1.6.1)
+    unicode-display_width (1.7.0)
     unparser (0.4.7)
       abstract_type (~> 0.0.7)
       adamantium (~> 0.2.0)
@@ -420,7 +420,7 @@ DEPENDENCIES
   rspec
   rspec-hanami
   rubocop
-  rubocop-rspec (~> 1.25.0)
+  rubocop-rspec
   sass
   sassc
   semantic_logger

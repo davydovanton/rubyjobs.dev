@@ -60,19 +60,19 @@ Metrics/AbcSize:
   # Rodauth configuration
   - lib/roda/plugins/authentication.rb
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
 
 # Use UTF-8 as the source file encoding, specify when needed.
 Style/Encoding:
   StyleGuide: '#utf-8'
-  Enabled: when_needed
+  Enabled: true
 
 Naming/FileName:
   Exclude:
   - apps/*-*/lib/*-*.rb
 
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   Enabled: false
 
 Naming/MemoizedInstanceVariableName:
@@ -203,3 +203,6 @@ RSpec/SubjectStub:
 
 RSpec/VerifiedDoubles:
   Enabled: false # Should be turned ON eventually
+
+RSpec/RepeatedExampleGroupDescription:
+  Enabled: false

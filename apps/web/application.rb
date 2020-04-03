@@ -236,7 +236,7 @@ module Web
       #
       #  * https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives
       #
-      # rubocop:disable Metrics/LineLength
+      # rubocop:disable Layout/LineLength
       security.content_security_policy %(
         form-action 'self';
         frame-ancestors 'self';
@@ -253,7 +253,7 @@ module Web
         frame-src 'self';
         media-src 'self'
       )
-      # rubocop:enable Metrics/LineLength
+      # rubocop:enable Layout/LineLength
 
       ##
       # FRAMEWORKS
