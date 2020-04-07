@@ -15,6 +15,6 @@ Please, read [CONTRIBUTING.md](https://github.com/davydovanton/rubyjobs.dev/blob
 
 ## Copyright
 
-Released under MIT License.
+Released under GNU GENERAL PUBLIC License
 
 Copyright © 2016-2019 Anton Davydov.
