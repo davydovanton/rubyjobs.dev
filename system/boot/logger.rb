@@ -2,13 +2,15 @@
 
 Container.boot(:logger) do |container|
   init do
-    if ENV['LOGGER_JSON_FORMATTER']
+    use :settings
+
+    if container[:settings].logger_json_formatter
       SemanticLogger.add_appender(io: logger_io, formatter: :json)
     else
       SemanticLogger.add_appender(io: logger_io)
     end
 
-    SemanticLogger.default_level = Core::Types::LoggerLevel[ENV['LOGGER_LEVEL']]
+    SemanticLogger.default_level = container[:settings].logger_level
     container.register(:logger, SemanticLogger['RubyJob'])
   end
 
