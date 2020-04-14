@@ -243,7 +243,7 @@ module Web
         frame-ancestors 'self';
         base-uri 'self';
         default-src 'none';
-        script-src 'self' 'unsafe-eval' 'unsafe-inline' https://graph.facebook.com https://connect.ok.ru https://vk.com https://tagmanager.google.com https://www.googletagmanager.com https://www.google-analytics.com;
+        script-src 'self' 'unsafe-eval' 'unsafe-inline' https://graph.facebook.com https://connect.ok.ru https://vk.com https://tagmanager.google.com https://www.googletagmanager.com https://www.google-analytics.com https://unpkg.com;
         connect-src 'self' https://www.googletagmanager.com https://www.googletagmanager.com/;
         img-src 'self' 'unsafe-inline' https://ssl.gstatic.com https: data:;
         style-src 'self' 'unsafe-inline' https://tagmanager.google.com https://fonts.googleapis.com/ https:;
