@@ -15,6 +15,7 @@ html
 
     = favicon
     = stylesheet 'bootstrap', 'main', 'likely', 'easymde.min'
+    = javascript 'jquery', 'bootstrap', 'likely', 'easymde.min', 'main'
     = render partial: 'shared/meta_tags'
 
   body.h-100
@@ -30,5 +31,3 @@ html
         = yield
 
     = render partial: 'shared/footer'
-
-    = javascript 'jquery', 'bootstrap', 'likely', 'easymde.min', 'main'
