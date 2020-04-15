@@ -20,11 +20,12 @@ RSpec.describe Web::Controllers::Vacancies::Index, type: :action do
 
     context 'when params inlcludes query param' do
       let(:params) { { query: 'remote:true search text' } }
+      let(:search_query) { Vacancies::Entities::SearchOptions.new(remote: true, location: nil, position_type: nil) }
 
       it { expect(subject).to be_success }
 
       it do
-        expect(operation).to receive(:call).with(page: nil, search_query: { remote: 'true', text: 'search text' })
+        expect(operation).to receive(:call).with(page: nil, search_query: search_query)
         subject
       end
     end
