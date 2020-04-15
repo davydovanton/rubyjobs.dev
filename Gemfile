@@ -2,18 +2,20 @@
 
 source 'https://rubygems.org'
 
-ruby '2.5.0'
+ruby '2.7.0'
 
+gem 'bigdecimal', '1.4.2'
 gem 'rake'
 
 # http layer
 gem 'hanami', '1.3.0'
-gem 'puma', '~> 3.11.0'
+gem 'puma', '~> 3.12.4'
 gem 'xml-sitemap'
 
 # persistance layer
 gem 'hanami-model', '~> 1.3'
 gem 'pg'
+gem 'sequel', '~> 4.48.0'
 
 # dependency managment
 gem 'dry-system', '~> 0.9.0'
@@ -25,10 +27,12 @@ gem 'rinku'
 gem 'rouge', '1.11.1'
 
 # templates
+gem 'sass'
+gem 'sassc'
+
 gem 'hanami-bootstrap'
 gem 'jquery-hanami'
 gem 'relative_time', github: 'davydovanton/relative_time', branch: 'master'
-gem 'sass'
 gem 'slim'
 
 # pagination
@@ -43,8 +47,14 @@ gem 'dry-monads', '~> 1.1.0'
 
 # background
 gem 'hiredis'
-gem 'sidekiq'
+gem 'sidekiq', ' ~> 5.2'
 gem 'sidekiq-scheduler'
+
+# notifications
+gem 'telegram-bot-ruby'
+
+# warnings
+gem 'warning'
 
 group :development do
   # Code reloading
@@ -63,7 +73,7 @@ group :test, :development do
 
   # style check
   gem 'rubocop', require: false
-  gem 'rubocop-rspec', '~> 1.25.0'
+  gem 'rubocop-rspec'
 
   # mutation testing
   gem 'mutant-rspec'
@@ -80,3 +90,7 @@ end
 group :production do
   # gem 'puma'
 end
+
+# group :plugins do
+#   gem 'hanami-operation-generator', gitpath: '/Users/anton/work/repositories/lotus/hanami-operation-generator'
+# end

@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    - if Hanami.env?(:production)
+    - if ::Hanami.env?(:production)
       script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-89570219-2"
       javascript:
         window.dataLayer = window.dataLayer || [];
@@ -14,7 +14,9 @@ html
       | #{title} - RubyJobs
 
     = favicon
-    = stylesheet 'bootstrap', 'main', 'likely'
+    = stylesheet 'bootstrap', 'main', 'likely', 'easymde.min'
+    = javascript 'jquery', 'bootstrap', 'likely', 'main'
+    script src="https://unpkg.com/easymde@2.10.1/dist/easymde.min.js"
     = render partial: 'shared/meta_tags'
 
   body.h-100
@@ -30,5 +32,3 @@ html
         = yield
 
     = render partial: 'shared/footer'
-
-    = javascript 'jquery', 'bootstrap', 'main', 'likely'

@@ -26,7 +26,7 @@ RSpec.describe Queries::Vacancy, type: :query do
 
     context 'when vacancy published and not archived or deleted' do
       let(:published) { true }
-      let(:archived) { false }
+      let(:archived_at) { (Time.now + (60 * 60 * 24)).to_date }
       let(:deleted_at) { nil }
 
       it { expect(subject.count).to eq(1) }
@@ -72,7 +72,7 @@ RSpec.describe Queries::Vacancy, type: :query do
 
     context 'when vacancy published and archived' do
       let(:published) { true }
-      let(:archived) { true }
+      let(:archived_at) { Date.today }
       let(:deleted_at) { nil }
 
       it { expect(subject).to eq([]) }
@@ -80,7 +80,7 @@ RSpec.describe Queries::Vacancy, type: :query do
 
     context 'when vacancy published and deleted' do
       let(:published) { true }
-      let(:archived) { false }
+      let(:archived_at) { (Time.now + (60 * 60 * 24)).to_date }
       let(:deleted_at) { Time.now }
 
       it { expect(subject).to eq([]) }
@@ -88,7 +88,7 @@ RSpec.describe Queries::Vacancy, type: :query do
 
     context 'when vacancy not published' do
       let(:published) { false }
-      let(:archived) { false }
+      let(:archived_at) { (Time.now + (60 * 60 * 24)).to_date }
       let(:deleted_at) { nil }
 
       it { expect(subject).to eq([]) }

@@ -5,9 +5,11 @@ require 'features_helper'
 RSpec.describe 'GET /vacancies/new', type: :feature do
   let(:url) { '/vacancies/new' }
 
-  xit 'creates a new vacancy' do
-    visit(url)
+  context 'when user open new vacancy page' do
+    it do
+      visit(url)
 
-    expect(page.status_code).to eq 200
+      expect(page.status_code).to eq 200
+    end
   end
 end

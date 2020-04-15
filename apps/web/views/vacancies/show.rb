@@ -10,7 +10,7 @@ module Web
           "Вакансия \"#{vacancy.position}\""
         end
 
-        # rubocop:disable Metrics/AbcSize, Metrics/LineLength
+        # rubocop:disable Metrics/AbcSize, Layout/LineLength
         def seo_meta_information
           remote_text = vacancy.remote_available ? 'Возможна удаленная работа. ' : ''
 
@@ -25,7 +25,7 @@ module Web
             image: ''
           }
         end
-        # rubocop:enable Metrics/AbcSize, Metrics/LineLength
+        # rubocop:enable Metrics/AbcSize, Layout/LineLength
 
         def vacancy_details
           raw_body(vacancy.details)

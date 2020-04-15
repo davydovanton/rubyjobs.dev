@@ -5,6 +5,7 @@ module Vacancies
     class Create < ::Libs::Operation
       include Import[
         'libs.markdown_parser',
+        'libs.telegram_sender',
         vacancy_repo: 'repositories.vacancy',
         contact_repo: 'repositories.contact'
       ]
@@ -42,11 +43,14 @@ module Vacancies
 
         vacancy_payload[:details] = markdown_parser.call(vacancy_payload[:details_raw])
         vacancy_payload[:published] = false
-        vacancy_payload[:archived] = false
         vacancy_payload[:archived_at] = calculate_archive_date(vacancy_payload[:archived_in_weeks])
         vacancy_payload.delete(:archived_in_weeks)
 
-        persist_vacancy(company_payload, vacancy_payload)
+        vacancy = yield persist_vacancy(company_payload, vacancy_payload)
+
+        send_notification(vacancy)
+
+        Success(vacancy)
       end
 
       private
@@ -65,6 +69,11 @@ module Vacancies
             vacancy_repo.create(**vacancy_payload, contact_id: contact.id)
           end
         end.to_result
+      end
+
+      def send_notification(vacancy)
+        message = "New vacancy for moderation! \n\n\"#{vacancy.position}\" \n\nhttps://rubyjobs.dev/moderation"
+        Try { telegram_sender.call('@rubyjobs_dev_moderation', message) }
       end
     end
   end

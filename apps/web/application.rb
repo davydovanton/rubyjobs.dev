@@ -84,7 +84,7 @@ module Web
       #
       # See: http://www.rubydoc.info/gems/rack/Rack/Session/Cookie
       #
-      sessions :cookie, secret: ENV['WEB_SESSIONS_SECRET']
+      sessions :cookie, secret: Container[:settings].web_sessions_secret
 
       # Configure Rack middleware for this application
       #
@@ -159,7 +159,8 @@ module Web
         # Specify sources for assets
         #
         sources << [
-          'assets'
+          'assets',
+          'vendor/assets'
         ]
       end
 
@@ -236,24 +237,24 @@ module Web
       #
       #  * https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives
       #
-      # rubocop:disable Metrics/LineLength
+      # rubocop:disable Layout/LineLength
       security.content_security_policy %(
         form-action 'self';
         frame-ancestors 'self';
         base-uri 'self';
         default-src 'none';
-        script-src 'self' https://graph.facebook.com https://connect.ok.ru https://vk.com https://www.googletagmanager.com https://www.google-analytics.com 'unsafe-inline';
-        connect-src 'self' https://www.googletagmanager.com;
-        img-src 'self' https: data:;
-        style-src 'self' 'unsafe-inline' https:;
-        font-src 'self';
+        script-src 'self' 'unsafe-eval' 'unsafe-inline' https://graph.facebook.com https://connect.ok.ru https://vk.com https://tagmanager.google.com https://www.googletagmanager.com https://www.google-analytics.com https://unpkg.com;
+        connect-src 'self' https://www.googletagmanager.com https://www.googletagmanager.com/;
+        img-src 'self' 'unsafe-inline' https://ssl.gstatic.com https: data:;
+        style-src 'self' 'unsafe-inline' https://tagmanager.google.com https://fonts.googleapis.com/ https:;
+        font-src 'self' https://maxcdn.bootstrapcdn.com/;
         object-src 'none';
         plugin-types application/pdf;
-        child-src 'self';
+        worker-src 'self';
         frame-src 'self';
         media-src 'self'
       )
-      # rubocop:enable Metrics/LineLength
+      # rubocop:enable Layout/LineLength
 
       ##
       # FRAMEWORKS

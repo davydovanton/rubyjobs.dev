@@ -9,6 +9,21 @@
     = form
 
 javascript:
+  window.onload = function() {
+    new EasyMDE({
+      element: document.getElementById('vacancy-details-raw'),
+      autoDownloadFontAwesome: true,
+      spellChecker: false,
+      toolbar: [
+        'undo', 'redo', '|',
+        'bold', 'italic', '|',
+        'heading-1', 'heading-2', 'heading-3', '|',
+        'unordered-list', 'ordered-list', 'link', '|',
+        'preview'
+      ]
+    });
+  }
+
   // Example starter JavaScript for disabling form submissions if there are invalid fields
   (function() {
     'use strict';
@@ -28,4 +43,3 @@ javascript:
       });
     }, false);
   })();
-

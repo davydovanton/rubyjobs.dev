@@ -1,8 +1,24 @@
 # frozen_string_literal: true
 
+require 'warning'
+
+Gem.path.each do |path|
+  Warning.ignore(//, path)
+end
+
+Warning.ignore(/already initialized constant/)
+Warning.ignore(/previous definition/)
+
+Warning.ignore(/warning: The called method .+ is defined here/)
+
 require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
+
+# Disable warnings from dry-monads library.
+# We have this warnings because use old version of validation with monad extension
+Dry::Core::Deprecations.set_logger!(StringIO.new)
+
 require_relative '../system/import'
 require_relative './initializers/request_id'
 require_relative '../apps/web/application'
@@ -10,7 +26,7 @@ require_relative '../apps/moderation/application'
 
 Hanami.configure do
   middleware.use RequestId
-  middleware.use Rack::Session::Cookie, secret: ENV['WEB_SESSIONS_SECRET']
+  middleware.use Rack::Session::Cookie, secret: Container[:settings].web_sessions_secret
 
   mount Moderation::Application, at: '/moderation'
   mount Web::Application, at: '/'
@@ -26,7 +42,7 @@ Hanami.configure do
     #    adapter :sql, 'postgresql://localhost/prices_api_development'
     #    adapter :sql, 'mysql://localhost/prices_api_development'
     #
-    adapter :sql, ENV.fetch('DATABASE_URL')
+    adapter :sql, Container[:settings].database_url
 
     ##
     # Migrations
@@ -38,10 +54,12 @@ Hanami.configure do
     # valid in connection pool or not. If connections invalod (DB instance was restarted) we will
     # reopen all connections again. In our case we will do it every 30 second or
     # `ENV['DATABASE_CONNECTION_VALIDATION_TIMEOUT']` seconds.
+    # rubocop:disable Layout/LineLength
     gateway do |g|
       g.connection.extension(:connection_validator)
-      g.connection.pool.connection_validation_timeout = ENV['DATABASE_CONNECTION_VALIDATION_TIMEOUT'] || 30 # seconds
+      g.connection.pool.connection_validation_timeout = Container[:settings].database_connection_validation_timeout || 30
     end
+    # rubocop:enable Layout/LineLength
   end
 
   # See: http://hanamirb.org/guides/projects/logging

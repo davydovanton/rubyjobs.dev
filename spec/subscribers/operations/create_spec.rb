@@ -23,7 +23,6 @@ RSpec.describe Subscribers::Operations::Create, type: :operation do
       'something@',
       '@something'
     ].each do |invalid_email|
-
       let(:email) { invalid_email }
 
       it { expect(subject).to be_failure }
@@ -47,6 +46,7 @@ RSpec.describe Subscribers::Operations::Create, type: :operation do
     let(:email) { 'test@something.com' }
 
     it { expect(subject).to be_success }
+
     it do
       expect { subject }.to change { SubscriberRepository.new.all.count }.by(1)
     end

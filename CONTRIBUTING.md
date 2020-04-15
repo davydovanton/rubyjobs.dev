@@ -51,11 +51,12 @@ request; Questions, clarifications, and so on.
 
 1. setup PostgreSQL referring to your OS manual or from [here](https://www.postgresql.org/download/)
 2. setup redis
-3. run these commands:
+3. install ruby 2.5.0
+4. run these commands:
 
 ```
 $ bundle install
-$ cp .env.development.sample .env.development && cp .env.test.sample .env.test
+$ cp .env.development.sample .env.development
 $ bundle exec hanami db prepare
 $ HANAMI_ENV=test bundle exec hanami db prepare
 $ bundle exec rspec

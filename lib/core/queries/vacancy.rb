@@ -26,7 +26,7 @@ module Queries
       location: ->(query, filter_value) { query.where { location.ilike("%#{filter_value}%") } }
     }.freeze
 
-    def all_with_contact_relation(limit:, page:, search_query:)
+    def new_all_with_contact_relation(limit:, page:, search_query:)
       query = repo.aggregate(:contact)
                   .where(published: true, archived: false, deleted_at: nil)
       search_query.to_h.each do |key, value|
@@ -35,6 +35,14 @@ module Queries
       end
       query.map_to(::Vacancy).order { created_at.desc }
            .per_page(limit).page(page || 1)
+    end
+              
+    def all_with_contact_relation(limit:, page:)
+      repo.aggregate(:contact)
+          .where(published: true, deleted_at: nil)
+          .where('archived_at > ?', Date.today)
+          .map_to(::Vacancy).order { created_at.desc }
+          .per_page(limit).page(page || 1)
     end
   end
 end

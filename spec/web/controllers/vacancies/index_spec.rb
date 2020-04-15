@@ -43,7 +43,7 @@ RSpec.describe Web::Controllers::Vacancies::Index, type: :action do
     let(:action) { described_class.new }
 
     before do
-      12.times { Fabricate.create(:vacancy, published: true, archived: false) }
+      12.times { Fabricate.create(:vacancy, published: true) }
     end
 
     context 'opens the first pagination page' do
