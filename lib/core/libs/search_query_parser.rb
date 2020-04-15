@@ -9,11 +9,15 @@ module Libs
 
     SEPARATOR_CHAR = ':'
 
+    EMPTY_RESULT = { text: nil, remote: nil, position_type: nil, location: nil }.freeze
+
     def call(query)
+      return EMPTY_RESULT if query.nil? || query.empty?
+
       scanner = StringScanner.new(query.to_s)
       options = scan_options(scanner)
       text = scanner.scan(/.+/)
-      { text: text, **options }
+      { text: text, remote: nil, position_type: nil, location: nil, **options }
     end
 
     private
