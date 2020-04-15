@@ -13,14 +13,12 @@ module Vacancies
         Vacancies::Entities::SearchOptions.new(payload)
       end
 
-    private
+      private
 
       def to_bool(value)
         case value
         when 'true'  then true
         when 'false' then false
-        else
-          nil
         end
       end
     end

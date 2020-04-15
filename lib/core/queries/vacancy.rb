@@ -43,9 +43,9 @@ module Queries
 
     def base_query
       repo.aggregate(:contact)
-        .where(published: true, archived: false, deleted_at: nil)
-        .where('archived_at > ?', Date.today)
-        .map_to(::Vacancy).order { created_at.desc }
+          .where(published: true, archived: false, deleted_at: nil)
+          .where('archived_at > ?', Date.today)
+          .map_to(::Vacancy).order { created_at.desc }
     end
   end
 end
