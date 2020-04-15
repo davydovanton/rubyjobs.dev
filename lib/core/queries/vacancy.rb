@@ -2,19 +2,21 @@
 
 module Queries
   class Vacancy
+    EMPTY_HASH = {}.freeze
+
     attr_reader :repo
 
     def initialize(repo = VacancyRepository.new)
       @repo = repo
     end
 
-    def all_with_contact(limit:, page:, search_query:)
-      all_with_contact_relation(limit: limit, page: page, search_query: search_query).to_a
+    def all_with_contact(limit:, page:, search_query: nil)
+      all_with_contact_relation(limit: limit, page: page, search_query: search_query || EMPTY_HASH).to_a
     end
 
-    def pager_for_all_with_contact(limit:, page:, search_query:)
+    def pager_for_all_with_contact(limit:, page:, search_query: nil)
       Hanami::Pagination::Pager.new(
-        all_with_contact_relation(limit: limit, page: page, search_query: search_query).pager
+        all_with_contact_relation(limit: limit, page: page, search_query: search_query || EMPTY_HASH).pager
       )
     end
 
@@ -26,23 +28,30 @@ module Queries
       location: ->(query, filter_value) { query.where { location.ilike("%#{filter_value}%") } }
     }.freeze
 
-    def new_all_with_contact_relation(limit:, page:, search_query:)
-      query = repo.aggregate(:contact)
-                  .where(published: true, archived: false, deleted_at: nil)
+    def all_with_contact_relation(limit:, page:, search_query:)
+      query = base_query
+
       search_query.to_h.each do |key, value|
         modifier = QUERY_MODIFIERS[key]
         query = modifier.call(query, value) if modifier && value
       end
-      query.map_to(::Vacancy).order { created_at.desc }
-           .per_page(limit).page(page || 1)
+
+      query.per_page(limit).page(page || 1)
     end
-              
-    def all_with_contact_relation(limit:, page:)
+
+    def base_query
       repo.aggregate(:contact)
-          .where(published: true, deleted_at: nil)
-          .where('archived_at > ?', Date.today)
-          .map_to(::Vacancy).order { created_at.desc }
-          .per_page(limit).page(page || 1)
+        .where(published: true, archived: false, deleted_at: nil)
+        .where('archived_at > ?', Date.today)
+        .map_to(::Vacancy).order { created_at.desc }
     end
+
+    # def all_with_contact_relation(limit:, page:)
+    #   repo.aggregate(:contact)
+    #       .where(published: true, deleted_at: nil)
+    #       .where('archived_at > ?', Date.today)
+    #       .map_to(::Vacancy).order { created_at.desc }
+    #       .per_page(limit).page(page || 1)
+    # end
   end
 end

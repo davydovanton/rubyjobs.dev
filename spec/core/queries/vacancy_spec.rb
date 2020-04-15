@@ -16,8 +16,8 @@ RSpec.describe Queries::Vacancy, type: :query do
       Fabricate.create(
         :vacancy,
         published: published,
-        archived: archived,
         deleted_at: deleted_at,
+        archived_at: archived_at,
         remote_available: remote_available,
         position_type: position_type,
         location: location
