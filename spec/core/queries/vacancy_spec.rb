@@ -2,7 +2,6 @@
 
 RSpec.describe Queries::Vacancy, type: :query do
   let(:repo) { described_class.new }
-  let(:query_attributes) { return { remote: nil, position_type: nil, location: nil } }
   let(:search_query) { Vacancies::Entities::SearchOptions.new }
 
   describe '#all_with_contact' do
@@ -34,7 +33,7 @@ RSpec.describe Queries::Vacancy, type: :query do
       it { expect(subject.first.contact).to be_a(Contact) }
 
       context 'and remote in search_query is true' do
-        let(:search_query) { Vacancies::Entities::SearchOptions.new(query_attributes.merge(remote: true)) }
+        let(:search_query) { Vacancies::Entities::SearchOptions.new(remote: true) }
 
         it { expect(subject).to eq([]) }
 
@@ -45,8 +44,15 @@ RSpec.describe Queries::Vacancy, type: :query do
         end
       end
 
+      context 'and remote in search_query is false' do
+        let(:search_query) { Vacancies::Entities::SearchOptions.new(remote: false) }
+        let(:remote_available) { true }
+
+        it { expect(subject.count).to eq(0) }
+      end
+
       context 'and position_type in search_query is equal "other"' do
-        let(:search_query) { Vacancies::Entities::SearchOptions.new(query_attributes.merge(position_type: 'other')) }
+        let(:search_query) { Vacancies::Entities::SearchOptions.new(position_type: 'other') }
 
         it { expect(subject).to eq([]) }
 
@@ -58,7 +64,7 @@ RSpec.describe Queries::Vacancy, type: :query do
       end
 
       context 'and location in search query is not empty' do
-        let(:search_query) { Vacancies::Entities::SearchOptions.new(query_attributes.merge(location: 'VASYUKI')) }
+        let(:search_query) { Vacancies::Entities::SearchOptions.new(location: 'VASYUKI') }
 
         it { expect(subject).to eq([]) }
 
