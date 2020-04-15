@@ -2,17 +2,25 @@
 
 module Vacancies
   module Mappers
-    Container = Module.new do
-      extend Transproc::Registry
-      import Transproc::HashTransformations
-      import Transproc::Coercions
-      import Transproc::ClassTransformations
-    end
+    class SearchOptions
+      def call(params)
+        payload = {
+          remote: to_bool(params[:remote]),
+          position_type: params[:position_type],
+          location: params[:location]
+        }
 
-    class SearchOptions < Transproc::Transformer[Container]
-      symbolize_keys
-      map_value :remote, t(:to_boolean)
-      constructor_inject ::Vacancies::Entities::SearchOptions
+        Vacancies::Entities::SearchOptions.new(payload)
+      end
+
+      private
+
+      def to_bool(value)
+        case value
+        when 'true'  then true
+        when 'false' then false
+        end
+      end
     end
   end
 end

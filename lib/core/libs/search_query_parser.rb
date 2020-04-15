@@ -9,7 +9,11 @@ module Libs
 
     SEPARATOR_CHAR = ':'
 
+    EMPTY_RESULT = { text: nil }.freeze
+
     def call(query)
+      return EMPTY_RESULT if query.nil? || query.empty?
+
       scanner = StringScanner.new(query.to_s)
       options = scan_options(scanner)
       text = scanner.scan(/.+/)
