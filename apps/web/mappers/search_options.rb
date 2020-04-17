@@ -4,13 +4,11 @@ module Web
   module Mappers
     class SearchOptions
       def call(params)
-        payload = {
+        {
           remote: to_bool(params[:remote]),
           position_type: params[:position_type],
           location: params[:location]
         }
-
-        Web::DTO::SearchOptions.new(payload)
       end
 
       private
