@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
-module Vacancies
+module Web
   module Mappers
     class SearchOptions
       def call(params)
-        payload = {
-          remote: to_bool(params[:remote]),
+        {
           position_type: params[:position_type],
-          location: params[:location]
+          location: params[:location],
+          remote: to_bool(params[:remote]),
+          text: params[:text]
         }
-
-        Vacancies::Entities::SearchOptions.new(payload)
       end
 
       private

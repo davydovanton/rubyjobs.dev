@@ -10,10 +10,8 @@ module Web
         include Import[
           'libs.search_query_parser',
           operation: 'vacancies.operations.list',
-          search_options_mapper: 'vacancies.mappers.search_options',
+          search_options_mapper: 'web.mappers.search_options',
         ]
-
-        EMPTY_SEARCH_QUERY = {}.freeze
 
         expose :vacancies
         expose :pager
@@ -24,7 +22,7 @@ module Web
         end
 
         def call(params)
-          result = operation.call(search_query: search_query, page: params[:page])
+          result = operation.call(search_object: search_object, page: params[:page])
 
           case result
           when Success
@@ -35,9 +33,11 @@ module Web
 
         private
 
-        def search_query
-          search_options_mapper.call(
-            search_query_parser.call(params[:query])
+        def search_object
+          Web::DTO::SearchOptions.new(
+            search_options_mapper.call(
+              search_query_parser.call(params[:query])
+            )
           )
         end
       end
