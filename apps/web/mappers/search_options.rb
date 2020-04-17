@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Vacancies
+module Web
   module Mappers
     class SearchOptions
       def call(params)
@@ -10,7 +10,7 @@ module Vacancies
           location: params[:location]
         }
 
-        Vacancies::Entities::SearchOptions.new(payload)
+        Web::DTO::SearchOptions.new(payload)
       end
 
       private

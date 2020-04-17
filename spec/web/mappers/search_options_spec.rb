@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-RSpec.describe Vacancies::Mappers::SearchOptions, type: :mapper do
+RSpec.describe Web::Mappers::SearchOptions, type: :mapper do
   subject { described_class.new.call(search_options_hash) }
 
   let(:search_options_hash) { {} }
 
-  it { expect(subject).to be_a(Vacancies::Entities::SearchOptions) }
+  it { expect(subject).to be_a(Web::DTO::SearchOptions) }
 
   context 'when remote is string equaled "true"' do
     let(:search_options_hash) { { remote: 'true', position_type: 'part_time' } }

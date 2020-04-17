@@ -17,7 +17,6 @@ class Container < Dry::System::Container
 
   #  Core
   register_folder! 'core/repositories'
-  register_folder! 'core/queries'
   register_folder! 'core/libs'
 
   #  Analitics
@@ -25,14 +24,21 @@ class Container < Dry::System::Container
 
   #  Vacancies
   register_folder! 'vacancies/mappers'
+  register_folder! 'vacancies/queries'
   register_folder! 'vacancies/operations'
 
   # Subscribers
   register_folder! 'subscribers/operations'
 
   #  Web
-  register 'web.vacancies.generators.rss' do
-    Web::Views::RssFeed::Generator.new
+  namespace 'web' do
+    register 'vacancies.generators.rss' do
+      Web::Views::RssFeed::Generator.new
+    end
+
+    register 'mappers.search_options' do
+      Web::Mappers::SearchOptions.new
+    end
   end
 
   configure do |config|

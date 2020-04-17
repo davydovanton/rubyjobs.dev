@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Queries::Vacancy, type: :query do
+RSpec.describe Vacancies::Queries::Vacancy, type: :query do
   let(:repo) { described_class.new }
-  let(:search_query) { Vacancies::Entities::SearchOptions.new }
+  let(:search_query) { Web::DTO::SearchOptions.new }
 
   describe '#all_with_contact' do
     subject { repo.all_with_contact(limit: 10, page: 1, search_query: search_query) }
@@ -33,7 +33,7 @@ RSpec.describe Queries::Vacancy, type: :query do
       it { expect(subject.first.contact).to be_a(Contact) }
 
       context 'and remote in search_query is true' do
-        let(:search_query) { Vacancies::Entities::SearchOptions.new(remote: true) }
+        let(:search_query) { Web::DTO::SearchOptions.new(remote: true) }
 
         it { expect(subject).to eq([]) }
 
@@ -45,14 +45,14 @@ RSpec.describe Queries::Vacancy, type: :query do
       end
 
       context 'and remote in search_query is false' do
-        let(:search_query) { Vacancies::Entities::SearchOptions.new(remote: false) }
+        let(:search_query) { Web::DTO::SearchOptions.new(remote: false) }
         let(:remote_available) { true }
 
         it { expect(subject.count).to eq(0) }
       end
 
       context 'and position_type in search_query is equal "other"' do
-        let(:search_query) { Vacancies::Entities::SearchOptions.new(position_type: 'other') }
+        let(:search_query) { Web::DTO::SearchOptions.new(position_type: 'other') }
 
         it { expect(subject).to eq([]) }
 
@@ -64,7 +64,7 @@ RSpec.describe Queries::Vacancy, type: :query do
       end
 
       context 'and location in search query is not empty' do
-        let(:search_query) { Vacancies::Entities::SearchOptions.new(location: 'VASYUKI') }
+        let(:search_query) { Web::DTO::SearchOptions.new(location: 'VASYUKI') }
 
         it { expect(subject).to eq([]) }
 

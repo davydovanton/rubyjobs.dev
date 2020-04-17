@@ -20,7 +20,7 @@ RSpec.describe Web::Controllers::Vacancies::Index, type: :action do
 
     context 'when params inlcludes query param' do
       let(:params) { { query: 'remote:true search text' } }
-      let(:search_query) { Vacancies::Entities::SearchOptions.new(remote: true, location: nil, position_type: nil) }
+      let(:search_query) { Web::DTO::SearchOptions.new(remote: true, location: nil, position_type: nil) }
 
       it { expect(subject).to be_success }
 

@@ -10,7 +10,7 @@ module Web
         include Import[
           'libs.search_query_parser',
           operation: 'vacancies.operations.list',
-          search_options_mapper: 'vacancies.mappers.search_options',
+          search_options_mapper: 'web.mappers.search_options',
         ]
 
         EMPTY_SEARCH_QUERY = {}.freeze

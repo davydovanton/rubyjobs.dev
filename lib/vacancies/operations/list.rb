@@ -4,7 +4,7 @@ module Vacancies
   module Operations
     class List < ::Libs::Operation
       include Import[
-        vacancy_query: 'queries.vacancy'
+        vacancy_query: 'vacancies.queries.vacancy'
       ]
 
       PAGINATION_LIMIT = 10
