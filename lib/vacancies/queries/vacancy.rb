@@ -19,13 +19,13 @@ module Vacancies
         )
       end
 
-    private
+      private
 
       QUERY_MODIFIERS = {
         remote: ->(query, filter_value) { query.where(remote_available: filter_value) },
         position_type: ->(query, filter_value) { query.where(position_type: filter_value) },
         location: ->(query, filter_value) { query.where { location.ilike("%#{filter_value}%") } },
-        text: ->(query, filter_value) do
+        text: lambda do |query, filter_value|
           query.where { position.ilike("%#{filter_value}%") | details_raw.ilike("%#{filter_value}%") }
         end
       }.freeze
@@ -45,9 +45,9 @@ module Vacancies
 
       def base_query
         repo.aggregate(:contact)
-          .where(published: true, archived: false, deleted_at: nil)
-          .where('archived_at > ?', Date.today)
-          .map_to(::Vacancy).order { created_at.desc }
+            .where(published: true, archived: false, deleted_at: nil)
+            .where('archived_at > ?', Date.today)
+            .map_to(::Vacancy).order { created_at.desc }
       end
     end
   end

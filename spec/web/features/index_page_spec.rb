@@ -39,17 +39,17 @@ RSpec.describe 'GET /', type: :feature do
   end
 
   context 'with remote:false query parameter' do
-    let(:url) { '/?query=remote:false' }
+    let(:url) { '/?query=remote:false Ruby' }
 
     it 'returns a index page with all vacancies' do
       visit(url)
 
       expect(page.status_code).to eq 200
       expect(page.body).to_not include 'C# developer'
-
-      expect(page.body).to include 'Senior mecha pilot'
-      expect(page.body).to include 'Ruby developer'
       expect(page.body).to_not include 'Java developer'
+      expect(page.body).to_not include 'Senior mecha pilot'
+
+      expect(page.body).to include 'Ruby developer'
     end
   end
 end

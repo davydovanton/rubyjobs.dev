@@ -5,9 +5,10 @@ module Web
     class SearchOptions
       def call(params)
         {
-          remote: to_bool(params[:remote]),
           position_type: params[:position_type],
-          location: params[:location]
+          location: params[:location],
+          remote: to_bool(params[:remote]),
+          text: params[:text]
         }
       end
 

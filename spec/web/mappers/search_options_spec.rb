@@ -26,6 +26,6 @@ RSpec.describe Web::Mappers::SearchOptions, type: :mapper do
   context 'when option is invalid' do
     let(:search_options_hash) { { invalid: 'option' } }
 
-    it { expect(subject).to eq({ remote: nil, position_type: nil, location: nil }) }
+    it { expect(subject).to eq({ text: nil, remote: nil, position_type: nil, location: nil }) }
   end
 end
