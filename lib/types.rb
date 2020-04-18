@@ -35,5 +35,8 @@ module Core
 
     # analitics
     ViewCount = Types::Int.constrained(gteq: 0)
+
+    # companies
+    CompanyRatings = Types::Hash.default({})
   end
 end
