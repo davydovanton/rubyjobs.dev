@@ -20,6 +20,18 @@ RSpec.describe CompanyRepository, type: :repository do
       it { expect(subject).to be true }
     end
 
+    context 'when name contains space' do
+      let(:company) { Company.new(name: 'g oogle') }
+
+      it { expect(subject).to be true }
+    end
+
+    context 'when name contains trim chars' do
+      let(:company) { Company.new(name: ' google ') }
+
+      it { expect(subject).to be true }
+    end
+
     context 'when name is different' do
       let(:company) { Company.new(name: 'other') }
 

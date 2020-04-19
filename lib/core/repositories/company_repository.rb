@@ -6,7 +6,7 @@ class CompanyRepository < Hanami::Repository
   end
 
   def already_exist?(company)
-    downcase_name = company.name.downcase
-    root.where { string.lower(name).is(downcase_name) }.exist?
+    downcase_name = company.name.downcase.tr(' ', '')
+    root.where { string.lower(string.replace(name, ' ', '')).is(downcase_name) }.exist?
   end
 end
