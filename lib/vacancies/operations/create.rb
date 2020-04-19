@@ -78,7 +78,7 @@ module Vacancies
       end
 
       def create_company(payload)
-        if payload[:site] && payload[:site] != ''
+        if payload[:site] && payload[:site] != '' # rubocop:disable Style/GuardClause
           Companies::Workers::Create.perform_async(payload[:company], payload[:site])
         end
       end
