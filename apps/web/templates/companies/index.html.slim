@@ -1,0 +1,44 @@
+.row.mt-4.mb-4.align-items-center
+  .col-sm-8
+    h1 Отзывы на компании, которые используют Ruby, Hanami и Ruby on Rails
+
+  .col-sm-4.mb-1
+    = link_to 'К списку вакансий', routes.root_path, class: 'btn btn-primary new-vacancy-btn'
+
+hr
+
+.row.mt-3.mb-3
+  .col
+    | RubyJobs.dev — бесплатная площадка для размещения вакансий, отзывов на компанию и поиска разработчиков на Ruby, Hanami и Rails.
+
+br
+
+/.row.mt-3.mb-3
+  .col-sm
+    form#subscriber-form.needs-validation accept-charset="utf-8" action="/" method="GET"
+      .form-group
+        .row
+          .col-sm-10
+            input#subscriber-email.form-control name="query" placeholder="Фильтр ..." type="text" value="#{params[:query]}"
+          .col-sm-2
+                button.btn.btn-success type="submit" Фильтровать
+
+ul.list-group
+  - companies.each do |company|
+    li.list-group-item
+      .row
+        .col-sm-8
+          h4 = link_to company.name, routes.company_path(company.id), title: company.name
+        .col-sm-4
+          = "Рейтинг: #{company.rating_total}"
+      .row
+        .col-sm-8
+          = company.url
+
+        .col-sm-4
+          = link_to "На основе 0 отзывов", routes.company_path(company.id)
+      /= tag_badges(vacancy.tags)
+
+/.row.mt-3
+  .col
+    = pagination(:root)

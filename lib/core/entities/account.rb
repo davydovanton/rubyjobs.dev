@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Account < Hanami::Entity
   attributes do
     attribute :id, Types::Int
