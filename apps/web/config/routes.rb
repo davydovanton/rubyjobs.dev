@@ -2,7 +2,9 @@
 
 root to: 'vacancies#index'
 
-resources :vacancies,   only: %i[new create show]
+resources :vacancies, only: %i[new create show]
+resources :companies, only: %i[index show]
+
 resources :subscribers, only: %i[create]
 
 get '/terms', to: 'static#terms', as: :terms
