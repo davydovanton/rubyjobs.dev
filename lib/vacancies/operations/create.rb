@@ -49,8 +49,7 @@ module Vacancies
         vacancy = yield persist_vacancy(company_payload, vacancy_payload)
 
         send_notification(vacancy)
-
-        Companies::Workers::Create.perform_async(company_payload[:company], company_payload[:site])
+        create_company(company_payload)
 
         Success(vacancy)
       end
@@ -76,6 +75,12 @@ module Vacancies
       def send_notification(vacancy)
         message = "New vacancy for moderation! \n\n\"#{vacancy.position}\" \n\nhttps://rubyjobs.dev/moderation"
         Try { telegram_sender.call('@rubyjobs_dev_moderation', message) }
+      end
+
+      def create_company(payload)
+        if payload[:site] && payload[:site] != ''
+          Companies::Workers::Create.perform_async(payload[:company], payload[:site])
+        end
       end
     end
   end

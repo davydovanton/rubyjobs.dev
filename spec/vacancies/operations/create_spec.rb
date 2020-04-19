@@ -37,8 +37,34 @@ RSpec.describe Vacancies::Operations::Create, type: :operation do
     it { expect(subject).to be_success }
     it { expect(subject.value!).to be_a(Vacancy) }
 
-    it 'spawns worker for creating company for review' do
-      expect { subject }.to change(Companies::Workers::Create.jobs, :size).by(1)
+    context 'and company has site' do
+      let(:contact_payload) do
+        { email: 'test@something.com', full_name: 'First Name', company: 'test', site: 'test.com' }
+      end
+
+      it 'spawns worker for creating company for review' do
+        expect { subject }.to change(Companies::Workers::Create.jobs, :size).by(1)
+      end
+    end
+
+    context 'and company site is empty does not have site' do
+      let(:contact_payload) do
+        { email: 'test@something.com', full_name: 'First Name', company: 'test', site: nil }
+      end
+
+      it 'spawns worker for creating company for review' do
+        expect { subject }.to change(Companies::Workers::Create.jobs, :size).by(0)
+      end
+    end
+
+    context 'and company does not have site' do
+      let(:contact_payload) do
+        { email: 'test@something.com', full_name: 'First Name', company: 'test', site: '' }
+      end
+
+      it 'spawns worker for creating company for review' do
+        expect { subject }.to change(Companies::Workers::Create.jobs, :size).by(0)
+      end
     end
   end
 
