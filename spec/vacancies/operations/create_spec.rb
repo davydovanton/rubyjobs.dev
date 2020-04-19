@@ -36,6 +36,10 @@ RSpec.describe Vacancies::Operations::Create, type: :operation do
   context 'when contact and vacancy data is valid' do
     it { expect(subject).to be_success }
     it { expect(subject.value!).to be_a(Vacancy) }
+
+    it 'spawns worker for creating company for review' do
+      expect { subject }.to change(Companies::Workers::Create.jobs, :size).by(1)
+    end
   end
 
   context 'when contact payload is invalid' do

@@ -37,7 +37,7 @@ module Vacancies
         optional(:site).maybe(:str?)
       end
 
-      def call(contact:, vacancy:)
+      def call(contact:, vacancy:) # rubocop:disable Metrics/AbcSize
         company_payload = yield CONTACT_VALIDATOR.call(contact).to_either
         vacancy_payload = yield VACANCY_VALIDATOR.call(vacancy).to_either
 
@@ -49,6 +49,8 @@ module Vacancies
         vacancy = yield persist_vacancy(company_payload, vacancy_payload)
 
         send_notification(vacancy)
+
+        Companies::Workers::Create.perform_async(company_payload[:company], company_payload[:site])
 
         Success(vacancy)
       end
