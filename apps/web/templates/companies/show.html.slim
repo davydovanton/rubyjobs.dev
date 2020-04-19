@@ -1,0 +1,38 @@
+.row.mt-4
+  .col
+    h1
+      = link_to 'Компании', routes.companies_path
+      |  > #{company.name}
+.row
+  .col
+    = company_information(company)
+
+hr.mb-4.mt-4
+
+.row
+  .col.mb-4.vacancy_details
+    | Rating information will be here
+    /= vacancy_details
+
+.likely.likely-big
+  .twitter Твитнуть
+  .facebook Поделиться
+  .vkontakte Поделиться
+  .telegram Отправить
+  .whatsapp Вотсапнуть
+
+hr.mb-4.mt-4
+
+.row.mt-4
+  .col
+    = link_to 'К списку компаний', routes.companies_path, class: 'btn btn-outline-secondary btn-lg'
+
+  .col
+    = link_to 'Оставить отзыв', '#', class: 'btn btn-success btn-lg new-vacancy-btn'
+
+hr.mb-4.mt-4
+
+.row
+  .col.mb-4.vacancy_details
+    | Review list will be here
+    /= vacancy_details
