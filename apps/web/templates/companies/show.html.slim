@@ -23,12 +23,19 @@ hr.mb-4.mt-4
 
 hr.mb-4.mt-4
 
+- if current_account.id.nil?
+  .row
+    | Только  #{link_to ' зарегистрированные пользователи ', '/auth/github' } могут оставлять отзывы о компаниях
+
 .row.mt-4
   .col
     = link_to 'К списку компаний', routes.companies_path, class: 'btn btn-outline-secondary btn-lg'
 
   .col
-    = link_to 'Оставить отзыв', '#', class: 'btn btn-success btn-lg new-vacancy-btn'
+    - if current_account.id
+      = link_to 'Оставить отзыв', routes.new_company_review_path(company.id), class: 'btn btn-success btn-lg new-vacancy-btn'
+    - else
+      = link_to 'Оставить отзыв', '#', class: 'btn btn-success btn-lg new-vacancy-btn disabled'
 
 hr.mb-4.mt-4
 

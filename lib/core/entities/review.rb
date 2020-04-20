@@ -3,12 +3,18 @@
 class Account < Hanami::Entity
 end
 
+class Company < Hanami::Entity
+end
+
 class Review < Hanami::Entity
   attributes do
     attribute :id, Types::Int
 
     attribute :author_id, Types::Int
     attribute :author, Types::Entity(Account)
+
+    attribute :company_id, Types::Int
+    attribute :company, Types::Entity(Company)
 
     attribute :body_raw, Types::String
     attribute :body, Types::String

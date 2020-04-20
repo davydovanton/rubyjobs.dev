@@ -33,10 +33,17 @@ class Container < Dry::System::Container
   # Companies
   register_folder! 'companies/operations'
 
+  # Reviews
+  register_folder! 'reviews/operations'
+
   #  Web
   namespace 'web' do
     register 'vacancies.generators.rss' do
       Web::Views::RssFeed::Generator.new
+    end
+
+    register 'mappers.review_form' do
+      Web::Mappers::ReviewForm.new
     end
 
     register 'mappers.search_options' do
