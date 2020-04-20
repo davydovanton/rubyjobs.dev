@@ -2,7 +2,8 @@
   .col
     h1
       = link_to 'Компании', routes.companies_path
-      |  > {company.name}
+      |  > #{link_to company.name, routes.company_path(company.id)}
+      |  > Новый отзыв
 
 .row
   .col.mb-4
