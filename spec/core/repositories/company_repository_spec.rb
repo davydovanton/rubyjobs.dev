@@ -77,16 +77,16 @@ RSpec.describe CompanyRepository, type: :repository do
       updated_company = repo.find(company.id)
 
       expect(updated_company.ratings.to_h).to eq({
-        "salary_value" => 4.0,
-        "office" => 2.0,
-        "working_time" => 2.5,
-        "project_interest" => 3.5,
-        "atmosphere" => 3.0,
-        "personal_growth" => 4.0,
-        "modern_technologies" => 2.0,
-        "management_level" => 2.5,
-        "team_level" => 2.0
-      })
+                                                   'salary_value' => 4.0,
+                                                   'office' => 2.0,
+                                                   'working_time' => 2.5,
+                                                   'project_interest' => 3.5,
+                                                   'atmosphere' => 3.0,
+                                                   'personal_growth' => 4.0,
+                                                   'modern_technologies' => 2.0,
+                                                   'management_level' => 2.5,
+                                                   'team_level' => 2.0
+                                                 })
 
       expect(updated_company.rating_total).to eq(2.8)
     end

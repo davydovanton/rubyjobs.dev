@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 RSpec.describe Web::Controllers::Reviews::New, type: :action do
+  subject { action.call(params) }
+
   let(:action) { described_class.new(operation: operation) }
 
   let(:session) { { account: Account.new(id: 1) } }
   let(:params) { { company_id: 0, 'rack.session' => session } }
-
-  subject { action.call(params) }
 
   context 'when operation returns success value' do
     let(:operation) { ->(*) { Success(Company.new(id: 0)) } }
@@ -36,7 +36,6 @@ RSpec.describe Web::Controllers::Reviews::New, type: :action do
   end
 
   context 'with real dependencies' do
-
     let(:session) { { account: Fabricate(:account) } }
     let(:action) { described_class.new }
     let(:params) { { id: company.id, 'rack.session' => session } }

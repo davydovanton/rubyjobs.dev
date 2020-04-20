@@ -13,15 +13,17 @@ class CompanyRepository < Hanami::Repository
     root.where { string.lower(string.replace(name, ' ', '')).is(downcase_name) }.exist?
   end
 
-  def update_statistic(id, ratings)
-    transaction do |t|
+  def update_statistic(id, ratings) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    transaction do |_t|
       company = find(id)
 
       new_ratings = {}
       company_ratings = Hanami::Utils::Hash.symbolize(company.ratings)
 
       ALLOWED_RATINGS.each do |rating|
-        new_ratings[rating] = (company_ratings[rating].to_f + ratings[rating].to_f) / 2 if ratings[rating].to_f > 0
+        next unless ratings[rating].to_f.positive?
+
+        new_ratings[rating] = (company_ratings[rating].to_f + ratings[rating].to_f) / 2
       end
 
       total_rating = (new_ratings.values.sum / new_ratings.values.count).round(1)
@@ -29,8 +31,6 @@ class CompanyRepository < Hanami::Repository
       update(id, ratings: new_ratings, rating_total: total_rating)
     end
   end
-
-private
 
   ALLOWED_RATINGS = %i[
     salary_value
@@ -42,5 +42,5 @@ private
     modern_technologies
     management_level
     team_level
-  ]
+  ].freeze
 end

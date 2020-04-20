@@ -45,7 +45,7 @@ module Reviews
         Success(review)
       end
 
-    private
+      private
 
       def persist_review(payload)
         Try(Hanami::Model::UniqueConstraintViolationError, Hanami::Model::NotNullConstraintViolationError) do

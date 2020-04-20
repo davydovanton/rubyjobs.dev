@@ -1,5 +1,3 @@
-
-
 # frozen_string_literal: true
 
 RSpec.describe Web::Mappers::ReviewForm, type: :mapper do
@@ -9,20 +7,20 @@ RSpec.describe Web::Mappers::ReviewForm, type: :mapper do
 
   let(:params) do
     {
-      body_raw:"test text here",
-      anonymous: "true",
+      body_raw: 'test text here',
+      anonymous: 'true',
 
       rating: {
-        salary_value: "3.0",
-        office: "3.0",
-        working_time: "3.0",
-        project_interest: "3.0",
-        atmosphere: "3.0",
-        personal_growth: "3.0",
-        modern_technologies: "3.0",
-        management_level: "3.0",
-        team_level:"3.0"
-      },
+        salary_value: '3.0',
+        office: '3.0',
+        working_time: '3.0',
+        project_interest: '3.0',
+        atmosphere: '3.0',
+        personal_growth: '3.0',
+        modern_technologies: '3.0',
+        management_level: '3.0',
+        team_level: '3.0'
+      }
     }
   end
 
@@ -31,7 +29,7 @@ RSpec.describe Web::Mappers::ReviewForm, type: :mapper do
       {
         author_id: 0,
         company_id: 10,
-        body_raw: "test text here",
+        body_raw: 'test text here',
         anonymous: true,
 
         rating: {
@@ -55,7 +53,7 @@ RSpec.describe Web::Mappers::ReviewForm, type: :mapper do
     [
       ['true', true],
       ['false', false],
-      [nil, false],
+      [nil, false]
     ].each do |raw_value, expectation|
       it do
         params = { anonymous: raw_value, rating: {} }

@@ -13,21 +13,21 @@ RSpec.describe Web::Controllers::Reviews::Create, type: :action do
     {
       'rack.session' => session,
       review: {
-        account_id: "1",
-        body_raw:"test text here",
-        anonymous: "true",
+        account_id: '1',
+        body_raw: 'test text here',
+        anonymous: 'true',
 
         rating: {
-          salary_value: "3.0",
-          office: "3.0",
-          working_time: "3.0",
-          project_interest: "3.0",
-          atmosphere: "3.0",
-          personal_growth: "3.0",
-          modern_technologies: "3.0",
-          management_level: "3.0",
-          team_level:"3.0"
-        },
+          salary_value: '3.0',
+          office: '3.0',
+          working_time: '3.0',
+          project_interest: '3.0',
+          atmosphere: '3.0',
+          personal_growth: '3.0',
+          modern_technologies: '3.0',
+          management_level: '3.0',
+          team_level: '3.0'
+        }
       },
       company_id: company_id
     }
