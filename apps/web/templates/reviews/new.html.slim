@@ -1,0 +1,45 @@
+.row.mt-4
+  .col
+    h1
+      = link_to 'Компании', routes.companies_path
+      |  > {company.name}
+
+.row
+  .col.mb-4
+    = form
+
+javascript:
+  window.onload = function() {
+    new EasyMDE({
+      element: document.getElementById('review-body-raw'),
+      autoDownloadFontAwesome: true,
+      spellChecker: false,
+      toolbar: [
+        'undo', 'redo', '|',
+        'bold', 'italic', '|',
+        'heading-1', 'heading-2', 'heading-3', '|',
+        'unordered-list', 'ordered-list', 'link', '|',
+        'preview'
+      ]
+    });
+
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  }
