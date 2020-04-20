@@ -6,9 +6,10 @@ module Web
       def call(company_id, account_id, params)
         {
           author_id: account_id,
+          company_id: company_id.to_i,
+
           body_raw: params[:body_raw],
           anonymous: to_bool(params[:anonymous]),
-          company_id: company_id.to_i,
 
           rating: {
             author_id: account_id,
@@ -32,6 +33,8 @@ module Web
         case value
         when 'true'  then true
         when 'false' then false
+        else
+          false
         end
       end
     end

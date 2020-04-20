@@ -50,4 +50,19 @@ RSpec.describe Web::Mappers::ReviewForm, type: :mapper do
       }
     )
   end
+
+  context 'context for all anonymous cases' do
+    [
+      ['true', true],
+      ['false', false],
+      [nil, false],
+    ].each do |raw_value, expectation|
+      it do
+        params = { anonymous: raw_value, rating: {} }
+        result = described_class.new.call(10, 0, params)
+
+        expect(result[:anonymous]).to eq(expectation)
+      end
+    end
+  end
 end
