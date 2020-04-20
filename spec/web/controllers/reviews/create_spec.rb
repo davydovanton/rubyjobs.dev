@@ -6,8 +6,12 @@ RSpec.describe Web::Controllers::Reviews::Create, type: :action do
   let(:action) { described_class.new(operation: operation) }
   let(:operation) { ->(*) { Success(Vacancy.new(id: 123)) } }
 
+  let(:session) { { account: account } }
+  let(:account) { Account.new(id: 1) }
+
   let(:params) do
     {
+      'rack.session' => session,
       review: {
         account_id: "1",
         body_raw:"test text here",
@@ -25,9 +29,11 @@ RSpec.describe Web::Controllers::Reviews::Create, type: :action do
           team_level:"3.0"
         },
       },
-      company_id: "1"
+      company_id: company_id
     }
   end
+
+  let(:company_id) { '1' }
 
   context 'when operation returns success result' do
     let(:operation) { ->(*) { Success(Vacancy.new(id: 123)) } }
@@ -56,8 +62,10 @@ RSpec.describe Web::Controllers::Reviews::Create, type: :action do
   context 'with real dependencies' do
     subject { action.call(params) }
 
+    let(:account) { Fabricate(:account) }
+    let(:company_id) { Fabricate(:company).id }
     let(:action) { described_class.new }
 
-    it { expect(subject).to redirect_to '/companies/1' }
+    it { expect(subject).to redirect_to "/companies/#{company_id}" }
   end
 end

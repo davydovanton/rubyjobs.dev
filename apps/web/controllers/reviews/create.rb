@@ -12,6 +12,8 @@ module Web
           mapper: 'web.mappers.review_form'
         ]
 
+        before :authenticate! # run an authentication before callback
+
         def call(params) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
           payload = mapper.call(params[:company_id], current_account.id, params[:review])
           result = operation.call(payload)

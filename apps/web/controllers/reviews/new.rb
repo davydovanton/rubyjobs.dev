@@ -6,6 +6,8 @@ module Web
       class New
         include Web::Action
 
+        before :authenticate! # run an authentication before callback
+
         def call(params); end
       end
     end
