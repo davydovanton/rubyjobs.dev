@@ -267,6 +267,11 @@ module Web
       #
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
       controller.prepare do
+        include WebBouncer['authentication']
+        expose :current_account
+
+        # before :authenticate! # run an authentication before callback
+
         # include Auth::Authentication
         # expose :current_account
         #
