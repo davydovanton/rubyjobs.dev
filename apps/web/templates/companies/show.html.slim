@@ -28,7 +28,7 @@ hr.mb-4.mt-4
     = link_to 'К списку компаний', routes.companies_path, class: 'btn btn-outline-secondary btn-lg'
 
   .col
-    = link_to 'Оставить отзыв', '#', class: 'btn btn-success btn-lg new-vacancy-btn'
+    = link_to 'Оставить отзыв', routes.new_company_review_path(company.id), class: 'btn btn-success btn-lg new-vacancy-btn'
 
 hr.mb-4.mt-4
 
