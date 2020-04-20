@@ -19,11 +19,12 @@ class Rating < Hanami::Entity
     attribute :salary_value,        Types::Float
     attribute :office,              Types::Float
     attribute :working_time,        Types::Float
-    attribute :managment_level,     Types::Float
     attribute :project_interest,    Types::Float
     attribute :atmosphere,          Types::Float
     attribute :personal_growth,     Types::Float
     attribute :modern_technologies, Types::Float
+    attribute :management_level,    Types::Float
+    attribute :team_level,          Types::Float
 
     attribute :created_at, Types::Time
     attribute :updated_at, Types::Time
