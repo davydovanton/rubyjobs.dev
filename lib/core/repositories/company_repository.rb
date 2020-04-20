@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'hanami/utils/hash'
+
 class CompanyRepository < Hanami::Repository
   associations do
     has_many :reviews
@@ -10,4 +12,35 @@ class CompanyRepository < Hanami::Repository
     downcase_name = company.name.downcase.tr(' ', '')
     root.where { string.lower(string.replace(name, ' ', '')).is(downcase_name) }.exist?
   end
+
+  def update_statistic(id, ratings)
+    transaction do |t|
+      company = find(id)
+
+      new_ratings = {}
+      company_ratings = Hanami::Utils::Hash.symbolize(company.ratings)
+
+      ALLOWED_RATINGS.each do |rating|
+        new_ratings[rating] = (company_ratings[rating].to_f + ratings[rating].to_f) / 2 if ratings[rating].to_f > 0
+      end
+
+      total_rating = (new_ratings.values.sum / new_ratings.values.count).round(1)
+
+      update(id, ratings: new_ratings, rating_total: total_rating)
+    end
+  end
+
+private
+
+  ALLOWED_RATINGS = %i[
+    salary_value
+    office
+    working_time
+    project_interest
+    atmosphere
+    personal_growth
+    modern_technologies
+    management_level
+    team_level
+  ]
 end
