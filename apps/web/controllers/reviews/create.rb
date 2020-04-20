@@ -8,11 +8,13 @@ module Web
         include Dry::Monads::Result::Mixin
         include Import[
           :rollbar, :logger,
-          operation: 'reviews.operations.create'
+          operation: 'reviews.operations.create',
+          mapper: 'web.mappers.review_form'
         ]
 
         def call(params) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-          result = operation.call(company_id: params[:company_id], review: params[:review])
+          payload = mapper.call(params[:company_id], current_account.id, params[:review])
+          result = operation.call(payload)
 
           case result
           when Success

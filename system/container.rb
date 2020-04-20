@@ -42,6 +42,10 @@ class Container < Dry::System::Container
       Web::Views::RssFeed::Generator.new
     end
 
+    register 'mappers.review_form' do
+      Web::Mappers::ReviewForm.new
+    end
+
     register 'mappers.search_options' do
       Web::Mappers::SearchOptions.new
     end
