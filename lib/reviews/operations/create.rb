@@ -37,7 +37,7 @@ module Reviews
 
         review = yield persist_review(payload)
 
-        # send_notification(vacancy)
+        send_notification(review)
 
         Success(review)
       end
@@ -48,6 +48,11 @@ module Reviews
         Try(Hanami::Model::UniqueConstraintViolationError, Hanami::Model::NotNullConstraintViolationError) do
           review_repo.create_with_rating!(payload)
         end.to_result
+      end
+
+      def send_notification(review)
+        message = "New review for company!\n\nhttps://rubyjobs.dev/companies/#{review.company_id}"
+        Try { telegram_sender.call('@rubyjobs_dev_moderation', message) }
       end
     end
   end
