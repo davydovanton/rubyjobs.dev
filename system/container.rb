@@ -33,6 +33,9 @@ class Container < Dry::System::Container
   # Companies
   register_folder! 'companies/operations'
 
+  # Reviews
+  register_folder! 'reviews/operations'
+
   #  Web
   namespace 'web' do
     register 'vacancies.generators.rss' do
