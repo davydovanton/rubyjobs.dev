@@ -5,6 +5,13 @@ GIT
     dry-system-hanami (0.1.0)
 
 GIT
+  remote: https://github.com/davydovanton/hanami-operation-generator.git
+  revision: 24033429b69703f6dda4e1cedafe834747c46628
+  specs:
+    hanami-operation-generator (0.1.0)
+      dry-cli
+
+GIT
   remote: https://github.com/davydovanton/hanami-pagination.git
   revision: 02acc43584dc0e7ece750a4a03c61ea91741cbac
   specs:
@@ -19,6 +26,24 @@ GIT
   specs:
     relative_time (1.1.0)
       i18n
+
+GIT
+  remote: https://github.com/davydovanton/web_bouncer.git
+  revision: 886a5054cb4ddb845c9459424f0d8cb5e082a826
+  specs:
+    web_bouncer (0.1.0)
+      dry-container
+      dry-matcher
+      dry-monads (~> 1.1.0)
+      roda
+
+GIT
+  remote: https://github.com/intridea/omniauth-github.git
+  revision: d001ed274276bf50e1e756bf38bce75509aa25ec
+  specs:
+    omniauth-github (1.4.0)
+      omniauth (~> 1.5)
+      omniauth-oauth2 (>= 1.4.0, < 2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -71,6 +96,8 @@ GEM
     dotenv (2.7.5)
     dry-auto_inject (0.7.0)
       dry-container (>= 0.3.4)
+    dry-cli (0.6.0)
+      concurrent-ruby (~> 1.0)
     dry-configurable (0.11.5)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.4, >= 0.4.7)
@@ -87,6 +114,8 @@ GEM
       dry-container (~> 0.2, >= 0.2.6)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
+    dry-matcher (0.8.3)
+      dry-core (>= 0.4.8)
     dry-monads (1.1.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.4, >= 0.4.4)
@@ -191,6 +220,7 @@ GEM
     hanami-webconsole (0.1.0)
       better_errors (~> 2.4)
       binding_of_caller (~> 0.8)
+    hashie (4.1.0)
     hiredis (0.6.3)
     http_router (0.11.2)
       rack (>= 1.0.0)
@@ -203,6 +233,7 @@ GEM
     jquery-hanami (0.1.0)
       hanami-assets
     json (2.3.0)
+    jwt (2.2.1)
     kramdown (1.13.1)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
@@ -217,6 +248,8 @@ GEM
       equalizer (~> 0.0.9)
       ice_nine (~> 0.11.1)
       procto (~> 0.0.2)
+    multi_json (1.14.1)
+    multi_xml (0.6.0)
     multipart-post (2.1.1)
     mutant (0.9.5)
       abstract_type (~> 0.0.7)
@@ -237,6 +270,18 @@ GEM
       rspec-core (>= 3.8.0, < 4.0.0)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
+    oauth2 (1.4.4)
+      faraday (>= 0.8, < 2.0)
+      jwt (>= 1.0, < 3.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 3)
+    omniauth (1.9.1)
+      hashie (>= 3.4.6)
+      rack (>= 1.6.2, < 3)
+    omniauth-oauth2 (1.6.0)
+      oauth2 (~> 1.1)
+      omniauth (~> 1.9)
     parallel (1.19.1)
     parser (2.7.0.5)
       ast (~> 2.4.0)
@@ -259,6 +304,8 @@ GEM
     regexp_parser (1.7.0)
     rexml (3.2.4)
     rinku (2.0.6)
+    roda (3.31.0)
+      rack
     rollbar (2.24.0)
     rom (3.3.3)
       concurrent-ruby (~> 1.0)
@@ -395,12 +442,15 @@ DEPENDENCIES
   hanami-bootstrap
   hanami-fabrication
   hanami-model (~> 1.3)
+  hanami-operation-generator!
   hanami-pagination!
   hanami-webconsole
   hiredis
   jquery-hanami
   kramdown (= 1.13.1)
   mutant-rspec
+  omniauth
+  omniauth-github!
   pg
   puma (~> 3.12.4)
   rake
@@ -424,6 +474,7 @@ DEPENDENCIES
   slim
   telegram-bot-ruby
   warning
+  web_bouncer!
   xml-sitemap
 
 RUBY VERSION

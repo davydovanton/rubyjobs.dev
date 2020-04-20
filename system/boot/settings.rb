@@ -23,5 +23,8 @@ Container.boot(:settings, from: :system) do
     key :moderation_password, Types::String.constrained(filled: true)
 
     key :telegram_bot_token, Types::Coercible::String.default('')
+
+    key :github_key, Types::String.constrained(filled: true)
+    key :github_secret, Types::String.constrained(filled: true)
   end
 end

@@ -30,10 +30,16 @@ gem 'rouge', '1.11.1'
 gem 'sass'
 gem 'sassc'
 
+# Frontend
 gem 'hanami-bootstrap'
 gem 'jquery-hanami'
 gem 'relative_time', github: 'davydovanton/relative_time', branch: 'master'
 gem 'slim'
+
+# auth
+gem 'omniauth'
+gem 'omniauth-github', github: 'intridea/omniauth-github'
+gem 'web_bouncer',     github: 'davydovanton/web_bouncer'
 
 # pagination
 gem 'hanami-pagination', github: 'davydovanton/hanami-pagination'
@@ -91,6 +97,6 @@ group :production do
   # gem 'puma'
 end
 
-# group :plugins do
-#   gem 'hanami-operation-generator', gitpath: '/Users/anton/work/repositories/lotus/hanami-operation-generator'
-# end
+group :plugins do
+  gem 'hanami-operation-generator', github: 'davydovanton/hanami-operation-generator'
+end
