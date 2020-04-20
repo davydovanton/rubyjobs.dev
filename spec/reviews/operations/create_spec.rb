@@ -2,10 +2,11 @@
 
 RSpec.describe Reviews::Operations::Create, type: :operation do
   let(:operation) do
-    described_class.new(review_repo: review_repo)
+    described_class.new(review_repo: review_repo, company_repo: company_repo)
   end
 
   let(:review_repo) { instance_double('ReviewRepository', create_with_rating!: Review.new) }
+  let(:company_repo) { instance_double('CompanyRepository', update_statistic: Company.new) }
 
   subject { operation.call(params) }
 
@@ -35,6 +36,27 @@ RSpec.describe Reviews::Operations::Create, type: :operation do
   context 'when data is valid' do
     it { expect(subject).to be_success }
     it { expect(subject.value!).to be_a(Review) }
+
+    it 'calls company statistic updater' do
+      expect(company_repo).to receive(:update_statistic).with(
+        10,
+        {
+          author_id: 0,
+
+          salary_value: 3.0,
+          office: 3.0,
+          working_time: 3.0,
+          project_interest: 3.0,
+          atmosphere: 3.0,
+          personal_growth: 3.0,
+          modern_technologies: 3.0,
+          management_level: 3.0,
+          team_level: 3.0
+        }
+      )
+
+      subject
+    end
   end
 
   context 'when review data is invalid' do

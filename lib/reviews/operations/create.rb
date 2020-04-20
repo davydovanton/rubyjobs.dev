@@ -6,7 +6,8 @@ module Reviews
       include Import[
         'libs.markdown_parser',
         'libs.telegram_sender',
-        review_repo: 'repositories.review'
+        review_repo: 'repositories.review',
+        company_repo: 'repositories.company'
       ]
 
       REVIEW_VALIDATOR = Dry::Validation.JSON do
@@ -37,6 +38,8 @@ module Reviews
 
         review = yield persist_review(payload)
 
+        # TODO: move this line with company repo to separate worker
+        company_repo.update_statistic(payload[:company_id], payload[:rating])
         send_notification(review)
 
         Success(review)
