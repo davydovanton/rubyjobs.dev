@@ -11,7 +11,7 @@ class ReviewRepository < Hanami::Repository
   end
 
   def all_for_companies(company_id)
-    aggregate(:author).where(company_id: company_id).map_to(Review).to_a
+    aggregate(:author).where(company_id: company_id).map_to(Review).order { created_at.desc }.to_a
   end
 
   def create_with_rating!(payload)
