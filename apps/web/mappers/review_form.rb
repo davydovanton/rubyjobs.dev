@@ -31,8 +31,8 @@ module Web
 
       def to_bool(value)
         case value
-        when 'true'  then true
-        when 'false' then false
+        when 'true', '1', 1  then true
+        when 'false', '0', 0 then false
         else
           false
         end

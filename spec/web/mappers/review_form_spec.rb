@@ -53,7 +53,11 @@ RSpec.describe Web::Mappers::ReviewForm, type: :mapper do
     [
       ['true', true],
       ['false', false],
-      [nil, false]
+      [nil, false],
+      ['1', true],
+      ['0', false],
+      [1, true],
+      [0, false]
     ].each do |raw_value, expectation|
       it do
         params = { anonymous: raw_value, rating: {} }
