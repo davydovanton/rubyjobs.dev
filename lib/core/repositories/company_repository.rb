@@ -25,6 +25,8 @@ class CompanyRepository < Hanami::Repository
       company_ratings = Hanami::Utils::Hash.symbolize(company.ratings)
 
       ALLOWED_RATINGS.each do |rating|
+        new_ratings[rating] = company_ratings[rating].to_f if ratings[rating].to_f.zero?
+
         next unless ratings[rating].to_f.positive?
 
         new_ratings[rating] = if company_ratings[rating].to_f.zero?

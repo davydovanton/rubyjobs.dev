@@ -78,7 +78,7 @@ RSpec.describe CompanyRepository, type: :repository do
     let(:new_ratings) do
       {
         salary_value: 5.0,
-        office: 1.0,
+        office: 0.0,
         working_time: 2.0,
         project_interest: 4.0,
         atmosphere: 3.0,
@@ -95,7 +95,7 @@ RSpec.describe CompanyRepository, type: :repository do
 
       expect(updated_company.ratings.to_h).to eq({
                                                    'salary_value' => 4.0,
-                                                   'office' => 2.0,
+                                                   'office' => 3.0,
                                                    'working_time' => 2.5,
                                                    'project_interest' => 3.5,
                                                    'atmosphere' => 3.0,
@@ -105,7 +105,7 @@ RSpec.describe CompanyRepository, type: :repository do
                                                    'team_level' => 2.0
                                                  })
 
-      expect(updated_company.rating_total).to eq(2.8)
+      expect(updated_company.rating_total).to eq(2.9)
     end
 
     context 'when company has zero ratings' do
