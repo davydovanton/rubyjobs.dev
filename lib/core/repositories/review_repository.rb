@@ -4,10 +4,14 @@ class ReviewRepository < Hanami::Repository
   relations :ratings
 
   associations do
-    belongs_to :company
     has_one :rating
 
-    has_one :account, as: :author
+    belongs_to :account, as: :author
+    belongs_to :company
+  end
+
+  def all_for_companies(company_id)
+    aggregate(:author).where(company_id: company_id).map_to(Review).to_a
   end
 
   def create_with_rating!(payload)

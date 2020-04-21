@@ -3,6 +3,36 @@
 RSpec.describe ReviewRepository, type: :repository do
   let(:repo) { described_class.new }
 
+  describe '#all_for_companies' do
+    subject { repo.all_for_companies(company_id) }
+
+    context 'when company exists' do
+      let(:company_id) { Fabricate(:company).id }
+
+      context 'and company has reviews' do
+        before do
+          Fabricate(:review, company_id: company_id)
+        end
+
+        it 'returns list of reviews with author information' do
+          expect(subject.size).to eq(1)
+          expect(subject.first).to be_a(Review)
+          expect(subject.first.author).to be_a(Account)
+        end
+      end
+
+      context 'and company does not have reviews' do
+        it { expect(subject).to eq([]) }
+      end
+    end
+
+    context 'when company does not exist' do
+      let(:company_id) { 0 }
+
+      it { expect(subject).to eq([]) }
+    end
+  end
+
   describe '#create_with_rating!' do
     subject { repo.create_with_rating!(**review_payload, rating: rating_payload) }
 
