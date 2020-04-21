@@ -22,7 +22,7 @@ module Auth
         {
           github: data['info']['nickname'],
           email: data['info']['email'] || default_email,
-          name: data['info']['name'],
+          name: data['info']['name'] || data['info']['nickname'],
           avatar_url: data['info']['image']
         }
       end
