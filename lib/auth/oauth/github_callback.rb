@@ -14,6 +14,8 @@ module Auth
 
       private
 
+      DEFAUTL_EMAL = 'anonymous@rubyjobs.dev'
+
       def account_repo
         @account_repo ||= AccountRepository.new
       end
@@ -21,7 +23,7 @@ module Auth
       def account_data(data)
         {
           github: data['info']['nickname'],
-          email: data['info']['email'],
+          email: data['info']['email'] || DEFAUTL_EMAL,
           name: data['info']['name'],
           avatar_url: data['info']['image']
         }
