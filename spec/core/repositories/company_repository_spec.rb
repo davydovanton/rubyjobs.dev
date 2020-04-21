@@ -107,5 +107,42 @@ RSpec.describe CompanyRepository, type: :repository do
 
       expect(updated_company.rating_total).to eq(2.8)
     end
+
+    context 'when company has zero ratings' do
+      let(:company) { Fabricate(:company) }
+
+      let(:new_ratings) do
+        {
+          salary_value: 5.0,
+          office: 1.0,
+          working_time: 2.0,
+          project_interest: 4.0,
+          atmosphere: 3.0,
+          personal_growth: 5.0,
+          modern_technologies: 1.0,
+          management_level: 2.0,
+          team_level: 1.0
+        }
+      end
+
+      it 'updates cached ratings values and rating_total value' do
+        repo.update_statistic(company.id, new_ratings)
+        updated_company = repo.find(company.id)
+
+        expect(updated_company.ratings.to_h).to eq({
+                                                     'salary_value' => 5.0,
+                                                     'office' => 1.0,
+                                                     'working_time' => 2.0,
+                                                     'project_interest' => 4.0,
+                                                     'atmosphere' => 3.0,
+                                                     'personal_growth' => 5.0,
+                                                     'modern_technologies' => 1.0,
+                                                     'management_level' => 2.0,
+                                                     'team_level' => 1.0
+                                                   })
+
+        expect(updated_company.rating_total).to eq(2.7)
+      end
+    end
   end
 end

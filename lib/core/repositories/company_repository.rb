@@ -27,7 +27,11 @@ class CompanyRepository < Hanami::Repository
       ALLOWED_RATINGS.each do |rating|
         next unless ratings[rating].to_f.positive?
 
-        new_ratings[rating] = (company_ratings[rating].to_f + ratings[rating].to_f) / 2
+        new_ratings[rating] = if company_ratings[rating].to_f.zero?
+                                ratings[rating].to_f
+                              else
+                                (company_ratings[rating].to_f + ratings[rating].to_f) / 2
+                              end
       end
 
       total_rating = (new_ratings.values.sum / new_ratings.values.count).round(1)
