@@ -8,10 +8,11 @@ module Web
         include Dry::Monads::Result::Mixin
 
         include Import[
-          operation: 'companies.operations.show'
+          operation: 'companies.operations.show',
+          review_operation: 'reviews.operations.list'
         ]
 
-        expose :company
+        expose :company, :reviews
 
         def call(params)
           result = operation.call(id: params[:id])
@@ -19,6 +20,7 @@ module Web
           case result
           when Success
             @company = result.value!
+            @reviews = review_operation.call(company_id: @company.id).value_or([])
           when Failure
             redirect_to routes.companies_path
           end
