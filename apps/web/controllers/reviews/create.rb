@@ -29,6 +29,12 @@ module Web
 
           redirect_to routes.company_path(params[:company_id])
         end
+
+        private
+
+        def verify_csrf_token?
+          false
+        end
       end
     end
   end
