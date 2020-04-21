@@ -47,6 +47,18 @@ module Web
         def company_ratings
           Hanami::Utils::Hash.symbolize(company.ratings)
         end
+
+        def review_author(review)
+          if review.anonymous
+            'Anonymous author'
+          else
+            raw "#{review.author.name} (#{link_to review.author.github, "https://github.com/#{review.author.github}"})"
+          end
+        end
+
+        def published_at(review)
+          RelativeTime.in_words(review.created_at, locale: :ru)
+        end
       end
     end
   end

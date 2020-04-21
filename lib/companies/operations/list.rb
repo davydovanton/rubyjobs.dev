@@ -8,7 +8,7 @@ module Companies
       ]
 
       def call
-        Success(repo.all)
+        Success(repo.all_with_reviews)
       end
     end
   end

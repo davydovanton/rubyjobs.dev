@@ -7,6 +7,10 @@ class CompanyRepository < Hanami::Repository
     has_many :reviews
   end
 
+  def all_with_reviews
+    aggregate(:reviews).map_to(Company).to_a
+  end
+
   def already_exist?(company)
     # TODO: check for not allowed names like 'nda' or ''
     downcase_name = company.name.downcase.tr(' ', '')

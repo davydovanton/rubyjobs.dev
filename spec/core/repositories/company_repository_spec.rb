@@ -3,6 +3,23 @@
 RSpec.describe CompanyRepository, type: :repository do
   let(:repo) { described_class.new }
 
+  describe '#all_with_reviews' do
+    subject { repo.all_with_reviews }
+
+    before do
+      id = Fabricate(:company, name: 'Google').id
+      Fabricate(:review, company_id: id)
+    end
+
+    it 'returns list of companies with reviews' do
+      expect(subject.size).to eq(1)
+      expect(subject.first).to be_a(Company)
+
+      expect(subject.first.reviews.size).to eq(1)
+      expect(subject.first.reviews.first).to be_a(Review)
+    end
+  end
+
   describe '#already_exist?' do
     subject { repo.already_exist?(company) }
 
