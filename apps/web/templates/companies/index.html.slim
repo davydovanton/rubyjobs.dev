@@ -43,7 +43,7 @@ ul.list-group
           = company.url
 
         .col-sm-4
-          = link_to "На основе 0 отзывов", routes.company_path(company.id)
+          = link_to "На основе #{company.reviews.count} отзывов", routes.company_path(company.id)
       /= tag_badges(vacancy.tags)
 
 /.row.mt-3

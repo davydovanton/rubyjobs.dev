@@ -2,8 +2,8 @@
 
 class AccountRepository < Hanami::Repository
   associations do
-    belongs_to :review
-    belongs_to :rating
+    has_many :reviews
+    has_many :ratings
   end
 
   def find_by_github(data)

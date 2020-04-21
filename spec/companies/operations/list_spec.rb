@@ -7,7 +7,7 @@ RSpec.describe Companies::Operations::List, type: :operation do
     described_class.new(repo: company_repo)
   end
 
-  let(:company_repo) { instance_double('CompanyRepository', all: []) }
+  let(:company_repo) { instance_double('CompanyRepository', all_with_reviews: []) }
 
   it { expect(subject).to be_success }
   it { expect(subject.value!).to eq([]) }
