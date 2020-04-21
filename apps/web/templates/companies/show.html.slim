@@ -11,8 +11,15 @@ hr.mb-4.mt-4
 
 .row
   .col.mb-4.vacancy_details
-    | Rating information will be here
-    /= vacancy_details
+    -if company.ratings.any?
+        - default_rating_names.each do |rating, description|
+          .row
+            .col-8
+              = description
+            .col-4
+              = company_ratings[rating]
+    - else
+      | Рейтингов пока нет. Оставте первый рейтинг
 
 .likely.likely-big
   .twitter Твитнуть
@@ -41,5 +48,24 @@ hr.mb-4.mt-4
 
 .row
   .col.mb-4.vacancy_details
-    | Review list will be here
-    /= vacancy_details
+    -if reviews.any?
+      - reviews.each do |review|
+        li.list-group-item
+          .row
+            .col-sm-2
+              img src="#{review.author.avatar_url}" alt="#{review.author.github} avatar" height="42" width="42"
+            .col-sm-6
+              span = review.author.name
+              span 
+                |  (#{link_to review.author.github, "https://github.com/#{review.author.github}"})
+            .col-sm-4
+
+          .row
+            hr.mb-4.mt-4
+
+          .row
+            .col
+              = raw(review.body)
+
+    - else
+      | Отзывов пока нет. Оставте первый отзыв
