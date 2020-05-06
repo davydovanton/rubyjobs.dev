@@ -1,9 +1,11 @@
 .row.mt-4.mb-4.align-items-center
-  .col-sm-8
+  .col-sm-7
     h1 Вакансии для разработчиков Ruby, Hanami и Rails
 
-  .col-sm-4.mb-1
-    = link_to 'Добавить вакансию', routes.new_vacancy_path, class: 'btn btn-primary new-vacancy-btn'
+  .col-sm-5
+    .btn-group role="group" aria-label="Basic example"
+      = link_to 'Отзывы на компании', routes.companies_path, class: 'btn btn-primary new-vacancy-btn'
+      = link_to 'Добавить вакансию', routes.new_vacancy_path, class: 'btn btn-primary new-vacancy-btn'
 
 hr
 
