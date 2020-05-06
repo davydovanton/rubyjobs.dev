@@ -7,6 +7,11 @@
   .col
     = vacancy_information(vacancy, analitics)
 
+- if company
+  .row
+    .col
+      = link_to "Отзывы на компанию #{company.name}", routes.company_path(company.id)
+
 hr.mb-4.mt-4
 
 .row

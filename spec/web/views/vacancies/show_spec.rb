@@ -2,7 +2,13 @@
 
 RSpec.describe Web::Views::Vacancies::Show, type: :view do
   let(:exposures) do
-    { format: :html, vacancy: vacancy_aggregate, analitics: VacancyAnalitic.new, flash: {} }
+    {
+      format: :html,
+      vacancy: vacancy_aggregate,
+      analitics: VacancyAnalitic.new,
+      company: Company.new(id: 1),
+      flash: {}
+    }
   end
   let(:template)  { Hanami::View::Template.new('apps/web/templates/vacancies/show.html.slim') }
   let(:view)      { described_class.new(template, **exposures) }

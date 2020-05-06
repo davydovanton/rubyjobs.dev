@@ -12,9 +12,11 @@ class CompanyRepository < Hanami::Repository
   end
 
   def already_exist?(company)
-    # TODO: check for not allowed names like 'nda' or ''
-    downcase_name = company.name.downcase.tr(' ', '')
-    root.where { string.lower(string.replace(name, ' ', '')).is(downcase_name) }.exist?
+    where_by_downcased_name(company.name).exist?
+  end
+
+  def find_by_name(name)
+    where_by_downcased_name(name).limit(1).map_to(Company).one
   end
 
   def update_statistic(id, ratings) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
@@ -53,4 +55,12 @@ class CompanyRepository < Hanami::Repository
     management_level
     team_level
   ].freeze
+
+private
+
+  def where_by_downcased_name(company_name)
+    # TODO: check for not allowed names like 'nda' or ''
+    downcase_name = company_name.downcase.tr(' ', '')
+    root.where { string.lower(string.replace(name, ' ', '')).is(downcase_name) }
+  end
 end

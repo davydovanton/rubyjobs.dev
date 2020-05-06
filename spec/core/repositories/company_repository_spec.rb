@@ -56,6 +56,42 @@ RSpec.describe CompanyRepository, type: :repository do
     end
   end
 
+  describe '#find_by_name' do
+    subject { repo.find_by_name(company.name) }
+
+    before { Fabricate(:company, name: 'Google') }
+
+    context 'when name contain other case' do
+      let(:company) { Company.new(name: 'googLe') }
+
+      it { expect(subject).to be_a(Company) }
+    end
+
+    context 'when name is absolute same' do
+      let(:company) { Company.new(name: 'Google') }
+
+      it { expect(subject).to be_a(Company) }
+    end
+
+    context 'when name contains space' do
+      let(:company) { Company.new(name: 'g oogle') }
+
+      it { expect(subject).to be_a(Company) }
+    end
+
+    context 'when name contains trim chars' do
+      let(:company) { Company.new(name: ' google ') }
+
+      it { expect(subject).to be_a(Company) }
+    end
+
+    context 'when name is different' do
+      let(:company) { Company.new(name: 'other') }
+
+      it { expect(subject).to be nil }
+    end
+  end
+
   describe '#update_statistic' do
     let(:company) do
       Fabricate(
