@@ -6,10 +6,12 @@ module Web
     class SearchOptions < Dry::Struct
       constructor_type :schema
 
-      attribute :position_type, Core::Types::VacancyPositionTypes.optional.default(nil)
-      attribute :location,      Core::Types::Strict::String.optional.default(nil)
-      attribute :remote,        Core::Types::Strict::Bool.optional.default(nil)
-      attribute :text,          Core::Types::Strict::String.optional.default(nil)
+      attribute :position_type,   Core::Types::VacancyPositionTypes.optional.default(nil)
+      attribute :location,        Core::Types::Strict::String.optional.default(nil)
+      attribute :remote,          Core::Types::Strict::Bool.optional.default(nil)
+      attribute :text,            Core::Types::Strict::String.optional.default(nil)
+      attribute :salary,          Core::Types::Strict::Int.optional.default(nil)
+      attribute :salary_currency, Core::Types::VacancySalaryCurrencyTypes.optional.default(nil)
     end
   end
 end

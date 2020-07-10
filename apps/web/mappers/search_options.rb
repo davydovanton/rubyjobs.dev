@@ -7,6 +7,8 @@ module Web
         {
           position_type: params[:position_type],
           location: params[:location],
+          salary_currency: params[:salary_currency],
+          salary: to_int(params[:salary]),
           remote: to_bool(params[:remote]),
           text: params[:text]
         }
@@ -19,6 +21,10 @@ module Web
         when 'true'  then true
         when 'false' then false
         end
+      end
+
+      def to_int(value)
+        value&.to_i
       end
     end
   end
