@@ -1,3 +1,4 @@
+.rakeTasks
 /public/assets*
 /tmp
 /coverage
@@ -5,7 +6,6 @@
 .ruby-version
 .env.dev
 .env.development
-.rakeTasks
 
 .direnv/
 .envrc
