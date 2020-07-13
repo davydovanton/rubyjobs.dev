@@ -26,7 +26,7 @@ module Vacancies
         position_type: ->(query, filter_value) { query.where(position_type: filter_value) },
         location: ->(query, filter_value) { query.where { location.ilike("%#{filter_value}%") } },
         salary_currency: ->(query, filter_value) { query.where(salary_currency: filter_value) },
-        salary: ->(query, salary) {query.where { (salary_min <= salary) & (salary_max >= salary) } },
+        salary: ->(query, salary) { query.where { (salary_min <= salary) & (salary_max >= salary) } },
         text: lambda do |query, filter_value|
           query.where { position.ilike("%#{filter_value}%") | details_raw.ilike("%#{filter_value}%") }
         end

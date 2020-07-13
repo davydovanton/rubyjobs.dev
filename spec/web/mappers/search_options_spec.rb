@@ -13,8 +13,8 @@ RSpec.describe Web::Mappers::SearchOptions, type: :mapper do
     it { expect(subject[:remote]).to eq true }
     it { expect(subject[:position_type]).to eq 'part_time' }
     it { expect(subject[:location]).to eq nil }
-    it { expect(subject[:salary]).to eq nil}
-    it { expect(subject[:salary_currency]).to eq nil}
+    it { expect(subject[:salary]).to eq nil }
+    it { expect(subject[:salary_currency]).to eq nil }
   end
 
   context 'when remote is string equaled "false"' do
@@ -23,8 +23,8 @@ RSpec.describe Web::Mappers::SearchOptions, type: :mapper do
     it { expect(subject[:remote]).to eq false }
     it { expect(subject[:position_type]).to eq nil }
     it { expect(subject[:location]).to eq 'New Vasyuki' }
-    it { expect(subject[:salary]).to eq nil}
-    it { expect(subject[:salary_currency]).to eq nil}
+    it { expect(subject[:salary]).to eq nil }
+    it { expect(subject[:salary_currency]).to eq nil }
   end
 
   context 'when salary is string equaled "545"' do

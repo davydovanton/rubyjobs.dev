@@ -5,6 +5,7 @@
 .ruby-version
 .env.dev
 .env.development
+.rakeTasks
 
 .direnv/
 .envrc
