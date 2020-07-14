@@ -11,4 +11,6 @@ RSpec.describe Libs::SearchQueryParser do
   it { expect(parser.call('author:davy lang:ruby text')).to eq(author: 'davy', lang: 'ruby', text: 'text') }
   it { expect(parser.call(' author:davy lang:ruby text')).to eq(author: 'davy', lang: 'ruby', text: 'text') }
   it { expect(parser.call('remote:true location:moscow text')).to eq(text: 'text', remote: 'true', location: 'moscow') }
+  it { expect(parser.call('salary_currency:usd location:Sochi text')).to eq(text: 'text', location: 'Sochi', salary_currency: 'usd') }
+  it { expect(parser.call('salary:100 text')).to eq(text: 'text', salary: '100') }
 end

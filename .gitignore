@@ -1,3 +1,4 @@
+.rakeTasks
 /public/assets*
 /tmp
 /coverage
