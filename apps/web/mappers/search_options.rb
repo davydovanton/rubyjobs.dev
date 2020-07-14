@@ -5,7 +5,7 @@ module Web
     class SearchOptions
       def call(params)
         {
-          position_type: params[:position_type],
+          position_type: check_position_type(params[:position_type]),
           location: params[:location],
           salary: to_int(params[:salary]),
           salary_currency: check_currency(params[:salary_currency], params[:salary]),
@@ -16,10 +16,14 @@ module Web
 
       private
 
+      def check_position_type(value)
+        value if Core::Types::VacancyPositionTypes.values.include?(value)
+      end
+
       def check_currency(value, salary)
         if value.nil? && !salary.nil?
           'rub'
-        else
+        elsif Core::Types::VacancySalaryCurrencyTypes.values.include?(value)
           value
         end
       end
