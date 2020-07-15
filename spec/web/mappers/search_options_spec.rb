@@ -47,6 +47,16 @@ RSpec.describe Web::Mappers::SearchOptions, type: :mapper do
     it { expect(subject[:salary_currency]).to eq 'usd' }
   end
 
+  context 'when salary_currency and position_type are strings equaled bad value' do
+    let(:search_options_hash) { { remote: nil, position_type: 'test_position', location: nil, salary: nil, salary_currency: 'test_cur' } }
+
+    it { expect(subject[:remote]).to eq nil }
+    it { expect(subject[:position_type]).to eq nil }
+    it { expect(subject[:location]).to eq nil }
+    it { expect(subject[:salary]).to eq nil }
+    it { expect(subject[:salary_currency]).to eq nil }
+  end
+
   context 'when option is invalid' do
     let(:search_options_hash) { { invalid: 'option' } }
 
