@@ -2,25 +2,24 @@
 
 module Web
   module Controllers
-    module Companies
-      class Show
+    module Interviews
+      class New
         include Web::Action
         include Dry::Monads::Result::Mixin
 
         include Import[
-          operation: 'companies.operations.show',
-          review_operation: 'reviews.operations.list',
-        ]
+                    operation: 'companies.operations.show'
+                ]
 
-        expose :company, :reviews
+        before :authenticate! # run an authentication before callback
+
+        expose :company
 
         def call(params)
-          result = operation.call(id: params[:id])
-
+          result = operation.call(id: params[:company_id])
           case result
           when Success
             @company = result.value!
-            @reviews = review_operation.call(company_id: @company.id).value_or([])
           when Failure
             redirect_to routes.companies_path
           end
@@ -29,3 +28,4 @@ module Web
     end
   end
 end
+
