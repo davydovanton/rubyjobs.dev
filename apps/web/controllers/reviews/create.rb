@@ -7,10 +7,10 @@ module Web
         include Web::Action
         include Dry::Monads::Result::Mixin
         include Import[
-                    :rollbar, :logger,
-                    operation: 'reviews.operations.create',
-                    mapper: 'web.mappers.review_form'
-                ]
+          :rollbar, :logger,
+          operation: 'reviews.operations.create',
+          mapper: 'web.mappers.review_form'
+        ]
 
         before :authenticate! # run an authentication before callback
 

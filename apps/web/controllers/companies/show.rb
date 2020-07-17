@@ -9,7 +9,7 @@ module Web
 
         include Import[
           operation: 'companies.operations.show',
-          review_operation: 'reviews.operations.list',
+          review_operation: 'reviews.operations.list'
         ]
 
         expose :company, :reviews

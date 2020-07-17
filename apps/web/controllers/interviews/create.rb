@@ -7,15 +7,19 @@ module Web
         include Web::Action
         include Dry::Monads::Result::Mixin
         include Import[
-                    :rollbar, :logger,
-                    operation: 'interviews.operations.create',
-                    mapper: 'web.mappers.interview_form'
-                ]
+          :rollbar, :logger,
+          operation: 'interviews.operations.create',
+          mapper: 'web.mappers.interview_form'
+        ]
 
         before :authenticate! # run an authentication before callback
 
         def call(params) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-          payload = mapper.call(params[:company_id], current_account.id, params[:interview])
+          payload = mapper.call({
+            company_id: params[:company_id],
+            account_id: current_account.id,
+            interview: params[:interview]
+          })
           result = operation.call(payload)
 
           case result
@@ -26,7 +30,6 @@ module Web
             logger.error("fail on interview create, params: #{params.to_h}, result: #{result.failure}")
             rollbar.error(result.failure, payload: params.to_h)
           end
-
           redirect_to routes.company_path(params[:company_id])
         end
 

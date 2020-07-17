@@ -7,9 +7,7 @@ module Web
         include Web::Action
         include Dry::Monads::Result::Mixin
 
-        include Import[
-                    operation: 'companies.operations.show'
-                ]
+        include Import[operation: 'companies.operations.show']
 
         before :authenticate! # run an authentication before callback
 

@@ -3,19 +3,19 @@
 module Web
   module Mappers
     class InterviewForm
-      def call(company_id, account_id, params) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+      def call(params) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
         {
-          author_id: account_id,
-          company_id: company_id.to_i,
+          author_id: params[:account_id],
+          company_id: params[:company_id].to_i,
 
-          body_raw: params[:body_raw],
-          anonymous: to_bool(params[:anonymous]),
+          body_raw: params[:interview][:body_raw],
+          anonymous: to_bool(params[:interview][:anonymous]),
 
           interview_rating: {
-            author_id: account_id,
+            author_id: params[:account_id],
 
-            overall_impression: params[:interview_rating][:overall_impression].to_f,
-            recommendation: params[:interview_rating][:recommendation].to_f
+            overall_impression: params[:interview][:interview_rating][:overall_impression].to_f,
+            recommendation: params[:interview][:interview_rating][:recommendation].to_f
           }
         }
       end
