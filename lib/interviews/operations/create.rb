@@ -4,11 +4,11 @@ module Interviews
   module Operations
     class Create < ::Libs::Operation
       include Import[
-                  'libs.markdown_parser',
-                  'libs.telegram_sender',
-                  interview_repo: 'repositories.interview',
-                  company_repo: 'repositories.company'
-              ]
+        'libs.markdown_parser',
+        'libs.telegram_sender',
+        interview_repo: 'repositories.interview',
+        company_repo: 'repositories.company'
+      ]
 
       INTERVIEW_VALIDATOR = Dry::Validation.JSON do
         required(:author_id).filled(:int?)

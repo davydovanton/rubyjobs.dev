@@ -11,7 +11,7 @@ class InterviewRepository < Hanami::Repository
   end
 
   def all_for_companies(company_id)
-    aggregate(:author).where(company_id: company_id).map_to(Interview).order { created_at.desc }.to_a
+    aggregate(:author).where(company_id: company_id).order { created_at.desc }.map_to(Interview).to_a
   end
 
   def create_with_interview_rating!(payload)
