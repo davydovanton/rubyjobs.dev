@@ -30,13 +30,15 @@ module Web
               rating_names.each do |rating, desctiption|
                 div(class: 'form-group') do
                   div(class: 'row') do
-                    div(class: 'col-6') do
+                    div(class: 'col-12') do
                       label desctiption
                     end
 
                     div(class: 'col-6') do
                       select rating, select_rating_values, class: 'custom-select form-control', required: true, options: { selected: 3.0 }
                     end
+
+                    div(class: 'check', style: 'visibility: hidden')
                   end
                 end
               end
@@ -91,12 +93,12 @@ module Web
             salary_value: 'Материальная компенсация труда в компании',
             office: 'Офис компании',
             working_time: 'График работы',
-            project_interest: 'Качество проекта, на котором я работаю',
+            project_interest: 'Качество проекта, над которым я работаю',
             atmosphere: 'Рабочая атмосфера, которая царит на проекте',
-            personal_growth: 'Возможность профессионального развития которую предоставляет компания',
-            modern_technologies: 'Инструменты и технологии использумые в проекте',
+            personal_growth: 'Возможность профессионального развития в компании',
+            modern_technologies: 'Инструменты и технологии, использумые в проекте',
             management_level: 'Уровень менеджмента в компании',
-            team_level: 'Уровень команды с которой я работаю'
+            team_level: 'Уровень команды, с которой я работаю'
           }
         end
 

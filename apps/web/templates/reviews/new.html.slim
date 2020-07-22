@@ -44,3 +44,7 @@ javascript:
       }, false);
     })();
   }
+  $('select').change (function () {
+    $(this).css("border","1px solid #71d470");
+    $(this).parent().next().css("visibility", "visible");
+  });
