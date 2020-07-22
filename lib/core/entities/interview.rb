@@ -25,5 +25,3 @@ class Interview < Hanami::Entity
     attribute :updated_at, Types::Time
   end
 end
-
-

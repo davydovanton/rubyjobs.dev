@@ -34,29 +34,29 @@ RSpec.describe InterviewRepository, type: :repository do
   end
 
   describe '#create_with_interview_rating!' do
-    subject { repo.create_with_interview_rating!(**interview_payload, interview_rating: interview_rating_payload) }
+    subject { repo.create_with_interview_rating(**interview_payload, interview_rating: interview_rating_payload) }
 
     let(:account) { Fabricate(:account) }
     let(:company) { Fabricate(:company) }
 
     let(:interview_payload) do
       {
-          author_id: account.id,
-          company_id: company.id,
+        author_id: account.id,
+        company_id: company.id,
 
-          body_raw: 'test text here',
-          body: 'test text here',
+        body_raw: 'test text here',
+        body: 'test text here',
 
-          anonymous: true
+        anonymous: true
       }
     end
 
     let(:interview_rating_payload) do
       {
-          author_id: account.id,
+        author_id: account.id,
 
-          overall_impression: 3.0,
-          recommendation: 3.0,
+        overall_impression: 3.0,
+        recommendation: 3.0
       }
     end
 

@@ -7,15 +7,17 @@ RSpec.describe Interviews::Operations::List, type: :operation do
     described_class.new(interview_repo: interview_repo)
   end
 
+  let(:interview_repo) { instance_double('InterviewRepository', all_for_companies: interviews) }
+
   context 'when company has interviews' do
-    let(:interview_repo) { instance_double('InterviewRepository', all_for_companies: [Interview.new]) }
+    let(:interviews) { [Interview.new] }
 
     it { expect(subject).to be_success }
     it { expect(subject.value!).to eq([Interview.new]) }
   end
 
   context 'when company does not have interview' do
-    let(:interview_repo) { instance_double('InterviewRepository', all_for_companies: []) }
+    let(:interviews) { [] }
 
     it { expect(subject).to be_success }
     it { expect(subject.value!).to eq([]) }

@@ -7,7 +7,10 @@ module Web
         include Web::Action
         include Dry::Monads::Result::Mixin
 
-        include Import[operation: 'companies.operations.show']
+        include Import[
+          :rollbar, :logger,
+          operation: 'companies.operations.show'
+        ]
 
         before :authenticate! # run an authentication before callback
 
@@ -19,6 +22,8 @@ module Web
           when Success
             @company = result.value!
           when Failure
+            logger.error("fail on interview new, params: #{params.to_h}, result: #{result.failure}")
+            rollbar.error(result.failure, payload: params.to_h)
             redirect_to routes.companies_path
           end
         end
@@ -26,4 +31,3 @@ module Web
     end
   end
 end
-

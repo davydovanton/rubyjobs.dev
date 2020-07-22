@@ -7,7 +7,7 @@ RSpec.describe Interviews::Operations::Create, type: :operation do
     described_class.new(interview_repo: interview_repo, company_repo: company_repo)
   end
 
-  let(:interview_repo) { instance_double('InterviewRepository', create_with_interview_rating!: Interview.new) }
+  let(:interview_repo) { instance_double('InterviewRepository', create_with_interview_rating: Interview.new) }
   let(:company_repo) { instance_double('CompanyRepository') }
 
   let(:params) do
@@ -24,6 +24,11 @@ RSpec.describe Interviews::Operations::Create, type: :operation do
         recommendation: 3.0
       }
     }
+  end
+
+  context 'when successful operation' do
+    it { expect(subject).to be_success }
+    it { expect(subject.value!).to be_a(Interview) }
   end
 
   context 'when interview data is invalid' do
@@ -50,9 +55,9 @@ RSpec.describe Interviews::Operations::Create, type: :operation do
 
   context 'with real dependencies' do
     let(:operation) { described_class.new }
+    let(:account_id) { Fabricate(:account).id }
 
     let(:params) do
-      account_id = Fabricate(:account).id
       {
         author_id: account_id,
         company_id: Fabricate(:company).id,

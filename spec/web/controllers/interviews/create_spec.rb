@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Web::Controllers::Interviews::Create, type: :action do
   subject { action.call(params) }
 
@@ -63,6 +65,6 @@ RSpec.describe Web::Controllers::Interviews::Create, type: :action do
   context 'when not authorised' do
     let(:session) { {} }
 
-    it { expect(subject).to redirect_to '/'}
+    it { expect(subject).to redirect_to '/' }
   end
 end

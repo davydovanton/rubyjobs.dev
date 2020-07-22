@@ -16,10 +16,10 @@ module Web
 
         def call(params) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
           payload = mapper.call({
-            company_id: params[:company_id],
-            account_id: current_account.id,
-            interview: params[:interview]
-          })
+                                  company_id: params[:company_id],
+                                  account_id: current_account.id,
+                                  interview: params[:interview]
+                                })
           result = operation.call(payload)
 
           case result
@@ -30,10 +30,12 @@ module Web
             logger.error("fail on interview create, params: #{params.to_h}, result: #{result.failure}")
             rollbar.error(result.failure, payload: params.to_h)
           end
+
           redirect_to routes.company_path(params[:company_id])
         end
 
         private
+
         def verify_csrf_token?
           false
         end

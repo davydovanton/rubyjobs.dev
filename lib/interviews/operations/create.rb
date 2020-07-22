@@ -41,7 +41,7 @@ module Interviews
 
       def persist_interview(payload)
         Try(Hanami::Model::UniqueConstraintViolationError, Hanami::Model::NotNullConstraintViolationError) do
-          interview_repo.create_with_interview_rating!(payload)
+          interview_repo.create_with_interview_rating(payload)
         end.to_result
       end
 

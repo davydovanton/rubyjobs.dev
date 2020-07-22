@@ -61,7 +61,7 @@ class CompanyRepository < Hanami::Repository
     team_level
   ].freeze
 
-private
+  private
 
   def where_by_downcased_name(company_name)
     # TODO: check for not allowed names like 'nda' or ''

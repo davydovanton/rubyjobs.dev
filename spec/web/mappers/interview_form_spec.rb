@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Web::Mappers::InterviewForm, type: :mapper do
-  subject { described_class.new.call({company_id: 10, account_id: 0, interview: params}) }
+  subject { described_class.new.call({ company_id: 10, account_id: 0, interview: params }) }
 
   let(:search_options_hash) { {} }
 
@@ -30,27 +30,27 @@ RSpec.describe Web::Mappers::InterviewForm, type: :mapper do
 
           overall_impression: 3.0,
           recommendation: 3.0
-         }
-      })
+        }
+      }
+    )
   end
 
   context 'context for all anonymous cases' do
     [
-        ['true', true],
-        ['false', false],
-        [nil, false],
-        ['1', true],
-        ['0', false],
-        [1, true],
-        [0, false]
+      ['true', true],
+      ['false', false],
+      [nil, false],
+      ['1', true],
+      ['0', false],
+      [1, true],
+      [0, false]
     ].each do |raw_value, expectation|
       it do
         params = { anonymous: raw_value, interview_rating: {} }
-        result = described_class.new.call({company_id: 10, account_id: 0, interview: params})
+        result = described_class.new.call({ company_id: 10, account_id: 0, interview: params })
 
         expect(result[:anonymous]).to eq(expectation)
       end
     end
   end
 end
-

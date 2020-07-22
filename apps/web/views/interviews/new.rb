@@ -13,10 +13,10 @@ module Web
         # rubocop:disable Layout/LineLength
         def seo_meta_information
           {
-              title: 'Новый отзыв на компанию - Ruby, Hanami и Rails',
-              description: 'Отзывы на компании использующие Ruby по всему миру. Бесплатные условия для работодателей и соискателей.',
-              url: "https://rubyjobs.dev/companies/#{params[:company_id]}/interviews/new",
-              image: ''
+            title: 'Новый отзыв на компанию - Ruby, Hanami и Rails',
+            description: 'Отзывы на компании использующие Ruby по всему миру. Бесплатные условия для работодателей и соискателей.',
+            url: "https://rubyjobs.dev/companies/#{params[:company_id]}/interviews/new",
+            image: ''
           }
         end
         # rubocop:enable Layout/LineLength
@@ -86,21 +86,21 @@ module Web
 
         private
 
-        def interview_rating_names # rubocop:disable Metrics/MethodLength
+        def interview_rating_names
           {
-              overall_impression: 'Общее впечатление',
-              recommendation: 'Рекомендация'
+            overall_impression: 'Общее впечатление',
+            recommendation: 'Рекомендация'
           }
         end
 
         def select_interview_rating_values
           {
-              'Не знаю/Затрудняюсь сказать' => 0.0,
-              'Плохо' => 1.0,
-              'Бывает хуже' => 2.0,
-              'Нормально' => 3.0,
-              'Хорошо' => 4.0,
-              'Отлично' => 5.0
+            'Не знаю/Затрудняюсь сказать' => 0.0,
+            'Плохо' => 1.0,
+            'Бывает хуже' => 2.0,
+            'Нормально' => 3.0,
+            'Хорошо' => 4.0,
+            'Отлично' => 5.0
           }
         end
       end
