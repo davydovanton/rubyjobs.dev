@@ -20,12 +20,6 @@ module Web
           }
         end
         # rubocop:enable Layout/LineLength
-        
-        def show_svg(path)
-          File.open("apps/web/assets/images/#{path}","rb") do |file|
-           raw file.read
-          end
-        end
 
         # rubocop:disable Metrics/AbcSize, Layout/LineLength, Metrics/MethodLength, Metrics/BlockLength
         def form
@@ -37,17 +31,14 @@ module Web
                 div(class: 'form-group') do
                   div(class: 'row') do
                     div(class: 'col-12') do
-                      label desctiption                      
+                      label desctiption
                     end
 
                     div(class: 'col-6') do
                       select rating, select_rating_values, class: 'custom-select form-control', required: true, options: { selected: 3.0 }
                     end
 
-                    div(class: 'col-6', style: 'visibility: hidden') do
-                      show_svg('check2.svg')
-                    end
-                    
+                    div(class: 'check', style: 'visibility: hidden')
                   end
                 end
               end
