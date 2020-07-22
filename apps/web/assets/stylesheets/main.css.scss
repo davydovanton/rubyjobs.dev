@@ -20,6 +20,17 @@ form {
 
 .form-group {
   margin: 1rem 0;
+  
+  .check {
+    background-image: 
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' viewBox = '2 -3 16 16' class = 'bi bi-check2' fill='currentColor' >
+        <path fill-rule='evenodd' d='M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z'/>
+        </svg>"); 
+    background-repeat: no-repeat; 
+    display: inline-block; 
+    min-width: 24px; 
+    min-height: 24px;
+  }
 
   .info {
     text-align: right;
