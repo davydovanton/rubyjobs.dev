@@ -1,0 +1,40 @@
+.row.mt-4
+  .col
+    h1
+      = link_to 'Компании', routes.companies_path
+
+.row.mt-3.mb-3
+  .col
+    | RubyJobs.dev — бесплатная площадка для размещения вакансий, отзывов на компанию и поиска разработчиков на Ruby, Hanami и Rails.
+
+- if current_account.id.nil?
+  br
+
+  .row.mt-3.mb-3
+    .col
+      | Только  #{link_to 'зарегистрированные пользователи', '/auth/github', class: 'link-in-text' } могут оставлять отзывы о компаниях
+
+br
+
+.row
+  .col.mb-4.vacancy_details
+    -if interviews.any?
+      - interviews.each do |interview|
+        li.list-group-item
+          .row
+            /.col-sm-2
+              /img src="#{review.author.avatar_url}" alt="#{review.author.github} avatar" height="42" width="42"
+            .col-sm-6
+              h4 = interview_author(interview)
+              span = published_at(interview)
+
+
+          .row
+            hr.mb-4.mt-4
+
+          .row
+            .col
+              = raw(interview.body)
+
+    - else
+      | Отзывов пока нет. Оставте первый отзыв
