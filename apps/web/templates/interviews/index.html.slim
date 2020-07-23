@@ -2,6 +2,8 @@
   .col
     h1
       = link_to 'Компании', routes.companies_path
+      |  > #{link_to company.name, routes.company_path(company.id)}
+      |  > Список отзывов
 
 .row.mt-3.mb-3
   .col
