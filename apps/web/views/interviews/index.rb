@@ -36,6 +36,17 @@ module Web
         def published_at(interview)
           RelativeTime.in_words(interview.created_at, locale: :ru)
         end
+
+        def company_interview_ratings
+          Hanami::Utils::Hash.symbolize(company.interview_ratings)
+        end
+
+        def company_information(company)
+          # last_rating_time = RelativeTime.in_words(company.created_at, locale: :ru)
+          company_link = link_to company.name, company.url
+
+          raw "Компания #{company_link}, рейтинг #{company.rating_total.rou}"
+        end
       end
     end
   end

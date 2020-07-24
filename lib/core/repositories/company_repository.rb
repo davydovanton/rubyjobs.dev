@@ -30,10 +30,8 @@ class CompanyRepository < Hanami::Repository
 
       new_ratings = {}
       company_ratings = Hanami::Utils::Hash.symbolize(company.ratings)
-
       ALLOWED_RATINGS.each do |rating|
         new_ratings[rating] = company_ratings[rating].to_f if ratings[rating].to_f.zero?
-
         next unless ratings[rating].to_f.positive?
 
         new_ratings[rating] = if company_ratings[rating].to_f.zero?
@@ -42,7 +40,6 @@ class CompanyRepository < Hanami::Repository
                                 (company_ratings[rating].to_f + ratings[rating].to_f) / 2
                               end
       end
-
       total_rating = (new_ratings.values.sum / new_ratings.values.count).round(1)
 
       update(id, ratings: new_ratings, rating_total: total_rating)
@@ -59,6 +56,34 @@ class CompanyRepository < Hanami::Repository
     modern_technologies
     management_level
     team_level
+  ].freeze
+
+  def update_interview_statistic(id, interviews) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    transaction do |_t|
+      company = find(id)
+      new_interviews = {}
+      company_interviews = Hanami::Utils::Hash.symbolize(company.interview_ratings)
+      ALLOWED_INTERVIEW_RATINGS.each do |interview|
+        new_interviews[interview] = company_interviews[interview].to_f if interviews[interview].to_f.zero?
+
+        next unless interviews[interview].to_f.positive?
+
+        new_interviews[interview] = if company_interviews[interview].to_f.zero?
+                                      interviews[interview].to_f
+                                    else
+                                      (company_interviews[interview].to_f + interviews[interview].to_f) / 2
+                                    end
+      end
+
+      total_rating = (new_interviews.values.sum / new_interviews.values.count).round(1)
+
+      update(id, interview_ratings: new_interviews, interview_rating_total: total_rating)
+    end
+  end
+
+  ALLOWED_INTERVIEW_RATINGS = %i[
+    overall_impression
+    recommendation
   ].freeze
 
   private

@@ -3,18 +3,50 @@
     h1
       = link_to 'Компании', routes.companies_path
       |  > #{link_to company.name, routes.company_path(company.id)}
-      |  > Список отзывов
+      |  > Список отзывов об интервью
 
-.row.mt-3.mb-3
+.row
   .col
-    | RubyJobs.dev — бесплатная площадка для размещения вакансий, отзывов на компанию и поиска разработчиков на Ruby, Hanami и Rails.
+    = company_information(company)
+
+hr.mb-4.mt-4
+
+.row
+  .col.mb-4.vacancy_details
+    -if company.ratings.any?
+      - default_rating_names.each do |rating, description|
+        .row
+          .col-8
+            = description
+          .col-4
+            = company_interview_ratings[rating]
+    - else
+      | Рейтингов пока нет. Оставте первый рейтинг
+
+.likely.likely-big
+  .twitter Твитнуть
+  .facebook Поделиться
+  .vkontakte Поделиться
+  .telegram Отправить
+  .whatsapp Вотсапнуть
+
+hr.mb-4.mt-4
 
 - if current_account.id.nil?
-  br
+  .row
+    | Только  #{link_to 'зарегистрированные пользователи', '/auth/github', class: 'link-in-text' } могут оставлять отзывы о компаниях
 
-  .row.mt-3.mb-3
-    .col
-      | Только  #{link_to 'зарегистрированные пользователи', '/auth/github', class: 'link-in-text' } могут оставлять отзывы о компаниях
+.row.mt-4
+  .col
+    = link_to 'К списку компаний', routes.companies_path, class: 'btn btn-outline-secondary btn-lg'
+
+  .col
+    - if current_account.id
+      = link_to 'Оставить отзыв', routes.new_company_interview_path(company.id), class: 'btn btn-success btn-lg new-vacancy-btn'
+    - else
+      = link_to 'Оставить отзыв', '#', class: 'btn btn-success btn-lg new-vacancy-btn disabled'
+
+hr.mb-4.mt-4
 
 br
 
