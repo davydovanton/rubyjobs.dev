@@ -2,9 +2,10 @@
 
 root to: 'vacancies#index'
 
-resources :vacancies, only: %i[new create show]
-resources :companies, only: %i[index show] do
-  resources :reviews, only: %i[new create], controller: 'reviews'
+resources :vacancies,    only: %i[new create show]
+resources :companies,    only: %i[index show] do
+  resources :reviews,    only: %i[new create], controller: 'reviews'
+  resources :interviews, only: %i[new create], controller: 'interviews'
 end
 
 resources :subscribers, only: %i[create]

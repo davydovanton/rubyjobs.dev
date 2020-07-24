@@ -5,10 +5,15 @@ require 'hanami/utils/hash'
 class CompanyRepository < Hanami::Repository
   associations do
     has_many :reviews
+    has_many :interviews
   end
 
   def all_with_reviews
     aggregate(:reviews).map_to(Company).to_a
+  end
+
+  def all_with_interviews
+    aggregate(:interviews).map_to(Company).to_a
   end
 
   def already_exist?(company)

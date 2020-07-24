@@ -41,6 +41,7 @@ hr.mb-4.mt-4
   .col
     - if current_account.id
       = link_to 'Оставить отзыв', routes.new_company_review_path(company.id), class: 'btn btn-success btn-lg new-vacancy-btn'
+      = link_to 'Оставить отзыв', routes.new_company_interview_path(company.id), class: 'btn btn-success btn-lg new-vacancy-btn'
     - else
       = link_to 'Оставить отзыв', '#', class: 'btn btn-success btn-lg new-vacancy-btn disabled'
 

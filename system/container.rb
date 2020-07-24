@@ -36,6 +36,9 @@ class Container < Dry::System::Container
   # Reviews
   register_folder! 'reviews/operations'
 
+  # Interviews
+  register_folder! 'interviews/operations'
+
   #  Web
   namespace 'web' do
     register 'vacancies.generators.rss' do
@@ -48,6 +51,10 @@ class Container < Dry::System::Container
 
     register 'mappers.search_options' do
       Web::Mappers::SearchOptions.new
+    end
+
+    register 'mappers.interview_form' do
+      Web::Mappers::InterviewForm.new
     end
   end
 
