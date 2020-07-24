@@ -38,7 +38,7 @@ ul.list-group
         .col-sm-8
           h4 = link_to company.name, routes.company_path(company.id), title: company.name
         .col-sm-4
-          = "Рейтинг: #{company.rating_total}"
+          = "Рейтинг: #{company.rating_total} | Рейтинг интервью: #{company.interview_rating_total}"
       .row
         .col-sm-8
           = company.url
