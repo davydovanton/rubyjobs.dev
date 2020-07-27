@@ -45,7 +45,7 @@ module Web
           # last_rating_time = RelativeTime.in_words(company.created_at, locale: :ru)
           company_link = link_to company.name, company.url
 
-          raw "Компания #{company_link}, рейтинг #{company.rating_total.rou}"
+          raw "Компания #{company_link}, рейтинг #{company.rating_total.round}"
         end
       end
     end
