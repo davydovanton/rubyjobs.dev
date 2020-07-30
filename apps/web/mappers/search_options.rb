@@ -11,13 +11,13 @@ module Web
           salary_currency: check_currency(params[:salary_currency], params[:salary]),
           remote: to_bool(params[:remote]),
           text: params[:text]
-        }
+        }.delete_if { |_k, v| v.nil?}
       end
 
       private
 
       def check_position_type(value)
-        value if Core::Types::VacancyPositionTypes.values.include?(value)
+        Core::Types::VacancyPositionTypes.values.include?(value) ? value : nil
       end
 
       def check_currency(value, salary)

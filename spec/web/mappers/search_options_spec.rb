@@ -10,56 +10,42 @@ RSpec.describe Web::Mappers::SearchOptions, type: :mapper do
   context 'when remote is string equaled "true"' do
     let(:search_options_hash) { { remote: 'true', position_type: 'part_time' } }
 
-    it { expect(subject[:remote]).to eq true }
-    it { expect(subject[:position_type]).to eq 'part_time' }
-    it { expect(subject[:location]).to eq nil }
-    it { expect(subject[:salary]).to eq nil }
-    it { expect(subject[:salary_currency]).to eq nil }
+    it { expect(subject).to eq({remote: true, position_type: 'part_time'}) }    
   end
 
   context 'when remote is string equaled "false"' do
     let(:search_options_hash) { { remote: 'false', position_type: nil, location: 'New Vasyuki' } }
 
-    it { expect(subject[:remote]).to eq false }
-    it { expect(subject[:position_type]).to eq nil }
-    it { expect(subject[:location]).to eq 'New Vasyuki' }
-    it { expect(subject[:salary]).to eq nil }
-    it { expect(subject[:salary_currency]).to eq nil }
+    it { expect(subject).to eq({remote: false, location: 'New Vasyuki'}) }
   end
 
   context 'when salary is string equaled "545" and salary_currency is missing' do
     let(:search_options_hash) { { remote: nil, position_type: nil, location: nil, salary: '545' } }
 
-    it { expect(subject[:remote]).to eq nil }
-    it { expect(subject[:position_type]).to eq nil }
-    it { expect(subject[:location]).to eq nil }
-    it { expect(subject[:salary]).to eq 545 }
-    it { expect(subject[:salary_currency]).to eq 'rub' }
+    it { expect(subject).to eq({salary: 545, salary_currency: 'rub'}) }
   end
 
   context 'when salary_currency is string equaled "usd"' do
     let(:search_options_hash) { { remote: nil, position_type: nil, location: nil, salary: nil, salary_currency: 'usd' } }
 
-    it { expect(subject[:remote]).to eq nil }
-    it { expect(subject[:position_type]).to eq nil }
-    it { expect(subject[:location]).to eq nil }
-    it { expect(subject[:salary]).to eq nil }
-    it { expect(subject[:salary_currency]).to eq 'usd' }
+    it { expect(subject).to eq({salary_currency: 'usd'}) }
   end
 
   context 'when salary_currency and position_type are strings equaled bad value' do
     let(:search_options_hash) { { remote: nil, position_type: 'test_position', location: nil, salary: nil, salary_currency: 'test_cur' } }
 
-    it { expect(subject[:remote]).to eq nil }
-    it { expect(subject[:position_type]).to eq nil }
-    it { expect(subject[:location]).to eq nil }
-    it { expect(subject[:salary]).to eq nil }
-    it { expect(subject[:salary_currency]).to eq nil }
+    it { expect(subject).to eq({}) }
   end
 
   context 'when option is invalid' do
     let(:search_options_hash) { { invalid: 'option' } }
 
-    it { expect(subject).to eq({ text: nil, remote: nil, position_type: nil, location: nil, salary: nil, salary_currency: nil }) }
+    it { expect(subject).to eq({}) }
+  end
+
+  context 'when position_type is invalid value and remote is valid "true"' do
+    let(:search_options_hash) { { remote: 'true', position_type: 'fuull_time', location: nil, salary: nil, salary_currency: nil } }
+
+    it { expect(subject).to eq({remote: true}) }
   end
 end
