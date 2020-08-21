@@ -233,8 +233,7 @@ GEM
       hanami-assets
     json (2.3.1)
     jwt (2.2.1)
-    kramdown (2.3.0)
-      rexml
+    kramdown (1.13.0)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     memoizable (0.4.2)
@@ -454,7 +453,7 @@ DEPENDENCIES
   hanami-webconsole
   hiredis
   jquery-hanami
-  kramdown (= 2.3.0)
+  kramdown (= 1.13.0)
   mutant-rspec
   omniauth
   omniauth-github!
