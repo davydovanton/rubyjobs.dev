@@ -14,7 +14,7 @@ RSpec.describe Libs::MarkdownParser do
   context 'when text contain code tag' do
     let(:text) { '`title`' }
 
-    it { expect(subject).to eq %(<p><code class="highlighter-rouge">title</code></p>\n) }
+    it { expect(subject).to eq %(<p><code>title</code></p>\n) }
   end
 
   context 'when text contain em tag' do
@@ -56,9 +56,11 @@ RSpec.describe Libs::MarkdownParser do
   context 'when text contain checkbox tag' do
     let(:text) { '- [ ] checkkbox' }
 
+    # rubocop:disable Layout/LineLength
     it 'replaces checkbox by html tag' do
-      expect(subject).to eq %(<ul>\n  <li><input type="checkbox" disabled><label>checkkbox</label></li>\n</ul>\n)
+      expect(subject).to eq %(<ul class="task-list">\n  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />checkkbox</li>\n</ul>\n)
     end
+    # rubocop:enable Layout/LineLength
   end
 
   context 'when text contain checkbox tag' do
@@ -66,7 +68,7 @@ RSpec.describe Libs::MarkdownParser do
 
     # rubocop:disable Layout/LineLength
     it 'replaces checkbox by html tag' do
-      expect(subject).to eq %(<ul>\n  <li><input type="checkbox" checked disabled><label>checkkbox</label></li>\n</ul>\n)
+      expect(subject).to eq %(<ul class="task-list">\n  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />checkkbox</li>\n</ul>\n)
     end
     # rubocop:enable Layout/LineLength
   end

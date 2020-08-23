@@ -235,6 +235,8 @@ GEM
     jwt (2.2.1)
     kramdown (2.3.0)
       rexml
+    kramdown-parser-gfm (1.1.0)
+      kramdown (~> 2.0)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     memoizable (0.4.2)
@@ -455,6 +457,7 @@ DEPENDENCIES
   hiredis
   jquery-hanami
   kramdown (= 2.3.0)
+  kramdown-parser-gfm
   mutant-rspec
   omniauth
   omniauth-github!

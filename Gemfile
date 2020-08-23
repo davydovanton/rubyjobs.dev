@@ -23,6 +23,7 @@ gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami'
 
 # markdown
 gem 'kramdown', '2.3.0'
+gem 'kramdown-parser-gfm'
 gem 'rinku'
 gem 'rouge', '1.11.1'
 
