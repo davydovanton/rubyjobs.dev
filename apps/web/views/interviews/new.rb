@@ -7,13 +7,13 @@ module Web
         include Web::View
 
         def title
-          'Новый отзыв на компанию - Ruby, Hanami и Rails'
+          'Новый отзыв о компании - Ruby, Hanami и Rails'
         end
 
         # rubocop:disable Layout/LineLength
         def seo_meta_information
           {
-            title: 'Новый отзыв на компанию - Ruby, Hanami и Rails',
+            title: 'Новый отзыв о компании - Ruby, Hanami и Rails',
             description: 'Отзывы на компании использующие Ruby по всему миру. Бесплатные условия для работодателей и соискателей.',
             url: "https://rubyjobs.dev/companies/#{params[:company_id]}/interviews/new",
             image: ''
