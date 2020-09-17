@@ -16,7 +16,7 @@ module Web
         def seo_meta_information
           {
             title: "Отзыв о компании #{company.name}. Ruby, Hanami и Rails",
-            description: 'Отзывы на компании использующие Ruby по всему миру. Бесплатные условия для работодателей и соискателей.',
+            description: 'Отзывы о компаниях использующие Ruby по всему миру. Бесплатные условия для работодателей и соискателей.',
             url: 'https://rubyjobs.dev/companies',
             image: ''
           }
