@@ -32,7 +32,7 @@ RSpec.describe Web::Controllers::Interviews::Create, type: :action do
     let(:operation) { ->(*) { Success(Vacancy.new(id: 123)) } }
     let(:success_flash) { 'Отзыв успешно создан.' }
 
-    it { expect(subject).to redirect_to '/companies/1' }
+    it { expect(subject).to redirect_to '/companies/1/interviews' }
 
     it 'shows flash message' do
       subject
@@ -44,7 +44,7 @@ RSpec.describe Web::Controllers::Interviews::Create, type: :action do
     let(:operation) { ->(*) { Failure(:error) } }
     let(:flash_message) { 'Произошла ошибка, пожалуйста повторите позже' }
 
-    it { expect(subject).to redirect_to '/companies/1' }
+    it { expect(subject).to redirect_to '/companies/1/interviews' }
 
     it 'shows flash message' do
       subject
@@ -59,7 +59,7 @@ RSpec.describe Web::Controllers::Interviews::Create, type: :action do
     let(:company_id) { Fabricate(:company).id }
     let(:action) { described_class.new }
 
-    it { expect(subject).to redirect_to "/companies/#{company_id}" }
+    it { expect(subject).to redirect_to "/companies/#{company_id}/interviews" }
   end
 
   context 'when not authorised' do

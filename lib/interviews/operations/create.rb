@@ -32,6 +32,7 @@ module Interviews
         interview = yield persist_interview(payload)
 
         # TODO: move this line with company repo to separate worker
+        company_repo.update_interview_statistic(payload[:company_id], payload[:interview_rating])
         send_notification(interview)
 
         Success(interview)

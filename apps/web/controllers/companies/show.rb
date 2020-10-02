@@ -16,7 +16,6 @@ module Web
 
         def call(params)
           result = operation.call(id: params[:id])
-
           case result
           when Success
             @company = result.value!
