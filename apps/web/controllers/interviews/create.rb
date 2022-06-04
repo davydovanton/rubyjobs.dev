@@ -31,7 +31,7 @@ module Web
             rollbar.error(result.failure, payload: params.to_h)
           end
 
-          redirect_to routes.company_path(params[:company_id])
+          redirect_to routes.company_interviews_path(params[:company_id])
         end
 
         private

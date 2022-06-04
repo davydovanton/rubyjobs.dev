@@ -8,7 +8,7 @@ RSpec.describe Interviews::Operations::Create, type: :operation do
   end
 
   let(:interview_repo) { instance_double('InterviewRepository', create_with_interview_rating: Interview.new) }
-  let(:company_repo) { instance_double('CompanyRepository') }
+  let(:company_repo) { instance_double('CompanyRepository', update_interview_statistic: Company.new) }
 
   let(:params) do
     {
@@ -29,6 +29,20 @@ RSpec.describe Interviews::Operations::Create, type: :operation do
   context 'when successful operation' do
     it { expect(subject).to be_success }
     it { expect(subject.value!).to be_a(Interview) }
+
+    it 'calls company statistic updater' do
+      expect(company_repo).to receive(:update_interview_statistic).with(
+          10,
+          {
+              author_id: 0,
+
+              overall_impression: 3.0,
+              recommendation: 3.0
+          }
+      )
+
+      subject
+      end
   end
 
   context 'when interview data is invalid' do

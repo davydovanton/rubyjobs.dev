@@ -2,7 +2,9 @@
   .col
     h1
       = link_to 'Компании', routes.companies_path
-      |  > #{company.name}
+      |  > #{link_to company.name, routes.company_path(company.id)}
+      |  > Список отзывов об интервью
+
 .row
   .col
     = company_information(company)
@@ -12,12 +14,12 @@ hr.mb-4.mt-4
 .row
   .col.mb-4.vacancy_details
     -if company.ratings.any?
-        - default_rating_names.each do |rating, description|
-          .row
-            .col-8
-              = description
-            .col-4
-              = company_ratings[rating]
+      - default_rating_names.each do |rating, description|
+        .row
+          .col-8
+            = description
+          .col-4
+            = company_interview_ratings[rating]
     - else
       | Рейтингов пока нет. Оставте первый рейтинг
 
@@ -40,27 +42,25 @@ hr.mb-4.mt-4
 
   .col
     - if current_account.id
-      = link_to 'Оставить отзыв', routes.new_company_review_path(company.id), class: 'btn btn-success btn-lg new-vacancy-btn'
-      /col
-      /= link_to 'Отзывы об интервью', routes.company_interviews_path(company.id), class: 'btn btn-primary btn-lg new-interview-btn'
+      = link_to 'Оставить отзыв', routes.new_company_interview_path(company.id), class: 'btn btn-success btn-lg new-vacancy-btn'
     - else
       = link_to 'Оставить отзыв', '#', class: 'btn btn-success btn-lg new-vacancy-btn disabled'
-      /.col
-      /= link_to 'Интервью', '#', class: 'btn btn-success btn-lg new-vacancy-btn disabled'
 
 hr.mb-4.mt-4
 
+br
+
 .row
   .col.mb-4.vacancy_details
-    -if reviews.any?
-      - reviews.each do |review|
+    -if interviews.any?
+      - interviews.each do |interview|
         li.list-group-item
           .row
             /.col-sm-2
               /img src="#{review.author.avatar_url}" alt="#{review.author.github} avatar" height="42" width="42"
             .col-sm-6
-              h4 = review_author(review)
-              span = published_at(review)
+              h4 = interview_author(interview)
+              span = published_at(interview)
 
 
           .row
@@ -68,7 +68,7 @@ hr.mb-4.mt-4
 
           .row
             .col
-              = raw(review.body)
+              = raw(interview.body)
 
     - else
       | Отзывов пока нет. Оставте первый отзыв
